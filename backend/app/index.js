@@ -12,7 +12,7 @@ require('./configure')(app);
 // /api so they are isolated from our GET /* wildcard.
 // In our index.js file in the app folder, we are res.sending the correct index.html
 var rootPath = path.join(__dirname, '../../');
-app.use('/api', require(path.join(rootPath, './server/app/routes')));
+app.use('/api', require(path.join(rootPath, './backend/app/routes')));
 
 
 /*
@@ -31,9 +31,10 @@ app.use(function (req, res, next) {
 
 });
 
-app.get('/*', function (req, res) {
-    res.sendFile(app.get('indexHTMLPath'));
-});
+// We are not serving up the index.html file from the server anymore - uncomment to change
+// app.get('/*', function (req, res) {
+//     res.sendFile(app.get('indexHTMLPath'));
+// });
 
 // Error catching endware.
 app.use(function (err, req, res, next) {

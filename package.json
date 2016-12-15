@@ -9,9 +9,8 @@
   },
   "scripts": {
     "build": "ember build",
-    "startEmber": "ember server",
     "test": "ember test",
-    "start": "nodemon --watch server -e js,html server/main.js"
+    "start": "nodemon --watch server -e js,html backend/main.js"
   },
   "repository": "",
   "engines": {
