@@ -10,7 +10,9 @@ require('./configure')(app);
 
 // Routes that will be accessed via AJAX should be prepended with
 // /api so they are isolated from our GET /* wildcard.
-app.use('/api', require('./routes'));
+// In our index.js file in the app folder, we are res.sending the correct index.html
+var rootPath = path.join(__dirname, '../../');
+app.use('/api', require(path.join(rootPath, './server/app/routes')));
 
 
 /*

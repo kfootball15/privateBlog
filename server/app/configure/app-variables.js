@@ -4,6 +4,8 @@ var chalk = require('chalk');
 var util = require('util');
 
 var rootPath = path.join(__dirname, '../../../');
+// In our index.js file in the app folder, we are res.sending the correct index.html
+// var indexPath = path.join(rootPath, './app/index.html'); // This was serving index.html directly
 var indexPath = path.join(rootPath, './server/app/views/index.html');
 var faviconPath = path.join(rootPath, './server/app/views/favicon.ico');
 
