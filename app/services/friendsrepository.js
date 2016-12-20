@@ -34,6 +34,6 @@ export default Ember.Service.extend({
     return friends.findBy('id', id);
   },
   getFriends() {
-    return friends
+    return friends;
   }
 });
