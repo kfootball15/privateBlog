@@ -52,7 +52,7 @@ Specify what it takes to deploy your app.
   * [ember inspector for chrome](https://chrome.google.com/webstore/detail/ember-inspector/bmdblncegkenkacieihfhpjfppoconhi)
   * [ember inspector for firefox](https://addons.mozilla.org/en-US/firefox/addon/ember-inspector/)
 
-## Prototype
+## While Editing Prototype, start a server and live watch the ember build by running the following.
 * `npm start`
 * `ember serve`
 
