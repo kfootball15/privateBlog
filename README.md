@@ -55,6 +55,6 @@ Specify what it takes to deploy your app.
 ## While Editing Prototype, start a server and live watch the ember build by running the following.
 * `npm start`
 * `ember serve` or `ember server` or `ember s`
-## Then, in a browser, open up the ember server at localhost://4200
+## In a browser, open up the ember server at localhost://4200 to test the front end
 
 

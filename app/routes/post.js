@@ -8,3 +8,4 @@ export default Ember.Route.extend({
   postsRepository: Ember.inject.service("postsrepository")
 
 });
+

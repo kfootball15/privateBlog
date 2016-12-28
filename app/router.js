@@ -15,6 +15,7 @@ Router.map(function() {
     this.route('friend', {path: '/:friend_id'});
   });
   this.route('user');
+  this.route('newpost');
 });
 
 export default Router;

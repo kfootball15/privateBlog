@@ -1,6 +1,8 @@
 import Ember from 'ember';
 import Post from '../models/post';
 
+var counter = 4;
+
 const posts = [
   // Import the 'Post' model above, and then use it to create new instances of the Post Model
   Post.create ({id: '1', title: "First Post", content: "This is my very first post in post.js routes"}),
@@ -16,6 +18,12 @@ export default Ember.Service.extend({
     return posts.findBy('id', id);
   },
   newPost() {
-
+    return Post.create({});
+  },
+  savePost(post) {
+    post.set('id', counter);
+    counter++;
+    console.log(posts)
+    posts.pushObject(post);
   }
 });

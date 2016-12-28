@@ -2,7 +2,7 @@
 var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
-var userFunctions = require('../../../../api/user');
+// var userFunctions = require('../../../../api/user');
 var mongoose = require('mongoose');
 var User = mongoose.model('User')
 
