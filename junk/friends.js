@@ -1,9 +1,11 @@
+// routes/friends.js
+
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model(params) {
+  model() {
     const friendsRepository = this.get('friendsRepository');
-    return friendsRepository.getFriendById(params.friend_id);
+    return friendsRepository.getFriends();
   },
   friendsRepository: Ember.inject.service('friendsrepository')
 });

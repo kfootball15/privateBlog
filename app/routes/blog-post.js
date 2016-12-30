@@ -1,11 +1,14 @@
 import Ember from 'ember';
 
 export default Ember.Route.extend({
-  model(params) {
+  actions: {
+  },
+  model: function () {
     const postsRepository = this.get('postsRepository');
-    return postsRepository.getPostById(params.post_id);
+    const posts = postsRepository.getPosts();
+    console.log("POSTS", posts)
+    return posts
+    // return {}
   },
   postsRepository: Ember.inject.service("postsrepository")
-
 });
-

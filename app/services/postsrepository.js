@@ -1,29 +1,33 @@
 import Ember from 'ember';
-import Post from '../models/post';
+import BlogPost from '../models/blog-post';
 
 var counter = 4;
+// const store = this.get('store')
 
-const posts = [
-  // Import the 'Post' model above, and then use it to create new instances of the Post Model
-  Post.create ({id: '1', title: "First Post", content: "This is my very first post in post.js routes"}),
-  Post.create({id: '2', title: "Second Post", content: "This is my second post in post.js routes"}),
-  Post.create({id: '3',title: "Third Post",content: "This is my third post in post.js routes"})
-];
+// const posts = [
+//   // Import the 'Post' model above, and then use it to create new instances of the Post Model
+//   BlogPost.create ({blogPost: {title: "First Post", content: "This is my very first post in post.js routes"}}),
+//   BlogPost.create ({blogPost: {title: "Second Post", content: "This is my second post in post.js routes"}}),
+//   BlogPost.create ({blogPost: {title: "Third Post",content: "This is my third post in post.js routes"}})
+// ];
 
 export default Ember.Service.extend({
   getPosts() {
-    return posts;
+    return [{blogPost: {title: "WORKED", content: "LIKE A CHARM"}}]
+    // return this.store.findRecord('blog-post');
   },
-  getPostById(id) {
-    return posts.findBy('id', id);
-  },
-  newPost() {
-    return Post.create({});
-  },
-  savePost(post) {
-    post.set('id', counter);
-    counter++;
-    console.log(posts)
-    posts.pushObject(post);
-  }
+  // getPostById(id) {
+  //   return posts.findBy('id', id);
+  // },
+  // newPost() {
+  //   // return BlogPost.create({});
+  //   // const store = this.get('store')
+  //   return this.get('blog-post').createRecord('blog-post')
+  // },
+  // savePost(post) {
+  //   post.set('id', counter);
+  //   counter++;
+  //   console.log(posts)
+  //   posts.pushObject(post);
+  // }
 });

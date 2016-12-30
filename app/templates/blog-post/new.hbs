@@ -1,0 +1,11 @@
+
+<div class="blogForm" style="padding: 75px; background-color:blue;">
+  <h1>New Blog Post</h1><br>
+  <form {{action 'newPost' model.blogPost on="submit"}}>
+    {{input type="text" placeholder="Title" value=title}}<br>
+    {{input type="text" placeholder="Content" value=postcontent}}<br>
+
+    <button type="submit" type="blogPost"> Post </button>
+
+  </form>
+</div>
