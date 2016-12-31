@@ -1,7 +1,7 @@
 import Ember from 'ember';
-import BlogPost from '../models/blog-post';
+// import BlogPost from '../models/blog-post';
 
-var counter = 4;
+// var counter = 4;
 // const store = this.get('store')
 
 // const posts = [
@@ -13,8 +13,7 @@ var counter = 4;
 
 export default Ember.Service.extend({
   getPosts() {
-    return [{blogPost: {title: "WORKED", content: "LIKE A CHARM"}}]
-    // return this.store.findRecord('blog-post');
+    // return [{blogPost: {title: "WORKED", content: "LIKE A CHARM"}}]
   },
   // getPostById(id) {
   //   return posts.findBy('id', id);

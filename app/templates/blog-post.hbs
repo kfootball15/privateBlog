@@ -1,13 +1,14 @@
-<h1>Your Blog Posts:</h1>
-
-<div style="text-align:center; padding: 20px; background-color: pink;">
-{{#each model as |post|}}
-  <h3>TITLE: {{post.blogPost.title}}</h3> <br>
-  <h4>CONTENT: {{post.blogPost.content}}</h4> <br>
-{{/each}}
-</div>
-
 {{#link-to "blog-post.new" class="buttons blogPost"}} New Post {{/link-to}}
 
 {{outlet}}
+<h1>Your Blog Posts:</h1>
+
+<div style="text-align:center; padding: 20px; background-color: pink;">
+{{#each reverse as |post|}}
+  <h3>TITLE: {{post.title}}</h3> <br>
+  <h4>CONTENT: {{post.content}}</h4> <br>
+{{/each}}
+</div>
+
+
 
