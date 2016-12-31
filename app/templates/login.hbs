@@ -1,0 +1,15 @@
+<h1> Sign Up </h1>
+
+<div class="loginForm" style="padding: 75px; background-color:blue;">
+  <h2>Log in by Filling out the form below</h2><br>
+  <form {{action 'login' model on="submit"}}>
+    {{!-- {{input type="text" placeholder="Username" value=username}}<br> --}}
+    {{input type="text" placeholder="Email" value=email}}<br>
+    {{input type="text" placeholder="Password" value=password}}<br>
+
+    <button type="submit" type="login"> Log In </button>
+
+  </form>
+</div>
+
+{{outlet}}

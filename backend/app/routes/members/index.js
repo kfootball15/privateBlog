@@ -15,10 +15,11 @@ var ensureAuthenticated = function (req, res, next) {
 };
 
 router.post('/', function (req, res, next){
-  console.log("Made post request to /members/", req.body);
-  User.create(req.body)
+  console.log("Made post request to /users/", req.body);
+  User.create(req.body.user)
   .then(function(newUser){
-    res.status(201).send(newUser)
+    console.log("New User", newUser)
+    res.status(201).json({user: newUser})
   })
   .catch(next)
 })

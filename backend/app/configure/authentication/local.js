@@ -25,7 +25,9 @@ module.exports = function (app) {
     passport.use(new LocalStrategy({ usernameField: 'email', passwordField: 'password' }, strategyFn));
 
     // A POST /login route is created to handle login.
-    app.post('/login', function (req, res, next) {
+    app.post('/logins', function (req, res, next) {
+
+        req.body = req.body.login
 
         var authCb = function (err, user) {
 
@@ -47,7 +49,6 @@ module.exports = function (app) {
             });
 
         };
-
         passport.authenticate('local', authCb)(req, res, next);
 
     });
