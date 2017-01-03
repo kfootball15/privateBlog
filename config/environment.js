@@ -1,6 +1,7 @@
 /* jshint node: true */
 
 module.exports = function(environment) {
+
   var ENV = {
     modulePrefix: 'ember-quickstart',
     environment: environment,
@@ -55,6 +56,10 @@ module.exports = function(environment) {
   if (environment === 'production') {
 
   }
+
+  ENV['ember-simple-auth'] = {
+    baseURL: 'http://localhost:1337/'
+  };
 
   return ENV;
 };

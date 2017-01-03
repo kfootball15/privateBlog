@@ -53,4 +53,19 @@ module.exports = function (app) {
 
     });
 
+    app.post('/token', function (req,res,next){
+      console.log("We Made a Post Request to Token")
+      if(req.body.grant_type === 'password'){
+        console.log("in here 1");
+        if (req.body.username === 'letme' && req.body.password === 'in'){
+          console.log("in here 2")
+          res.status(200).send('{"access_token": "secret token!"}')
+        } else {
+          res.status(400).send('{"error": "invalid_grant_type"}')
+        }
+      } else {
+        res.status(400).send('{"error": "unsupported_grant_type"}')
+      }
+    });
+
 };

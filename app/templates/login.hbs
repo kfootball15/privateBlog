@@ -2,14 +2,22 @@
 
 <div class="loginForm" style="padding: 75px; background-color:blue;">
   <h2>Log in by Filling out the form below</h2><br>
-  <form {{action 'login' model on="submit"}}>
+  <form {{action 'login' on="submit"}}>
     {{!-- {{input type="text" placeholder="Username" value=username}}<br> --}}
-    {{input type="text" placeholder="Email" value=email}}<br>
+    <label for="email"> Login Email </Label>
+    {{input type="text" placeholder="Email" value=identification}}<br>
+    <label for="password"> Password </Label>
     {{input type="text" placeholder="Password" value=password}}<br>
 
     <button type="submit" type="login"> Log In </button>
 
   </form>
+
+  {{#if errorMessage}}
+    <p> <strong>Login failed </strong> </p>
+    <code> {{errorMessage}} </code>
+  {{/if}}
+
 </div>
 
 {{outlet}}
