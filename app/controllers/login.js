@@ -5,13 +5,14 @@ export default Ember.Controller.extend({
   actions: {
     login() {
 
-      let {identification, password} = this.getProperties('identification', 'password');
+      let {username, password} = this.getProperties('username', 'password');
 
-      console.log(identification, password);
+      console.log(username, password);
 
       const route = this;
-      this.get('session').authenticate('authenticator:oauth2', identification, password)
+      this.get('session').authenticate('authenticator:oauth2', username, password)
       .then(function () {
+        console.log("Should get in here")
         route.transitionToRoute('home');
       })
       .catch((reason) => {
