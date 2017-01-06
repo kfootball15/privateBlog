@@ -10,28 +10,12 @@ export default Ember.Controller.extend({
       console.log(username, password);
 
       const route = this;
+      // Here, we grab our session object and authenticate it by specifying which of our Authenticators we want to use.
+        // 'authenticator:oauth2' uses the oauth2.js file in our authenticators folder
       this.get('session').authenticate('authenticator:oauth2', username, password)
-      .then(function () {
-        console.log("Should get in here")
-        route.transitionToRoute('home');
-      })
       .catch((reason) => {
         this.set('errorMessage', reason.error);
       });
-
-      // const email = this.get('email')
-      // const password = this.get('password')
-
-      // const login = this.store.createRecord('login', {
-      //   email: email,
-      //   password: password
-      // })
-
-      // var route = this
-      // login.save()
-      // .then(function(){
-      //   route.transitionToRoute('home')
-      // })
 
     }
   }

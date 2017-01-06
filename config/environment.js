@@ -57,8 +57,15 @@ module.exports = function(environment) {
 
   }
 
+  // Configure your simple authentication here:
   ENV['ember-simple-auth'] = {
-    baseURL: 'http://localhost:1337/'
+    baseURL: 'http://localhost:1337/',
+    // store: 'simple-auth-session-store:local-storage',
+    // By default the Ember simple auth plugin will not authorize requests going to a different origin than the one the Ember.js application was loaded from. Therefore we have to explicitly enable authorization for additional origins
+    crossOriginWhitelist: ['http://localhost:1337/'],
+    // Specifies our authorizer. In this case, points to our 'custom.js' file in the autherizers folder
+    authorizer: 'authorizer:custom',
+    routeAfterAuthentication: 'home'
   };
 
   return ENV;

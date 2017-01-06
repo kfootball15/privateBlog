@@ -6,7 +6,6 @@ export default Ember.Controller.extend({
   actions: {
     logout(){
       this.get('session').invalidate();
-      this.get('store').findAll('logout');
     },
   }
 });

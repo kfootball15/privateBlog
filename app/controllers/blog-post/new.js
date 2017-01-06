@@ -15,10 +15,11 @@ export default Ember.Controller.extend({
       this.set('title', '');
       this.set('postcontent', '');
 
-      var route = this
+      // This will make our post request to our /blog-posts route with our blogpost record, created above
+      var route = this;
       blogpost.save()
       .then(function(){
-        route.transitionToRoute('blog-post')
+        route.transitionToRoute('blog-post');
       });
 
     }
