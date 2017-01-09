@@ -6,6 +6,9 @@ var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = mongoose.model('User')
 
+var passport = require('passport');
+var LocalStrategy = require('passport-local').Strategy;
+
 var ensureAuthenticated = function (req, res, next) {
     if (req.isAuthenticated()) {
         next();
@@ -22,6 +25,19 @@ router.post('/', function (req, res, next){
     res.status(201).json({user: newUser})
   })
   .catch(next)
+})
+
+router.get('/:user_id', function (req, res, next){
+  console.log("Made get request to /users/", req.body, req.body.params);
+  var userId = req.params.user_id
+
+  User.findById(userId)
+  .then(function(fetchedUser){
+    console.log("Fetched User", fetchedUser.sanitize())
+    res.status(200).json({user: fetchedUser.sanitize()})
+  })
+  .catch(next)
+
 })
 
 

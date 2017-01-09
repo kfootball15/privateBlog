@@ -5,9 +5,14 @@
 {{#link-to "user" class="buttons header user" tagName="button"}} Users {{/link-to}}
 {{#link-to "posts" class="buttons header posts" tagName="button"}} Posts {{/link-to}} -->
 
-
+{{!-- The session.isAuthenticated comes from our session service that is injected into our application.js controller --}}
 {{#if session.isAuthenticated}}
   <button {{action 'logout'}}> Logout </button>
+  {{#if currentUser.user}}
+    {{!-- Current User is being sent from server as a JSON object like this:
+    {user: {_id: 58672eb6b81a5b2871ce1410, username: "name", email:"email",}} --}}
+    <p>Signed in as {{currentUser.user.username}}</p>
+  {{/if}}
 {{else}}
   {{#link-to "signup" class="buttons header" tagName="button"}}
     Sign Up
