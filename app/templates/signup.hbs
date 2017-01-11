@@ -2,12 +2,12 @@
 
 <div class="signupForm" style="padding: 75px; background-color:blue;">
   <h2>Sign up by Filling out the form below</h2><br>
-  <form {{action 'signup' model on="submit"}}>
+  <form {{action 'signup' on="submit"}}>
     {{input type="text" placeholder="Username" value=username}}<br>
     {{input type="text" placeholder="Email" value=email}}<br>
     {{input type="text" placeholder="Password" value=password}}<br>
 
-    <button type="submit" type="blogPost"> Sign Up </button>
+    <button type="submit"> Sign Up </button>
 
   </form>
 </div>

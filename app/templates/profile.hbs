@@ -1,8 +1,32 @@
 <h1>Welcome to your Profile</h1>
 
 <div>
-  <h2> UserName: </h2> <p>{{currentUser.user.username}}</p>
-  <h2> Email: </h2> <p>{{currentUser.user.email}}</p>
-  <h2> ID: </h2> <p>{{currentUser.user._id}}</p>
+
+  {{!-- If the 'editingUserName' property is true, show form for edit, otherwise show the users information --}}
+  {{#if editingUserName}}
+    <form {{action 'editUser' on="submit" }} >
+      {{input type="text" placeholder="New User Name" value=newusername}}
+      {{input type="text" placeholder="Confirm Your Password" value=password}}
+      <button type="submit"> SAVE </button>
+    </form>
+    <button {{action "toggleEditUsername" }} > CANCEL </button>
+  {{else}}
+    <div style="display:block; width:auto"><p> <b>UserName:</b> {{currentUser.user.username}}</p></div>
+    <button {{action "toggleEditUsername" }} > EDIT </button>
+  {{/if}}
+
+  {{!-- If the 'editingEmail' property is true, show form for edit, otherwise show the users information --}}
+  {{#if editingEmail}}
+    <form {{action 'editUser' on="submit"}}>
+      {{input type="text" placeholder="New Email" value=newemail}}
+      {{input type="text" placeholder="Confirm Your Password" value=password}}
+      <button type="submit"> SAVE </button>
+    </form>
+    <button {{action "toggleEditEmail" }} > CANCEL </button>
+  {{else}}
+      <div style="display:block; width:auto"><p> <b>Email:</b> {{currentUser.user.email}}</p></div>
+      <button {{action "toggleEditEmail"}} > EDIT </button>
+  {{/if}}
+
 </div>
 {{outlet}}

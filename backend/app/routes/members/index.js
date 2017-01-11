@@ -2,10 +2,8 @@
 var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
-// var userFunctions = require('../../../../api/user');
 var mongoose = require('mongoose');
 var User = mongoose.model('User')
-
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -17,6 +15,7 @@ var ensureAuthenticated = function (req, res, next) {
     }
 };
 
+// Create User
 router.post('/', function (req, res, next){
   console.log("Made post request to /users/", req.body);
   User.create(req.body.user)
@@ -27,18 +26,32 @@ router.post('/', function (req, res, next){
   .catch(next)
 })
 
+// Get user
 router.get('/:user_id', function (req, res, next){
   console.log("Made get request to /users/", req.params);
-  var userId = req.params.user_id
 
-  User.findById(userId)
+  User.findById(req.params.user_id)
   .then(function(fetchedUser){
     console.log("Fetched User", fetchedUser.sanitize())
     res.status(200).json({user: fetchedUser.sanitize()})
   })
   .catch(next)
+});
 
-})
+// Update User
+router.patch('/:user_id', function (req, res, next){
+  console.log("Made PATCH request to /users/", req.params, req.body);
+
+  User.findByIdAndUpdate(req.params.user_id, {$set: { username: req.body.user.username, email: req.body.user.email }}, {new: true })
+  .then(function (updatedUser) {
+    console.log("UPDATED USER", updatedUser)
+    res.status(201).json( { user: updatedUser } );
+  });
+
+});
+
+
+
 
 
 router.get('/secret-stash', ensureAuthenticated, function (req, res) {
