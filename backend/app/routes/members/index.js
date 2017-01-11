@@ -28,7 +28,7 @@ router.post('/', function (req, res, next){
 })
 
 router.get('/:user_id', function (req, res, next){
-  console.log("Made get request to /users/", req.body, req.body.params);
+  console.log("Made get request to /users/", req.params);
   var userId = req.params.user_id
 
   User.findById(userId)

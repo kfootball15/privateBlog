@@ -11,7 +11,7 @@
   {{#if currentUser.user}}
     {{!-- Current User is being sent from server as a JSON object like this:
     {user: {_id: 58672eb6b81a5b2871ce1410, username: "name", email:"email",}} --}}
-    <p>Signed in as {{currentUser.user.username}}</p>
+    <div style="width: 200px;"><p>Signed in as: </p> {{#link-to "profile" class="buttons profile"}} {{currentUser.user.username}} {{/link-to}} </div>
   {{/if}}
 {{else}}
   {{#link-to "signup" class="buttons header" tagName="button"}}

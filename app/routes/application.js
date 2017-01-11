@@ -1,5 +1,6 @@
 import Ember from 'ember';
 import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mixin';
+const { service } = Ember.inject; // We declare 'service' so that we can inject it more easily below;
 
 // ApplicaitonRouteMixin: https://ember-simple-auth.com/api/classes/ApplicationRouteMixin.html
 
@@ -11,19 +12,16 @@ import ApplicationRouteMixin from 'ember-simple-auth/mixins/application-route-mi
   // Testing:
     // When using the ApplicationRouteMixin you need to specify needs: ['service:session'] in the application route's unit test.
 
-const { service } = Ember.inject;
-
 
 // Here, we are loading the current user:
 
-//The Ember Simple Auth session can either be authenticated already when the application starts up or become authenticated later when either the user logs in via that instance of the application or the session state is synced from another tab or window. In the first case, the session will already be authenticated when the application route's beforeModel method is called and in the latter case Ember Simple Auth will call the application route's sessionAuthenticated method. The currentUser service's load method must be called in both cases so that it's user property is always populated when the session is authenticated:
+//The Ember Simple Auth session can either be authenticated already when the application starts up or become authenticated later when either the user logs in via that instance of the application or the session state is synced from another tab or window. In the first case, the session will already be authenticated when the application route's beforeModel method is called and in the latter case Ember Simple Auth will call the application route's sessionAuthenticated method. The 'currentUser' service's load method must be called in both cases so that it's user property is always populated when the session is authenticated:
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
 
-  currentUser: service(),
+  currentUser: service(), // Making current-user service available here gives us access to its load() method below
 
   // Here, we are making sure that each of our authentication methods, aquired from ApplicationRouteMixin, are calling our currentUser services load() method, which will get the user information we need to properly render templates
-
   beforeModel() {
     console.log("Application.js Route: currentUser service .load() is being called from beforeModel()")
     return this._loadCurrentUser();

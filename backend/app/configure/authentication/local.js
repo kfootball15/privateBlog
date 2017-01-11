@@ -10,7 +10,7 @@ module.exports = function (app) {
     // the email and password to run the actual authentication logic.
     var strategyFn = function (email, password, done) {
 
-        console.log("STRATEGYFN:",email, password);
+        console.log("STRATEGYFN:", email, password);
 
         User.findOne({ email: email })
             .then(function (user) {
