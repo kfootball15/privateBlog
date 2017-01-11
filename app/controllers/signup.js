@@ -25,7 +25,7 @@ export default Ember.Controller.extend({
       // Makes a POST request to /api/users/:id
       user.save()
       .then(function() {
-          // After user has been successfully save, we
+          // After user has been successfully saved, we log them in
         return session.authenticate('authenticator:oauth2', email, password)
       })
       .then(function(){

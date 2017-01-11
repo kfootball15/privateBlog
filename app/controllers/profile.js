@@ -28,14 +28,14 @@ export default Ember.Controller.extend({
       this.get('store').findRecord('user', userId)
       .then(function(userToUpdate) {
 
-        console.log("userToUpdate: ", userToUpdate)
+        console.log("userToUpdate: ", userToUpdate);
 
         if (newUsername) {
-          userToUpdate.get('username')
+          userToUpdate.get('username');
           userToUpdate.set('username', newUsername);
         }
         if (newEmail) {
-          userToUpdate.get('email')
+          userToUpdate.get('email');
           userToUpdate.set('email', newEmail);
         }
 
@@ -45,20 +45,19 @@ export default Ember.Controller.extend({
       // Upon successfully saving user to database, we Authenticate the new user by loggin them in with new credentials
       .then(function(updatedUser) {
         let updatedEmail = updatedUser.get('email');
-
-        session.authenticate('authenticator:oauth2', updatedEmail, password)
+        return session.authenticate('authenticator:oauth2', updatedEmail, password);
 
       })
+      // .then(function() {
+      //   this.set('newemail', newEmail);
+      //   this.set('newUsername', newUsername);
+      // })
       .catch((reason) => {
         this.set('errorMessage', reason.error);
       });
 
-      // I might want to move this into the promise above, to make sure that this is only taking place if the data is saved
-      this.set('newemail', newEmail);
-      this.set('newUsername', newUsername);
-
-      if(newEmail) this.toggleProperty('editingEmail')
-      if(newUsername) this.toggleProperty('editingUserName')
+      if(newEmail) this.toggleProperty('editingEmail');
+      if(newUsername) this.toggleProperty('editingUserName');
 
 
     }
