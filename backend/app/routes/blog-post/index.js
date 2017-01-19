@@ -16,12 +16,15 @@ router.post('/', function (req, res, next){
 });
 
 router.get('/', function(req,res,next){
-  BlogPost.find()
-  .then(function(posts){
-    console.log(posts)
-    res.status(200).json({
-      blogPost: posts
-    });
-  })
-  .catch(next);
+
+    BlogPost.find({owner: req.query.owner})
+    .then(function(posts){
+      console.log(posts)
+      res.status(200).json({
+        blogPost: posts
+      });
+    })
+    .catch(next);
+
 });
+

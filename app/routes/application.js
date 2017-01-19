@@ -7,7 +7,7 @@ const { service } = Ember.inject; // We declare 'service' so that we can inject 
   // This is an optional Mixin
 
   // Defines methods that are called when the session was successfully authenticated (authenticationSucceeded) or invalidated (invalidationSucceeded).
-    // By injecting this Mixin, these above authentication methods (authenticationSucceeded etc) are being called/handled automatically. This allows us to authenticate our sessions between different tabs and different windows
+    // By injecting this Mixin, these above authentication methods (authenticationSucceeded,invalidationSucceeded, etc) are being called/handled automatically. This allows us to authenticate our sessions between different tabs and different windows. To customize these, you can do so with your authenticator.
 
   // Testing:
     // When using the ApplicationRouteMixin you need to specify needs: ['service:session'] in the application route's unit test.
@@ -19,9 +19,10 @@ const { service } = Ember.inject; // We declare 'service' so that we can inject 
 
 export default Ember.Route.extend(ApplicationRouteMixin, {
 
-  currentUser: service(), // Making current-user service available here gives us access to its load() method below
+  session: service(),
+  currentUser: service(), // Making current-user service available here gives us access to its load() method
 
-  // Here, we are making sure that each of our authentication methods, aquired from ApplicationRouteMixin, are calling our currentUser services load() method, which will get the user information we need to properly render templates
+  // Here, we are making sure that each of our authentication methods, aquired from ApplicationRouteMixin, are calling our currentUser services load() method before our model is loaded, which will get the user information we need to properly render templates
   beforeModel() {
     console.log("Application.js Route: currentUser service .load() is being called from beforeModel()")
     return this._loadCurrentUser();
@@ -41,5 +42,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 // The 'currentUser' service has a load method that must be called in order to fetch the user data!
   _loadCurrentUser() {
     return this.get('currentUser').load();
+  },
+
+  model() {
+    return this.get('session.data.authenticated.user._id')
   }
+
 });

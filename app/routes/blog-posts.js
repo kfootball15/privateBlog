@@ -8,7 +8,9 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   actions: {
   },
   store: Ember.inject.service(),
-  model: function () {
-    return this.get('store').findAll('blog-post');
+  model: function (params) {
+    return this.get('store').query('blog-post', {
+        owner: params.user_id
+    }); // Makes a GET request to "http://localhost:1337/api/blog-posts?owner=5875a0ffff80ca1c5189f25c"
   }
 });

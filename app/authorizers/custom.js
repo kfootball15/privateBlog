@@ -1,5 +1,5 @@
 // import Base from 'ember-simple-auth/authorizers/base';
-import Ember from 'ember'
+import Ember from 'ember';
 
 // export default Base.extend({
 //   authorize(data, block) {
@@ -20,7 +20,7 @@ export default OAuth2Bearer.extend({
   authorize(data, block) {
     var accessToken = this.get('session.content.secure.token');
 
-    console.log("authorizer: (data, block, accessToken)", data, ",", block, ",", accessToken);
+    // console.log("authorizer: (data, block, accessToken)", data, ",", block, ",", accessToken);
 
     if (this.get('session.isAuthenticated') && !Ember.isEmpty(accessToken)) {
         data.setRequestHeader('Authorization', 'Bearer ' + accessToken);

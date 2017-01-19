@@ -1,5 +1,5 @@
 import Ember from 'ember';
-const { service } = Ember.inject; // We declare 'service' so that we can inject it more easily below;
+const { service } = Ember.inject; // We declare 'service' so that we can inject it more easily like so: session: service();
 
 export default Ember.Controller.extend({
   currentUser: service('current-user'), // This must be on the controller, not the route. Why?
@@ -19,7 +19,7 @@ export default Ember.Controller.extend({
       const newEmail = this.get('newemail');
       const password = this.get('password');
 
-      // Grabs session object as well as current session Id
+      // Grabs session object as well as current session Id (*Must inject session service above^)
       const userId = this.get('session.data.authenticated.user._id');
       const session = this.get('session')
 
