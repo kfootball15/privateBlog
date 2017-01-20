@@ -1,6 +1,7 @@
 import Ember from 'ember';
 
 export default Ember.Controller.extend({
+  currentUser: Ember.inject.service(),
   session: Ember.inject.service('session'),
   actions: {
     login() {
@@ -10,6 +11,7 @@ export default Ember.Controller.extend({
       console.log(username, password);
 
       const route = this;
+      const currUser = this.get('currentUser');
       // Here, we grab our session object and authenticate it by specifying which of our Authenticators we want to use.
         // 'authenticator:oauth2' uses the oauth2.js file in our authenticators folder
         // By Default, it will call a few methods on our oauth2 authenticator (authenticate, etc)

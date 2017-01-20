@@ -1,11 +1,8 @@
 <h1>Below are different pages!!</h1>
 
-<!-- {{#link-to "home" class="buttons header home" tagName="button"}} Home {{/link-to}}
-{{#link-to "login" class="buttons header login" tagName="button"}} Login {{/link-to}}
-{{#link-to "user" class="buttons header user" tagName="button"}} Users {{/link-to}}
-{{#link-to "posts" class="buttons header posts" tagName="button"}} Posts {{/link-to}} -->
-
 {{!-- The session.isAuthenticated comes from our session service that is injected into our application.js controller --}}
+{{#link-to "home" class="buttons header" tagName="button"}} Home {{/link-to}}
+
 {{#if session.isAuthenticated}}
   <button {{action 'logout'}}> Logout </button>
   {{#if currentUser.user}}
@@ -22,6 +19,7 @@
   {{/link-to}}
 {{/if}}
 
-{{#link-to "blog-posts" model class="buttons header" tagName="button"}} Your Blog Posts {{/link-to}}
+{{!-- {{#link-to "blog-posts" model class="buttons header" tagName="button"}} Your Blog Posts {{/link-to}} --}}
+<button {{action "routeTo"}}> Your Blog Posts </button>
 
 {{outlet}}
