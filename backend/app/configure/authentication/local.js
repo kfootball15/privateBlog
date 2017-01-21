@@ -10,8 +10,6 @@ module.exports = function (app) {
     // the email and password to run the actual authentication logic.
     var strategyFn = function (email, password, done) {
 
-        console.log("STRATEGYFN:", email, password);
-
         User.findOne({ email: email })
             .then(function (user) {
                 // user.correctPassword is a method from the User schema.
@@ -27,12 +25,15 @@ module.exports = function (app) {
 
     passport.use(new LocalStrategy({ usernameField: 'username', passwordField: 'password' }, strategyFn));
 
+    // Good Article on a manual Token Authentication, and why we are doing this below :  https://emberigniter.com/implementing-authentication-with-ember-services/
     app.post('/token', function (req,res,next){
 
       // We get the user from our strategyFn above, which either returns the user or "false"
       var authCb = function (err, user) {
 
           if (err) return next(err);
+
+          console.log("token user:", user)
 
           // if the user is false OR the grant_type is not 'password', we throw an error
           if (!user || req.body.grant_type !== 'password') {
@@ -45,17 +46,33 @@ module.exports = function (app) {
           req.logIn(user, function (loginErr) {
               if (loginErr) return next(loginErr);
               // We respond with a response object that has user with _id and email.
-              // res.status(200).send({
-              //     user: user.sanitize()
-              // });
               var jsonSend = {access_token: app.getValue('env').SESSION_SECRET, user: user.sanitize()};
-              console.log("jsonSend", jsonSend)
               res.status(200).send(JSON.stringify(jsonSend));
           });
 
       };
 
       passport.authenticate('local', authCb)(req, res, next);
+
+    });
+
+    app.post('/confirmPassword', function (req,res,next){
+
+      // 1. find user using the session data
+      User.findOne({ email: req.body.email })
+      .then(function (user) {
+          // user.correctPassword is a method from the User schema.
+          console.log("confirmPassword", user)
+          if (!user || !user.correctPassword(req.body.password)) {
+              return next(error)
+              //done(null, false);
+          } else {
+              // Properly authenticated.
+              res.status(200).json({user: user})
+              //done(null, user);
+          }
+      })
+      .catch(next);
 
     });
 

@@ -41,16 +41,16 @@ module.exports = function (app) {
         UserModel.findById(id, done);
     });
 
-    // We provide a simple GET /session in order to get session information directly.
-    // This is used by the browser application (Angular) to determine if a user is
-    // logged in already.
-    app.get('/session', function (req, res) {
-        if (req.user) {
-            res.send({ user: req.user.sanitize() });
-        } else {
-            res.status(401).send('No authenticated user.');
-        }
-    });
+      // We provide a simple GET /session in order to get session information directly.
+      // This is used by the browser application (Angular) to determine if a user is
+      // logged in already.
+    // app.get('/session', function (req, res) {
+    //     if (req.user) {
+    //         res.send({ user: req.user.sanitize() });
+    //     } else {
+    //         res.status(401).send('No authenticated user.');
+    //     }
+    // });
 
     // Simple /logout route.
     app.get('/logouts', function (req, res) {
