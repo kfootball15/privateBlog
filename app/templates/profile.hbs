@@ -11,7 +11,7 @@
     </form>
     <button {{action "toggleEditUsername" }} > CANCEL </button>
   {{else}}
-    <div style="display:block; width:auto"><p> <b>UserName:</b> {{currentUser.user.username}}</p></div>
+    <div style="display:block; width:auto"><p> <b>UserName:</b> {{session.data.authenticated.user.username}}</p></div>
     <button {{action "toggleEditUsername" }} > EDIT </button>
   {{/if}}
 
@@ -24,9 +24,17 @@
     </form>
     <button {{action "toggleEditEmail" }} > CANCEL </button>
   {{else}}
-      <div style="display:block; width:auto"><p> <b>Email:</b> {{currentUser.user.email}}</p></div>
+      <div style="display:block; width:auto"><p> <b>Email:</b> {{session.data.authenticated.user.email}}</p></div>
+      {{!-- <div style="display:block; width:auto"><p> <b>Email:</b> {{currentUser.user.email}}</p></div> --}}
       <button {{action "toggleEditEmail"}} > EDIT </button>
   {{/if}}
 
+  {{#if confirmPasswordError}}
+      <div class="error">
+        <h1>The Password you entered was incorrect</h1>
+      </div>
+  {{/if}}
+
 </div>
+
 {{outlet}}

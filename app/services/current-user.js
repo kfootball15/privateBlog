@@ -17,20 +17,4 @@ export default Ember.Service.extend({
       return Ember.RSVP.resolve();
     }
   },
-
-  // confirmPassword(user) {
-  //   return this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
-  //     // inject headerName, headerValue here
-  //     Ember.$.ajax({
-  //         type: "POST",
-  //         url: "http://localhost:1337/confirmPassword",
-  //         data: user
-  //     }).then(function(data) {
-  //         console.log("AJAX DATA:", data)
-  //         return data;
-  //     })
-  //     .catch(console.error("Wrong Password"))
-  //     ;
-  //   });
-  // }
 });

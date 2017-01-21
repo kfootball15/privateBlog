@@ -15,83 +15,77 @@ export default Ember.Controller.extend({
     editUser () {
 
       // Grabs all information from edit form
-      const newUsername = this.get('newusername');
-      const newEmail = this.get('newemail');
+      var newUsername = this.get('newusername'),
+          newEmail = this.get('newemail');
       const password = this.get('password');
-
-      // Grabs session object as well as current session Id and email (*Must inject session service above^)
-        // User object looks like this: {_id: "5875a0ffff80ca1c5189f25c", username: "me", email: "me@me.com", __v: 0}
-      const user = this.get('session.data.authenticated.user')
-      user.password = password  // Set the userPassword (which is not defined on the session) to the confirmation password
-      const userId = this.get('session.data.authenticated.user._id');
-      const oldEmail = this.get('session.data.authenticated.user.email');
+      // Grabs session object as well as current session user
+      const user = this.get('session.data.authenticated.user'); // {_id: "5875a0ffff80ca1c5189f25c", username: "me", email: "me@me.com", __v: 0}
+      user.password = password;  // Set the password to the confirmation password
       const session = this.get('session');
+      // Save the store to a variable so that we can pull from it within our promises
+      const store = this.get('store');
 
-            //// We first authorize the user by confirming his password on the backend
-      // this.get('session').authorize('authorizer:custom', (headerName, headerValue) => {
-      //   // inject headerName, headerValue here
-      //   Ember.$.post("http://localhost:1337/confirmPassword", user)
-      //   .then(function(confirmed){
-      //     if (confirmed) {
-      //       return this.get('store').findRecord('user', userId)
-      //     }
-      //   })
-      //   .then(function(userToUpdate){
-      //     if (newUsername) {
-      //       userToUpdate.get('username');
-      //       userToUpdate.set('username', newUsername);
-      //     }
-      //     if (newEmail) {
-      //       userToUpdate.get('email');
-      //       userToUpdate.set('email', newEmail);
-      //     }
-      //     return userToUpdate.save() //Makes a PATCH request to /api/users/:id
-      //   })
-      //   .then(function(updatedUser) {
-      //     let updatedEmail = updatedUser.get('email');
-      //     return session.authenticate('authenticator:oauth2', updatedEmail, password);
-      //   })
-      //   .catch((reason) => {
-      //     this.set('errorMessage', reason.error);
-      //   });
-      // })
+      // 1. First, we create a promise that confirms users password
+      const checkPassword = new Ember.RSVP.Promise(function(resolve, reject){
+        Ember.$.ajax({
+          type: 'POST',
+          url:"http://localhost:1337/confirmPassword",
+          data: user,
+          success: function(response){
+            resolve(response);
+          },
+          error: function(reason){
+            reject(new Error('The confirmation password entered was incorrect, '+ 'failed with status: [' + reason.status + ']', reason));
+          }
+        });
+      });
 
-      this.get('store').findRecord('user', userId)
-      .then(function(userToUpdate) {
-
-        // 1. We have the user we want to update
-        // 2. Lets make a Post Request to our backend with the password our user typed in, and confirm that it is the correct password
-        // 3. If they match, update the user
-
-        if (newUsername) {
-          userToUpdate.get('username');
-          userToUpdate.set('username', newUsername);
-        }
-        if (newEmail) {
-          userToUpdate.get('email');
-          userToUpdate.set('email', newEmail);
-        }
-
-        return userToUpdate.save() //Makes a PATCH request to /api/users/:id
-
+      // 2. Then we call this promise with a success/error handler. If user password is correct, we get user data from backend.
+      checkPassword.then(function(responseUser){
+        return store.findRecord('user', responseUser.user._id)
+        // this.get('toggleError')('false')
+      }, function(error){
+        console.log(error);
       })
-      // Upon successfully saving user to database, we Authenticate the new user by loggin them in with new credentials
+      // 3. If users password is confirmed, we fetch the changed data from the HTML form and update our record with the updated user.
+      .then(function(userToUpdate){
+          if (newUsername) {
+            userToUpdate.get('username'); // This userToUpdate is the user we are getting from the store.findRecord success handler
+            userToUpdate.set('username', newUsername);
+          }
+          if (newEmail) {
+            userToUpdate.get('email');
+            userToUpdate.set('email', newEmail);
+          }
+          return userToUpdate.save() //Makes a PATCH request to /api/users/:id. We are simply updating the neccessary properties on the user and then saving the record on both the front and back end.
+      })
+      // 4. Lastly, Upon successfully saving user to database, we Authenticate the new user by loggin them in with new credentials
       .then(function(updatedUser) {
         let updatedEmail = updatedUser.get('email');
         return session.authenticate('authenticator:oauth2', updatedEmail, password);
+      })
+      .then(function(){
 
       })
-      // .then(function() {
-      //   this.set('newemail', newEmail);
-      //   this.set('newUsername', newUsername);
-      // })
       .catch((reason) => {
-        this.set('errorMessage', reason.error);
+        this.set('errorMessage', new Error('Updating User Info failed'));
       });
 
-      if(newEmail) this.toggleProperty('editingEmail');
-      if(newUsername) this.toggleProperty('editingUserName');
-
+      // 5. Make sure that we toggle the form and reset our form variables, regardless of whether or not the change was successful.
+      if(newEmail) {
+        this.get('newemail')
+        this.set('newemail', '')
+        this.get('password')
+        this.set('password', '')
+        this.toggleProperty('editingEmail');
+      }
+      if(newUsername) {
+        this.get('newusername')
+        this.set('newusername', '')
+        this.get('password')
+        this.set('password', '')
+        this.toggleProperty('editingUserName');
+      }
 
     }
   }
