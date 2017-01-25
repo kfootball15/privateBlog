@@ -1,23 +1,33 @@
-<h1> Log In </h1>
 
-<div class="loginForm" style="padding: 75px; background-color:blue;">
-  <h2>Log in by Filling out the form below</h2><br>
-  <form {{action 'login' on="submit"}}>
-    {{!-- {{input type="text" placeholder="Username" value=username}}<br> --}}
-    <label for="email"> Login Email </Label>
-    {{input type="text" placeholder="Email" value=username}}<br>
-    <label for="password"> Password </Label>
-    {{input type="text" placeholder="Password" value=password}}<br>
+<div class="container">
+  <div class="form-signin">
+    <h2 class="form-signin-heading">Please log in</h2>
+    <form class="form-signin" {{action 'login' on="submit"}}>
 
-    <button type="submit" type="login"> Log In </button>
+      <label for="inputEmail" class="sr-only"> Email address </Label>
+      {{input id="inputEmail" type="text" type="email" class="form-control" autofocus="" required="" placeholder="Email" value=username}}<br>
+      <label for="password" class="sr-only"> Password </Label>
+      {{input id="inputPassword" type="password" class="form-control" placeholder="Password" required="" value=password}}<br>
 
-  </form>
+      <div class="checkbox">
+        <label>
+          <input type="checkbox" value="remember-me"> Remember me?
+        </label>
+      </div>
 
-  {{#if errorMessage}}
-    <p> <strong>Login failed </strong> </p>
-    <code> {{errorMessage}} </code>
-  {{/if}}
+      <button type="submit" type="login" class="btn btn-lg btn-primary btn-block"> Log In </button>
 
+    </form>
+
+    {{#if errorMessage}}
+      <p> <strong>Login failed </strong> </p>
+      <code> {{errorMessage}} </code>
+    {{/if}}
+
+  </div>
 </div>
 
 {{outlet}}
+
+
+

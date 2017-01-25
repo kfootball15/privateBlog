@@ -1,25 +1,62 @@
-<h1>Below are different pages!!</h1>
-
-{{!-- The session.isAuthenticated comes from our session service that is injected into our application.js controller --}}
-{{#link-to "home" class="buttons header" tagName="button"}} Home {{/link-to}}
-
-{{#if session.isAuthenticated}}
-  <button {{action 'logout'}}> Logout </button>
-  {{#if currentUser.user}}
-    {{!-- Current User is being sent from server as a JSON object like this:
-    {user: {_id: 58672eb6b81a5b2871ce1410, username: "name", email:"email",}} --}}
-    <div style="width: 200px;"><p>Signed in as: </p> {{#link-to "profile" class="buttons profile"}} {{currentUser.user.username}} {{/link-to}} </div>
-  {{/if}}
-{{else}}
-  {{#link-to "signup" class="buttons header" tagName="button"}}
-    Sign Up
-  {{/link-to}}
-  {{#link-to "login" class="buttons header" tagName="button"}}
-    Log In
-  {{/link-to}}
-{{/if}}
-
-{{!-- {{#link-to "blog-posts" model class="buttons header" tagName="button"}} Your Blog Posts {{/link-to}} --}}
-<button {{action "routeToBlogPosts"}}> Your Blog Posts </button>
+ <!-- Fixed navbar -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          {{#link-to "home" class="navbar-brand"}} Private Blog {{/link-to}}
+        </div>
+        <div id="navbar" class="navbar-collapse collapse">
+          <ul class="nav navbar-nav">
+            <li class="active"><a> {{#link-to "home"}} Home {{/link-to}}</a></li>
+            <li {{action "routeToBlogPosts"}}> <a href=""> Your Blog Posts </a> </li>
+            {{!-- <li class="active"><a href="#">Home</a></li> --}}
+            <li><a href="#about">About</a></li>
+            <li><a href="#contact">Contact</a></li>
+                {{!-- DROPDOWN EXAMPLE --}}
+                {{!-- <li class="dropdown">
+                  <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                  <ul class="dropdown-menu">
+                    <li><a href="#">Action</a></li>
+                    <li><a href="#">Another action</a></li>
+                    <li><a href="#">Something else here</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="dropdown-header">Nav header</li>
+                    <li><a href="#">Separated link</a></li>
+                    <li><a href="#">One more separated link</a></li>
+                  </ul>
+                </li> --}}
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            {{#if session.isAuthenticated}}
+              {{#if currentUser.user}}
+                {{!-- Current User is being sent from server as a JSON object like this:
+                {user: {_id: 58672eb6b81a5b2871ce1410, username: "name", email:"email",}} --}}
+                <li> {{#link-to "profile" class="buttons profile"}} {{currentUser.user.username}} {{/link-to}} </li>
+              {{/if}}
+                <li {{action 'logout'}}> <a href=""> Logout </a> </li>
+              {{else}}
+                <li>
+                  {{#link-to "signup" }}
+                    Sign Up
+                  {{/link-to}}
+                </li>
+                <li>
+                  {{#link-to "login" }}
+                    Log In
+                  {{/link-to}}
+                </li>
+            {{/if}}
+          </ul>
+        </div><!--/.nav-collapse -->
+      </div>
+    </nav>
 
 {{outlet}}
+
+
+

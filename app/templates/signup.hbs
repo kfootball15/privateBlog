@@ -1,15 +1,16 @@
-<h1> Sign Up </h1>
 
-<div class="signupForm" style="padding: 75px; background-color:blue;">
-  <h2>Sign up by Filling out the form below</h2><br>
-  <form {{action 'signup' on="submit"}}>
-    {{input type="text" placeholder="Username" value=username}}<br>
-    {{input type="text" placeholder="Email" value=email}}<br>
-    {{input type="text" placeholder="Password" value=password}}<br>
+<div class="container">
+  <div class="form-signin">
+    <h2>Sign up by Filling out the form below</h2><br>
+    <form class="form-signin" {{action 'signup' on="submit"}}>
+      {{input class="form-control" autofocus="" required="" type="text" placeholder="Username" value=username}}<br>
+      {{input class="form-control" autofocus="" required="" type="text" placeholder="Email" value=email}}<br>
+      {{input class="form-control" autofocus="" required="" type="text" placeholder="Password" value=password}}<br>
 
-    <button type="submit"> Sign Up </button>
+      <button type="submit" class="btn btn-lg btn-primary btn-block"> Sign Up </button>
 
-  </form>
+    </form>
+  </div>
 </div>
 
 {{outlet}}

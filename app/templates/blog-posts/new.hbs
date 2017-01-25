@@ -1,11 +1,12 @@
 
-<div class="blogForm" style="padding: 75px; background-color:blue;">
-  <h1>New Blog Post</h1><br>
-  <form {{action 'newPost' model.blogPost on="submit"}}>
-    {{input type="text" placeholder="Title" value=title}}<br>
-    {{input type="text" placeholder="Content" value=postcontent}}<br>
+<div>
+  {{!-- <h1>New Blog Post</h1><br> --}}
+  <form class="form-new-post" {{action 'newPost' model.blogPost on="submit"}}>
+    <h2 class="form-signin-heading">New Blog Post</h2>
+    {{input class="title" type="title" type="text" placeholder="Title" value=title}}<br>
+    {{input class="content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
 
-    <button type="submit" type="blogPost"> Post </button>
+    <button class="btn btn-lg btn-primary btn-block" type="submit" type="blogPost"> Post </button>
 
   </form>
 </div>
