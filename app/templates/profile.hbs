@@ -7,12 +7,12 @@
     <form {{action 'editUser' on="submit" }} >
       {{input type="text" placeholder="New User Name" value=newusername}}
       {{input type="text" placeholder="Confirm Your Password" value=password}}
-      <button type="submit"> SAVE </button>
+      <button class="btn btn-sm btn-warning" type="submit"> SAVE </button>
     </form>
-    <button {{action "toggleEditUsername" }} > CANCEL </button>
+    <button class="btn btn-sm btn-danger" {{action "toggleEditUsername" }} > CANCEL </button>
   {{else}}
     <div style="display:block; width:auto"><p> <b>UserName:</b> {{session.data.authenticated.user.username}}</p></div>
-    <button {{action "toggleEditUsername" }} > EDIT </button>
+    <button class="btn btn-sm btn-danger" {{action "toggleEditUsername" }} > EDIT </button>
   {{/if}}
 
   {{!-- If the 'editingEmail' property is true, show form for edit, otherwise show the users information --}}
@@ -20,13 +20,13 @@
     <form {{action 'editUser' on="submit"}}>
       {{input type="text" placeholder="New Email" value=newemail}}
       {{input type="text" placeholder="Confirm Your Password" value=password}}
-      <button type="submit"> SAVE </button>
+      <button class="btn btn-sm btn-warning" type="submit"> SAVE </button>
     </form>
-    <button {{action "toggleEditEmail" }} > CANCEL </button>
+    <button class="btn btn-sm btn-danger" {{action "toggleEditEmail" }} > CANCEL </button>
   {{else}}
       <div style="display:block; width:auto"><p> <b>Email:</b> {{session.data.authenticated.user.email}}</p></div>
       {{!-- <div style="display:block; width:auto"><p> <b>Email:</b> {{currentUser.user.email}}</p></div> --}}
-      <button {{action "toggleEditEmail"}} > EDIT </button>
+      <button class="btn btn-sm btn-danger" {{action "toggleEditEmail"}} > EDIT </button>
   {{/if}}
 
   {{#if confirmPasswordError}}
