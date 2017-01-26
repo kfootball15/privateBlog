@@ -1,16 +1,18 @@
-<ul class="pager">
-  <li><a href=""> {{#link-to "blog-posts.new"}} New Post {{/link-to}} </a></li>
-</ul>
 
 
 
-{{outlet}}
 
 <div class="container">
 
   <div class="blog-header">
     <h1 class="blog-title">Your Private Blog Awaits</h1>
   </div>
+
+  <ul class="pager">
+    <li><a href=""> {{#link-to "blog-posts.new"}} New Post {{/link-to}} </a></li>
+  </ul>
+
+  {{outlet}}
 
   <div class="row">
 
@@ -19,7 +21,7 @@
       {{#each reverse as |post|}}
         <div class="blog-post">
           <h2 class="blog-post-title">{{post.title}}</h2>
-          <p class="blog-post-meta">December 23, 2013 by (***)<a href="#">Jacob(***)</a></p>
+          <p class="blog-post-meta">{{post.date}}<a href="#"> Jacob(***)</a></p>
 
           <p> {{post.content}} </p>
           {{!-- <blockquote>

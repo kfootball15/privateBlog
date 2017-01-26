@@ -2,6 +2,9 @@
 var mongoose = require('mongoose');
 
 var schema = new mongoose.Schema({
+    date: {
+        type: Date, default: Date.now
+    },
     owner: {
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User',
@@ -17,12 +20,12 @@ var schema = new mongoose.Schema({
         // default: '/img/adam.jpg'
     },
     content: {
-      type: String,
-      default: "Now write a little something..."
+        type: String,
+        default: "Now write a little something..."
     },
     title: {
-      type: String,
-      default: "Give this post a title"
+        type: String,
+        default: "Give this post a title"
     }
 });
 

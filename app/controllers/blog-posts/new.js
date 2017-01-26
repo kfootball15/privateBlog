@@ -11,9 +11,10 @@ export default Ember.Controller.extend({
       const title = this.get('title');
       const postcontent = this.get('postcontent');
       const userId = this.get('session.data.authenticated.user._id');
-      console.log(userId)
+      const date = new Date();
 
       const blogpost = this.store.createRecord('blog-post', {
+        date: date,
         owner: userId,
         title: title,
         content: postcontent
