@@ -8,9 +8,11 @@
     <h1 class="blog-title">Your Private Blog Awaits</h1>
   </div>
 
-  <ul class="pager">
-    <li><a href=""> {{#link-to "blog-posts.new"}} New Post {{/link-to}} </a></li>
-  </ul>
+
+  {{#link-to "blog-posts.new"}}
+    <button class="btn btn-lg btn-primary btn-block">  New Post  </button>
+  {{/link-to}}
+
 
   {{outlet}}
 
@@ -27,6 +29,7 @@
           {{!-- <blockquote>
             <p>(*** Include ability to decorate text) <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
           </blockquote> --}}
+          <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
 
         </div><!-- /.blog-post -->
       {{/each}}
