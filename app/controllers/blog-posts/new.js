@@ -25,9 +25,14 @@ export default Ember.Controller.extend({
 
       // .save() will make our post request to our /blog-posts (because assigned the correct model above) route with our blogpost record, created above
       var route = this;
+      // blogpost.save()
+      // .then(function(blogpost){
+      //   route.transitionToRoute('blog-posts', route.get('store').query('blog-post',{owner:userId})); // We must make this GET request again here, otherwise the page will not refresh
+      // })
+      // .catch(function(reason){console.error("ERROR: Failed to save Blog Post", reason)});
       blogpost.save()
       .then(function(blogpost){
-        route.transitionToRoute('blog-posts', route.get('store').query('blog-post',{owner:userId})); // We must make this GET request again here, otherwise the page will not refresh
+        route.transitionToRoute('blog-posts', userId);
       })
       .catch(function(reason){console.error("ERROR: Failed to save Blog Post", reason)});
 

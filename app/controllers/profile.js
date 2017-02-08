@@ -26,11 +26,9 @@ export default Ember.Controller.extend({
       const store = this.get('store');
 
 
-
-
       // 1. First, we call a method from the currentUser service that creates a promise that Makes a POST request to /confirmPassword which confirms that the password entered is correct and returns user info
       this.get('currentUser').confirmPassword(user)
-      // 2. Then we call this promise with a success/error handler. If user password is correct, we get user data from backend.
+      // 2. Then we call this promise with a success/error handler. If user password is correct, we get the user data from backend.
       .then(function(responseUser){
         return store.findRecord('user', responseUser.user._id);
         // this.get('toggleError')('false')

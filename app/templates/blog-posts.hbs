@@ -1,7 +1,3 @@
-
-
-
-
 <div class="container">
 
   <div class="blog-header">
@@ -9,12 +5,30 @@
   </div>
 
 
-  {{#link-to "blog-posts.new"}}
+{{!--   {{#link-to "blog-posts.new"}}
     <button class="btn btn-lg btn-primary btn-block">  New Post  </button>
   {{/link-to}}
 
 
-  {{outlet}}
+  {{outlet}} --}}
+
+  {{#if newBlogPost}}
+    <div>
+      {{!-- <h1>New Blog Post</h1><br> --}}
+      <form class="form-new-post" {{action 'newPost' model.blogPost on="submit"}}>
+        <h2 class="form-signin-heading">New Blog Post</h2>
+        {{input class="title" type="title" type="text" placeholder="Title" value=title}}<br>
+        {{input class="content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" type="blogPost"> Post </button>
+        <button class="btn btn-lg btn-danger btn-block" {{action "toggleNewPost"}} > Cancel </button>
+
+      </form>
+    </div>
+  {{else}}
+    <button class="btn btn-lg btn-primary btn-block" {{action "toggleNewPost" }} >  New Post  </button>
+    {{!-- <button class="btn btn-sm btn-danger" {{action "toggleEditUsername" }} > EDIT </button> --}}
+  {{/if}}
 
   <div class="row">
 
