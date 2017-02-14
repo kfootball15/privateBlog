@@ -12,13 +12,12 @@ export default Ember.Controller.extend({
       this.toggleProperty('newBlogPost');
     },
     deletePost(postId) {
-      // var self = this;
       this.get('store').findRecord('blog-post', postId, { backgroundReload: false })
       .then(function(post) {
         post.deleteRecord(); // Deletes Record form store
         post.get('isDeleted'); // returns 'true'
         return post.save(); // Makes DELETE request to /blog-posts/:postId
-        // post.destroyRecord(); // => Alternatively, we could use .destroyRecord() delete the record AND make DELETE to /blog-posts/2
+        //--> post.destroyRecord(); // => Alternatively, we could use .destroyRecord() delete the record AND make DELETE to /blog-posts/2
       })
       .catch(function(reason){
         console.error("ERROR: Failed to delete the blogPost", reason);
@@ -30,22 +29,16 @@ export default Ember.Controller.extend({
       const postcontent = this.get('postcontent');
       const userId = this.get('session.data.authenticated.user._id');
 
+      // 1. Create our blog-post record and store it in a variable
       const blogpost = this.store.createRecord('blog-post', {
-        date: new Date(),
+        date: new Date().toString(),
         owner: userId,
         title: title,
         content: postcontent
       });
 
-
-
-        // blogpost.save()
-        // .then(function(blogpost){
-        //   route.transitionToRoute('blog-posts', route.get('store').query('blog-post',{owner:userId})); // We must make this GET request again here, otherwise the page will not refresh
-        // })
-        // .catch(function(reason){console.error("ERROR: Failed to save Blog Post", reason)});
       var route = this;
-      // .save() will make our post request to our /blog-posts (because assigned the correct model above) route with our blogpost record, created above
+      // 2. Save it to DB - .save() will make our post request to our /blog-posts (because assigned the correct model above) route with our blogpost record, created above
       blogpost.save()
       .then(function(){
         route.set('title', '');

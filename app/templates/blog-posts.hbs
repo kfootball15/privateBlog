@@ -37,12 +37,9 @@
       {{#each reverse as |post|}}
         <div class="blog-post">
           <h2 class="blog-post-title">{{post.title}}</h2>
-          <p class="blog-post-meta">{{post.date}}<a href="#"> Jacob(***)</a></p>
+          <p class="blog-post-meta">{{post.date}} {{#link-to "profile-public" post.owner}} {{post.owner}} {{/link-to}} </p>
 
           <p> {{post.content}} </p>
-          {{!-- <blockquote>
-            <p>(*** Include ability to decorate text) <strong>Nullam quis risus eget urna mollis</strong> ornare vel eu leo. Nullam id dolor id nibh ultricies vehicula ut id elit.</p>
-          </blockquote> --}}
           <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
 
         </div><!-- /.blog-post -->

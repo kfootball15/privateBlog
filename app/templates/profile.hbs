@@ -35,6 +35,12 @@
       </div>
   {{/if}}
 
+  <br />
+
+  {{#link-to "profile-public" session.data.authenticated.user._id}}
+    <button class="btn btn-lg btn-default"> View Your Profile </button>
+  {{/link-to}}
+
 </div>
 
 {{outlet}}
