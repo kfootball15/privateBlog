@@ -26,6 +26,10 @@ var schema = new mongoose.Schema({
     title: {
         type: String,
         default: "Give this post a title"
+    },
+    subtitle: {
+        type: String,
+        default: "Give this post a subtitle"
     }
 });
 

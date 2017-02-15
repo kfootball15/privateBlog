@@ -7,6 +7,15 @@ var schema = new mongoose.Schema({
     username: {
         type: String
     },
+    firstname: {
+      type: String
+    },
+    lastname: {
+      type: String
+    },
+    bio: {
+      type: String
+    },
     email: {
         type: String
     },
@@ -64,6 +73,11 @@ schema.statics.encryptPassword = encryptPassword;
 
 schema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
+});
+
+schema.virtual('fullname')
+.get(function () {
+  return this.firstname + ' ' + this.lastname;
 });
 
 mongoose.model('User', schema);

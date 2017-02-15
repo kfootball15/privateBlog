@@ -37,7 +37,12 @@
       {{#each reverse as |post|}}
         <div class="blog-post">
           <h2 class="blog-post-title">{{post.title}}</h2>
+          <h4 class="blog-post-title">{{post.subtitle}}</h4>
           <p class="blog-post-meta">{{post.date}} {{#link-to "profile-public" post.owner}} {{post.owner}} {{/link-to}} </p>
+          {{!-- <p class="blog-post-meta">{{post.friends}}</p> --}}
+          {{#each post.friends as friend}}
+            <p class="blog-post-meta"> {{#link-to "profile-public" friend.id}} Friend: {{friend}} {{/link-to}} </p>
+          {{/each}}
 
           <p> {{post.content}} </p>
           <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
@@ -90,3 +95,86 @@
 
 </div><!-- /.container -->
 
+{{!-- --------------------------------------- --}}
+{{!-- --------------------------------------- --}}
+{{!-- UNCOMMENT FOR INDIVIDUAL BLOG POST PAGE --}}
+{{!-- --------------------------------------- --}}
+{{!-- --------------------------------------- --}}
+{{!--   <div class="blogpost_container_main">
+    <div class="blogpost_container_title">
+      <img class="blogpost_title_image" src="5760.jpg">
+      <div class="blogpost_title_text_container">
+        <div class="blogpost_title_headline">
+          LITTLE KID SOCCER GAMES, ON THE RISE?
+        </div>
+        <div class="blogpost_title_content">
+          These little tikes are taking the soccer world by storm, but are they ready for the big time? Iceland's senior vice president certainly thinks so.
+        </div>
+      </div>
+    </div>
+    <div class="blogpost_container_article">
+      <div class="blogpost_article_text">
+        <br>
+        <hr>
+          <div class="blogpost_article_meta">
+            <img class="icon" src="icon_facebook.png">
+            <!-- <img class="icon" src="icon_twitter.png"> -->
+            <img class="icon" src="icon_instagram.png">
+            <img class="icon" src="icon_email.png">
+            <div class="blogpost_container_meta">
+              January 31st, 2017. <a class="author" href="https://www.google.com/search?q=kfootball15&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiq2Ze2rpDSAhUKlZAKHZeEDi8Q_AUICigD&biw=2106&bih=1047"> Kfootball15 </a>
+            </div>
+          </div>
+        <hr>
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
+        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
+        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
+      </div>
+      <div class="blogpost_article_bio">
+        <h2 class="blogpost_bio_author">Jeffrey Fenster</h2>
+        <p class="blogpost_bio_text">
+          Jeff is a passionate young man with a host of abilities. In his free time, he does this shit and other shit too!
+          If you are interested in his shit, click <a href="google.com"> here </a>. Thank you and take care of yourselves. Remember, always write more stuff in this spot
+        </p>
+      </div>
+    </div>
+  </div> --}}
