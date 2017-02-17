@@ -26,6 +26,7 @@ export default Ember.Controller.extend({
     newPost: function () {
 
       const title = this.get('title');
+      const subtitle = this.get('subtitle');
       const postcontent = this.get('postcontent');
       const userId = this.get('session.data.authenticated.user._id');
 
@@ -34,6 +35,7 @@ export default Ember.Controller.extend({
         date: new Date().toString(),
         owner: userId,
         title: title,
+        subtitle: subtitle,
         content: postcontent
       });
 
@@ -42,6 +44,7 @@ export default Ember.Controller.extend({
       blogpost.save()
       .then(function(){
         route.set('title', '');
+        route.set('subtitle', '');
         route.set('postcontent', '');
         route.toggleProperty('newBlogPost');
         // *** ADD SOME KIND MODEL REFRESH HERE

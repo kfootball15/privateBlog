@@ -56,7 +56,13 @@ router.get('/', function (req, res, next){
 
 // Update User
 router.patch('/:user_id', function (req, res, next){
-  User.findByIdAndUpdate(req.params.user_id, {$set: { username: req.body.user.username, email: req.body.user.email }}, {new: true })
+  User.findByIdAndUpdate(req.params.user_id, {$set: {
+    username: req.body.user.username,
+    email: req.body.user.email,
+    firstname: req.body.user.firstname,
+    lastname: req.body.user.lastname,
+    bio: req.body.user.bio
+    }}, {new: true })
   .then(function (updatedUser) {
     console.log("UPDATED USER", updatedUser)
     res.status(201).json( { user: updatedUser } );

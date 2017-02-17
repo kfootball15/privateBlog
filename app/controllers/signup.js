@@ -8,17 +8,26 @@ export default Ember.Controller.extend({
       const email = this.get('email');
       const username = this.get('username');
       const password = this.get('password');
+      const firstname = this.get('firstname');
+      const lastname = this.get('lastname');
+      const bio = this.get('bio');
       const session = this.get('session'); // We use this later to log user in after sign up
 
       // 'user' here refers to the model 'user'
       const user = this.store.createRecord('user', {
         email: email,
         username: username,
+        firstname: firstname,
+        lastname: lastname,
+        bio: bio,
         password: password
       });
 
       this.set('email', '');
       this.set('username', '');
+      this.set('firstname', '');
+      this.set('lastname', '');
+      this.set('bio', '');
       this.set('password', '');
 
       var route = this;

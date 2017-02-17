@@ -12,12 +12,21 @@ export default Ember.Controller.extend({
     toggleEditEmail () {
       this.toggleProperty('editingEmail');
     },
+    toggleEditName () {
+      this.toggleProperty('editingName');
+    },
+    toggleEditBio () {
+      this.toggleProperty('editingBio');
+    },
     editUser () {
 
       // Grabs all information from edit form
       var newUsername = this.get('newusername'),
-          newEmail = this.get('newemail');
-      const password = this.get('password');
+          newEmail = this.get('newemail'),
+          newFirstname = this.get('newFirstname'),
+          newLastname = this.get('newLastname'),
+          newBio = this.get('newBio'),
+          password = this.get('password');
       // Grabs session object as well as current session user
       const user = this.get('session.data.authenticated.user'); // {_id: "5875a0ffff80ca1c5189f25c", username: "me", email: "me@me.com", __v: 0}
       user.password = password;  // Set the password to the confirmation password
@@ -45,6 +54,17 @@ export default Ember.Controller.extend({
             userToUpdate.get('email');
             userToUpdate.set('email', newEmail);
           }
+          if (newFirstname && newLastname) {
+            console.log(newFirstname, newLastname)
+            userToUpdate.get('firstname')
+            userToUpdate.get('lastname')
+            userToUpdate.set('firstname', newFirstname);
+            userToUpdate.set('lastname', newLastname);
+          }
+          if (newBio) {
+            userToUpdate.get('bio'),
+            userToUpdate.set('bio', newBio)
+          }
           return userToUpdate.save(); //Makes a PATCH request to /api/users/:id. We are simply updating the neccessary properties on the user and then saving the record on both the front and back end.
       })
       // 4. Lastly, Upon successfully saving user to database, we Authenticate the new user by loggin them in with new credentials
@@ -70,6 +90,20 @@ export default Ember.Controller.extend({
         this.get('password');
         this.set('password', '');
         this.toggleProperty('editingUserName');
+      }
+      if(newFirstname && newLastname) {
+        console.log(newFirstname, newLastname)
+        this.set('newFirstname', '');
+        this.set('newLastname', '');
+        this.get('password');
+        this.set('password', '');
+        this.toggleProperty('editingName')
+      }
+      if (newBio) {
+        this.set('newBio', '');
+        this.get('password')
+        this.set('password', '')
+        this.toggleProperty('editingBio')
       }
 
     }

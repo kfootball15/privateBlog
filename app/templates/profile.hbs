@@ -29,6 +29,37 @@
       <button class="btn btn-sm btn-danger" {{action "toggleEditEmail"}} > EDIT </button>
   {{/if}}
 
+  {{!-- If the 'editingName' property is true, show form for edit, otherwise show the users information --}}
+  {{#if editingName}}
+    <form {{action 'editUser' on="submit"}}>
+        {{input type="text" placeholder="New First Name" value=newFirstname}}
+        {{input type="text" placeholder="New Last Name" value=newLastname}}
+        {{input type="text" placeholder="Confirm Your Password" value=password}}
+        <button class="btn btn-sm btn-warning" type="submit"> SAVE </button>
+    </form>
+    <button class="btn btn-sm btn-danger" {{action "toggleEditName" }} > CANCEL </button>
+  {{else}}
+      <div style="display:block; width:auto"><p> <b>Name:</b> {{session.data.authenticated.user.firstname}} {{session.data.authenticated.user.lastname}}</p></div>
+      {{!-- <div style="display:block; width:auto"><p> <b>Email:</b> {{currentUser.user.email}}</p></div> --}}
+      <button class="btn btn-sm btn-danger" {{action "toggleEditName"}} > EDIT </button>
+  {{/if}}
+
+  {{!-- If the 'editingName' property is true, show form for edit, otherwise show the users information --}}
+  {{#if editingBio}}
+    <form {{action 'editUser' on="submit"}}>
+        {{input type="text" placeholder="New Bio" value=newBio}}
+        {{input type="text" placeholder="Confirm Your Password" value=password}}
+        <button class="btn btn-sm btn-warning" type="submit"> SAVE </button>
+    </form>
+    <button class="btn btn-sm btn-danger" {{action "toggleEditBio" }} > CANCEL </button>
+  {{else}}
+      <div style="display:block; width:auto"><p> <b>Bio:</b> {{session.data.authenticated.user.bio}} </p></div>
+      {{!-- <div style="display:block; width:auto"><p> <b>Email:</b> {{currentUser.user.email}}</p></div> --}}
+      <button class="btn btn-sm btn-danger" {{action "toggleEditBio"}} > EDIT </button>
+  {{/if}}
+
+
+
   {{#if confirmPasswordError}}
       <div class="error">
         <h1>The Password you entered was incorrect</h1>
