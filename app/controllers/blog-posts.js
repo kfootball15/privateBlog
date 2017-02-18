@@ -8,8 +8,34 @@ export default Ember.Controller.extend({
   store: service(),
   session: service(),
   actions: {
-    toggleNewPost(){
+    toggleNewPost(typeFromTemplate){
+      var that = this;
+      function setBlogType(type) {
+        that.get('blogType')
+        that.set('blogType', type)
+      }
+      // Toggles on/off the new blog post field
       this.toggleProperty('newBlogPost');
+
+      // If it is a public post, we want to alow them to add specific friends
+      if (typeFromTemplate === 'public') this.set('showAddFriends', true);
+      else this.set('showAddFriends', false);
+
+      // Now we want to set the blogType property to public/private so we can save it with the post in the database.
+      setBlogType(typeFromTemplate)
+    },
+    toggleShowAddFriends(){
+      this.set('showAddFriends', true);
+    },
+    setBlogTypePrivate(){
+      console.log("ran private")
+      this.get('blogType');
+      this.set('blogType', 'private');
+    },
+    setBlogTypePublic(){
+      console.log("ran public")
+      this.get('blogType');
+      this.set('blogType', 'public');
     },
     deletePost(postId) {
       this.get('store').findRecord('blog-post', postId, { backgroundReload: false })
@@ -28,12 +54,16 @@ export default Ember.Controller.extend({
       const title = this.get('title');
       const subtitle = this.get('subtitle');
       const postcontent = this.get('postcontent');
+      const blogType = this.get('blogType');
+      // console.log("BTYPE",  blogType)
       const userId = this.get('session.data.authenticated.user._id');
+
 
       // 1. Create our blog-post record and store it in a variable
       const blogpost = this.store.createRecord('blog-post', {
-        date: new Date().toString(),
+        date: new Date(),
         owner: userId,
+        blogType: blogType,
         title: title,
         subtitle: subtitle,
         content: postcontent

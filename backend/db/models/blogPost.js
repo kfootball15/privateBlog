@@ -10,6 +10,10 @@ var schema = new mongoose.Schema({
         ref: 'User',
         default: null
     },
+    blogType: {
+      type: String,
+      default: 'private'
+    },
     friends: [{
         type: mongoose.Schema.Types.ObjectId,
         ref: 'User'
@@ -21,15 +25,15 @@ var schema = new mongoose.Schema({
     },
     content: {
         type: String,
-        default: "Now write a little something..."
+        default: "No Content"
     },
     title: {
         type: String,
-        default: "Give this post a title"
+        default: "No Title"
     },
     subtitle: {
         type: String,
-        default: "Give this post a subtitle"
+        default: "No Sub Title"
     }
 });
 

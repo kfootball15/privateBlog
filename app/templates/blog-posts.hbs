@@ -1,20 +1,83 @@
-<div class="container">
+<div class="main-container">
 
   <div class="blog-header">
-    <h1 class="blog-title">Your Private Blog Awaits</h1>
+    <h1 class="blog-title">WELCOME</h1>
   </div>
 
+  <div class="blogposts-container">
+    <div class="newpost-container">
+      {{#if newBlogPost}}
+        {{#if showAddFriends}}
+          <div>ADD FRIENDS:</div>
+        {{/if}}
+        <div>
+          <form class="form-new-post" {{action 'newPost' model.blogPost on="submit"}}>
+            <h2 class="form-signin-heading">New Blog Post</h2>
+            {{input class="title" type="title" type="text" placeholder="Title" value=title}}<br>
+            {{input class="content" type="content" type="text" placeholder="Sub Title" value=subtitle}}<br>
+            {{input class="content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
 
-{{!--   {{#link-to "blog-posts.new"}}
-    <button class="btn btn-lg btn-primary btn-block">  New Post  </button>
-  {{/link-to}}
+            <button class="btn btn-lg btn-primary btn-block" type="submit" type="blogPost"> Post </button>
+            <button class="btn btn-lg btn-danger btn-block" {{action "toggleNewPost"}} > Cancel </button>
+
+          </form>
+        </div>
+
+      {{else}}
+        <div>
+          <div class="newpost-button">
+            <button {{action "toggleNewPost" "private"}} > PRIVATE </button>
+          </div>
+          <div class="newpost-button">
+            <button {{action "toggleNewPost" "public"}}> PUBLIC </button>
+          </div>
+        </div>
+      {{/if}}
 
 
-  {{outlet}} --}}
+    </div>
 
+
+
+    {{#each reverse as |post|}}
+      <div class="blogpost">
+        <h2 class="blog-post-title">{{post.title}}</h2>
+        <h4 class="blog-post-title">{{post.subtitle}}</h4>
+        <h5 class="blog-post-title">{{post.blogType}}</h5>
+        <p class="blog-post-meta">{{post.date}}
+          {{#link-to "profile-public" post.owner}} {{!-- Link-to will automatically use the post.owners id property https://guides.emberjs.com/v2.10.0/templates/links/  --}}
+            {{post.owner.username}}
+          {{/link-to}} </p>
+        {{#each post.friends as |friend|}}
+          <p class="blog-post-meta"> {{#link-to "profile-public" friend._id}} {{friend.username}} {{/link-to}} </p>
+        {{/each}}
+
+        <p> {{post.content}} </p>
+        <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
+
+      </div>
+    {{/each}}
+
+    <nav>
+      <ul class="pager">
+        <li><a href="#"> Previous (***)</a></li>
+        <li><a href="#"> Next (***)</a></li>
+      </ul>
+    </nav>
+
+  </div>
+
+  {{outlet}}
+
+
+
+</div>
+
+
+
+<!--
   {{#if newBlogPost}}
     <div>
-      {{!-- <h1>New Blog Post</h1><br> --}}
       <form class="form-new-post" {{action 'newPost' model.blogPost on="submit"}}>
         <h2 class="form-signin-heading">New Blog Post</h2>
         {{input class="title" type="title" type="text" placeholder="Title" value=title}}<br>
@@ -28,7 +91,6 @@
     </div>
   {{else}}
     <button class="btn btn-lg btn-primary btn-block" {{action "toggleNewPost" }} >  New Post  </button>
-    {{!-- <button class="btn btn-sm btn-danger" {{action "toggleEditUsername" }} > EDIT </button> --}}
   {{/if}}
 
   <div class="row">
@@ -40,7 +102,6 @@
           <h2 class="blog-post-title">{{post.title}}</h2>
           <h4 class="blog-post-title">{{post.subtitle}}</h4>
           <p class="blog-post-meta">{{post.date}} {{#link-to "profile-public" post.owner}} {{post.owner}} {{/link-to}} </p>
-          {{!-- <p class="blog-post-meta">{{post.friends}}</p> --}}
           {{#each post.friends as friend}}
             <p class="blog-post-meta"> {{#link-to "profile-public" friend.id}} Friend: {{friend}} {{/link-to}} </p>
           {{/each}}
@@ -48,7 +109,7 @@
           <p> {{post.content}} </p>
           <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
 
-        </div><!-- /.blog-post -->
+        </div>
       {{/each}}
 
       <nav>
@@ -58,7 +119,7 @@
         </ul>
       </nav>
 
-    </div><!-- /.blog-main -->
+    </div>
 
     <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
       <div class="sidebar-module sidebar-module-inset">
@@ -90,11 +151,15 @@
           <li><a href="#">Facebook</a></li>
         </ol>
       </div>
-    </div><!-- /.blog-sidebar -->
+    </div>
 
-  </div><!-- /.row -->
+  </div>
 
-</div><!-- /.container -->
+</div> -->
+
+
+
+
 
 {{!-- --------------------------------------- --}}
 {{!-- --------------------------------------- --}}

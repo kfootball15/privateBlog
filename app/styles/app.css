@@ -79,6 +79,71 @@ body {
 }
 
 /*BLOG POSTS*/
+/*BLOG POSTS*/
+.main-container {
+  width: 900px;
+  margin: 50px auto;
+  padding: 0 10%;
+}
+.blogposts-container {
+  width: 100%;
+  display: inline-block;
+}
+/*.sidebar-container {
+  width: 33%;
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 5px;
+}*/
+.newpost-container {
+  display: block;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.blog-header {
+  display: block;
+  margin: 15px 0;
+}
+.blog-title {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.newpost-button {
+  width: 48.2%;
+  display: inline-block;
+  position: relative;
+  border: 1px solid grey;
+  border-radius: 5px;
+  height:120px;
+  margin: 5px;
+}
+.newpost-button > button {
+  width: 100%;
+  font-size: 24px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 0 auto;
+  height: 100px;
+  line-height: 100px;
+  white-space: nowrap;
+  text-align: center;
+  /*REMOVES DEFAULT BUTTON STYLING*/
+  color: black;
+  border: none;
+  background: none;
+
+}
+.blogpost {
+  width: 100%;
+}
+
+
+
+
+
+
 .form-new-post{
   max-width: 330px;
   padding: 15px;

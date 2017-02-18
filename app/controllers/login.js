@@ -12,7 +12,6 @@ export default Ember.Controller.extend({
 
       const route = this;
       const userId = this.get('session.data.authenticated.user');
-      console.log("USER:", userId);
       // Here, we grab our session object and authenticate it by specifying which of our Authenticators we want to use.
         // 'authenticator:oauth2' uses the oauth2.js file in our authenticators folder
         // By Default, it will call a few methods on our oauth2 authenticator (authenticate, etc)
