@@ -5,6 +5,7 @@ export default DS.Model.extend({
   username: DS.attr('string'),
   firstname: DS.attr('string'),
   lastname: DS.attr('string'),
+  friends: DS.attr('array'),
   bio: DS.attr('string'),
   email: DS.attr('string'),
   password: DS.attr('string'),

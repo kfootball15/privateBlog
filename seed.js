@@ -29,6 +29,7 @@ var userSeed = [
     {
         username: 'jchan',
         email: 'jchan@me.com',
+        friends: [],
         bio: 'Jacky is an avid blog writer and an unbelievable mixed martial artist. With an amazing, 20 year career in film and television, Jacky Chan has has brought in over 2 billion dollars in box office revenue.',
         firstname: 'Jacky',
         lastname: 'Chan',
@@ -38,6 +39,7 @@ var userSeed = [
     {
         username: 'mjordan',
         email: 'mjordan@me.com',
+        friends: [],
         bio: 'Michael Jordan is one of the premiere web developers in the United States. After a decorated career as a professional basketball player, Jordan awoke one day with a desire to dominate the world of code, and he has done so spectacularly winning 5 championships.',
         firstname: 'Michael',
         lastname: 'Jordan',
@@ -47,6 +49,7 @@ var userSeed = [
     {
         username: 'tmandelkern',
         email: 'tmandelkern@me.com',
+        friends: [],
         bio: 'Talya Mandelkern is one of the brightest minds we have seen this century. With a degree in biomedical engineering, Talya has exploded onto the scene as a stand out medical student at the University of Pittsburgh. A lovely smile, and wonderful rack, and an ass that simply does not quit.',
         firstname: 'Talya',
         lastname: 'Mandelkern',
@@ -56,6 +59,7 @@ var userSeed = [
     {
         username: 'admin',
         email: 'admin@me.com',
+        friends: [],
         bio: 'This is the admin. He is king around here.',
         firstname: 'admin',
         lastname: 'istrator',
@@ -65,6 +69,7 @@ var userSeed = [
     {
         username: 'me',
         email: 'me@me.com',
+        friends: [],
         bio: 'Jeff is really your standard development account that allows for all kinds of tests and experimentation to be done and executed on point until the completion of the application. If life were easier, I would have someone else do this seed file. Such is life.',
         firstname: 'Jeff',
         lastname: 'Fenster',
@@ -178,6 +183,24 @@ var seedDB = function() {
     return User.create(userSeed)
     .then(function(users){
         usersList = users;
+        for (var i = 0; i < usersList.length; i++){
+          friendsArray = [];
+          friendsArray.push(randomizeSelector(usersList)._id);
+          friendsArray.push(randomizeSelector(usersList)._id);
+          friendsArray.push(randomizeSelector(usersList)._id);
+          friendsArray.push(randomizeSelector(usersList)._id);
+          friendsArray.push(randomizeSelector(usersList)._id);
+          console.log("friendsArray", friendsArray, usersList[i]._id)
+          User.findByIdAndUpdate(usersList[i]._id,
+            { "$set": { "friends": friendsArray } },
+            { "new": true, "upsert": true },
+            function (err, friends) {
+                if (err) console.log("ERROROROROROR");
+                console.log("Friendsuser:", friends);
+            })
+        }
+      })
+      .then(function(users){
         console.log(usersList)
         return Promise.map(blogpostSeed, function(blogPost) {
             var blogType = randomizeSelector(publicOrPrivate)
@@ -191,6 +214,7 @@ var seedDB = function() {
             //Pushing them into the seedfile object
             blogPost.owner = randomizeSelector(usersList);
             blogPost.blogType = blogType;
+            console.log("numbfriends:", numfriends)
             if (blogType === 'public') {
               while (numfriends >= 0) {
                 blogPost.friends.push(userToAddToStory1._id);

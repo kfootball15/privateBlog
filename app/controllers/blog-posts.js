@@ -14,15 +14,14 @@ export default Ember.Controller.extend({
         that.get('blogType')
         that.set('blogType', type)
       }
-      // Toggles on/off the new blog post field
-      this.toggleProperty('newBlogPost');
 
-      // If it is a public post, we want to alow them to add specific friends
+      this.toggleProperty('newBlogPost'); // Toggles on/off the new blog post field
+
+      // If it is a public post, we want to allow them to add specific friends
       if (typeFromTemplate === 'public') this.set('showAddFriends', true);
       else this.set('showAddFriends', false);
 
-      // Now we want to set the blogType property to public/private so we can save it with the post in the database.
-      setBlogType(typeFromTemplate)
+      setBlogType(typeFromTemplate)// Now we want to set the blogType property to public/private so we can save it with the post in the database.
     },
     toggleShowAddFriends(){
       this.set('showAddFriends', true);

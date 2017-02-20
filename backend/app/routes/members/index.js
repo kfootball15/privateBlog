@@ -3,7 +3,7 @@ var router = require('express').Router();
 module.exports = router;
 var _ = require('lodash');
 var mongoose = require('mongoose');
-var User = mongoose.model('User')
+var User = mongoose.model('User');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -27,7 +27,9 @@ router.post('/', function (req, res, next){
 
 // Get user (params)
 router.get('/:user_id', function (req, res, next){
-  User.findById(req.params.user_id)
+  console.log("Get Users (params)")
+  User.findOne({_id: req.params.user_id})
+  .populate('friends')
   .then(function(fetchedUser){
     console.log("Fetched User", fetchedUser.sanitize())
     res.status(200).json({user: fetchedUser.sanitize()})
@@ -37,9 +39,10 @@ router.get('/:user_id', function (req, res, next){
 
 // Get user (query)
 router.get('/', function (req, res, next){
-  console.log(req)
+  console.log("Get Users (query)")
   if (req.query){
     User.findById(req.query._id)
+    .populate('friends')
     .then(function(fetchedUser){
       console.log("Fetched User", fetchedUser.sanitize())
       res.status(200).json({user: fetchedUser.sanitize()})

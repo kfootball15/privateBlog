@@ -4,6 +4,12 @@
     <h1 class="blog-title">WELCOME</h1>
   </div>
 
+  <div>
+    {{#each session.data.authenticated.user.friends as |friend|}}
+      Friends {{friend._id}}
+    {{/each}}
+  </div>
+
   <div class="blogposts-container">
     <div class="newpost-container">
       {{#if newBlogPost}}
