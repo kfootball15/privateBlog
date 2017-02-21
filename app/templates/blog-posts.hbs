@@ -6,7 +6,7 @@
 
   <div>
     {{#each session.data.authenticated.user.friends as |friend|}}
-      Friends {{friend._id}}
+      {{friend.username}},
     {{/each}}
   </div>
 

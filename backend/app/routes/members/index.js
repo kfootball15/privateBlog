@@ -29,7 +29,7 @@ router.post('/', function (req, res, next){
 router.get('/:user_id', function (req, res, next){
   console.log("Get Users (params)")
   User.findOne({_id: req.params.user_id})
-  .populate('friends')
+  .populate('friends').exec()
   .then(function(fetchedUser){
     console.log("Fetched User", fetchedUser.sanitize())
     res.status(200).json({user: fetchedUser.sanitize()})

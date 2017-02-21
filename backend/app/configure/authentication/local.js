@@ -11,6 +11,7 @@ module.exports = function (app) {
     var strategyFn = function (email, password, done) {
 
         User.findOne({ email: email })
+            .populate('friends')
             .then(function (user) {
                 // user.correctPassword is a method from the User schema.
                 if (!user || !user.correctPassword(password)) {
@@ -46,7 +47,7 @@ module.exports = function (app) {
           req.logIn(user, function (loginErr) {
               if (loginErr) return next(loginErr);
               // We respond with a response object that has user with _id and email.
-              var jsonSend = {access_token: app.getValue('env').SESSION_SECRET, user: user.sanitize()};
+              var jsonSend = {access_token: app.getValue('env').SESSION_SECRET, user: user};
               res.status(200).send(JSON.stringify(jsonSend));
           });
 
