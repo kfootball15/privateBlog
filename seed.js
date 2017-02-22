@@ -57,6 +57,46 @@ var userSeed = [
         // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
     },
     {
+        username: 'jarcher',
+        email: 'jarcher@me.com',
+        friends: [],
+        bio: 'John Archer is a spi! And an American Patriot.',
+        firstname: 'John',
+        lastname: 'Arcjer',
+        password: '123',
+        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+    },
+    {
+        username: 'owinfrey',
+        email: 'owinfrey@me.com',
+        friends: [],
+        bio: 'Oprah Winfrey is a Television woman! And what a rotund lady she has become despite here addition to weight watching.',
+        firstname: 'Oprah',
+        lastname: 'Winfrey',
+        password: '123',
+        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+    },
+    {
+        username: 'hstern',
+        email: 'hstern@me.com',
+        friends: [],
+        bio: 'Howard Stern is a man amongst children. His penis, though tiny, is known around the world',
+        firstname: 'Howard',
+        lastname: 'Stern',
+        password: '123',
+        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+    },
+    {
+        username: 'timmy',
+        email: 'timmy @me.com',
+        friends: [],
+        bio: 'Timmy is not a real person...',
+        firstname: 'timmy',
+        lastname: 'noname',
+        password: '123',
+        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+    },
+    {
         username: 'admin',
         email: 'admin@me.com',
         friends: [],
@@ -183,14 +223,17 @@ var seedDB = function() {
     return User.create(userSeed)
     .then(function(users){
         usersList = users;
+        var friendsArray = [];
         for (var i = 0; i < usersList.length; i++){
-          friendsArray = [];
-          friendsArray.push(randomizeSelector(usersList)._id);
-          friendsArray.push(randomizeSelector(usersList)._id);
-          friendsArray.push(randomizeSelector(usersList)._id);
-          friendsArray.push(randomizeSelector(usersList)._id);
-          friendsArray.push(randomizeSelector(usersList)._id);
-          console.log("friendsArray", friendsArray, usersList[i]._id)
+
+          var counter = 10;
+          while (counter > 0) {
+            var tempfriend = randomizeSelector(usersList)._id;
+            if(friendsArray.indexOf(tempfriend) === -1) friendsArray.push(tempfriend)
+            counter--;
+          }
+
+          console.log("friendsArray", friendsArray)
           User.findByIdAndUpdate(usersList[i]._id,
             { "$set": { "friends": friendsArray } },
             { "new": true, "upsert": true },
@@ -201,15 +244,14 @@ var seedDB = function() {
         }
       })
       .then(function(users){
-        console.log(usersList)
         return Promise.map(blogpostSeed, function(blogPost) {
             var blogType = randomizeSelector(publicOrPrivate)
             var numfriends = randomizeSelector(numberOfFriends)
 
             //Creation of random blogPosts and users
-            var userToAddToStory1 = randomizeSelector(usersList);
-            var userToAddToStory2 = randomizeSelector(usersList);
-            var userToAddToStory3 = randomizeSelector(usersList);
+            var userToAddToFriends1 = randomizeSelector(usersList);
+            var userToAddToFriends2 = randomizeSelector(usersList);
+            var userToAddToFriends3 = randomizeSelector(usersList);
 
             //Pushing them into the seedfile object
             blogPost.owner = randomizeSelector(usersList);
@@ -217,9 +259,9 @@ var seedDB = function() {
             console.log("numbfriends:", numfriends)
             if (blogType === 'public') {
               while (numfriends >= 0) {
-                blogPost.friends.push(userToAddToStory1._id);
-                blogPost.friends.push(userToAddToStory2._id);
-                blogPost.friends.push(userToAddToStory3._id);
+                blogPost.friends.push(userToAddToFriends1._id);
+                blogPost.friends.push(userToAddToFriends2._id);
+                blogPost.friends.push(userToAddToFriends3._id);
                 numfriends--;
               }
             }
