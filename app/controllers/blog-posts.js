@@ -15,7 +15,9 @@ export default Ember.Controller.extend({
         that.set('blogType', type)
       }
 
+      //Reset new blog post properties
       this.toggleProperty('newBlogPost'); // Toggles on/off the new blog post field
+      this.set('showFriendsList', false); // Toggles off the friends list
 
       // If it is a public post, we want to allow them to add specific friends
       if (typeFromTemplate === 'public') this.set('public', true);
@@ -93,6 +95,14 @@ export default Ember.Controller.extend({
         if(arr[i]._id ===friend._id) return;
       }
       arr.pushObject(friend) // using pushObject instead of push will update the template
+      console.log("addfriend", friend, arr)
+    }, // Pushes selected friend into friends Array
+    removefriend (friend) {
+      let arr = this.get('modelFriendsArray')
+
+      for (var i = 0; i < arr.length; i++) {
+        if(arr[i]._id === friend._id) arr.removeObject(arr[i])
+      }
       console.log("addfriend", friend, arr)
     } // Pushes selected friend into friends Array
   },

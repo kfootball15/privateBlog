@@ -19,7 +19,7 @@
               <div>
                 <h1> Friends Added To This Post: </h1>
                 {{#each modelFriendsArray as |modelFriend|}}
-                  {{modelFriend.username}}
+                  <button {{action "removefriend" modelFriend}} > x {{modelFriend.username}} </button>
                 {{/each}}
               </div>
 
