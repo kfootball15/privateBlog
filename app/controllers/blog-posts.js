@@ -18,21 +18,23 @@ export default Ember.Controller.extend({
       this.toggleProperty('newBlogPost'); // Toggles on/off the new blog post field
 
       // If it is a public post, we want to allow them to add specific friends
-      if (typeFromTemplate === 'public') this.set('showAddFriends', true);
-      else this.set('showAddFriends', false);
+      if (typeFromTemplate === 'public') this.set('public', true);
+      else this.set('public', false);
 
       setBlogType(typeFromTemplate)// Now we want to set the blogType property to public/private so we can save it with the post in the database.
     },
-    toggleShowAddFriends(){
-      this.set('showAddFriends', true);
+    togglepublic(){
+      this.set('public', true);
+    },
+    toggleShowFriendsList(){
+      this.toggleProperty('showFriendsList');
+      this.set('modelFriendsArray', []) // Creates an empty array that resets -- for the new posts friends list
     },
     setBlogTypePrivate(){
-      console.log("ran private")
       this.get('blogType');
       this.set('blogType', 'private');
     },
     setBlogTypePublic(){
-      console.log("ran public")
       this.get('blogType');
       this.set('blogType', 'public');
     },
@@ -48,7 +50,7 @@ export default Ember.Controller.extend({
         console.error("ERROR: Failed to delete the blogPost", reason);
       });
     },
-    newPost: function () {
+    newPost () {
 
       const title = this.get('title');
       const subtitle = this.get('subtitle');
@@ -56,6 +58,7 @@ export default Ember.Controller.extend({
       const blogType = this.get('blogType');
       // console.log("BTYPE",  blogType)
       const userId = this.get('session.data.authenticated.user._id');
+      const friends = this.get('modelFriendsArray')
 
 
       // 1. Create our blog-post record and store it in a variable
@@ -63,6 +66,7 @@ export default Ember.Controller.extend({
         date: new Date(),
         owner: userId,
         blogType: blogType,
+        friends: friends,
         title: title,
         subtitle: subtitle,
         content: postcontent
@@ -81,18 +85,18 @@ export default Ember.Controller.extend({
       })
       .catch(function(reason){console.error("ERROR: Failed to save Blog Post", reason)});
 
-    }
+    },
+    addfriend (friend) {
+      let arr = this.get('modelFriendsArray')
+
+      for (var i = 0; i < arr.length; i++) {
+        if(arr[i]._id ===friend._id) return;
+      }
+      arr.pushObject(friend) // using pushObject instead of push will update the template
+      console.log("addfriend", friend, arr)
+    } // Pushes selected friend into friends Array
   },
   reverse: function(){
     return this.get('model').toArray().reverse();
-  }.property('model.[]'),
+  }.property('model.[]')
 });
-
-
-
-
-
-
-
-
-

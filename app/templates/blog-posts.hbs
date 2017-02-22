@@ -4,23 +4,33 @@
     <h1 class="blog-title">WELCOME</h1>
   </div>
 
-  <div>
-    {{#each session.data.authenticated.user.friends as |friend|}}
-      {{friend.username}},
-    {{/each}}
-  </div>
 
   <div class="blogposts-container">
     <div class="newpost-container">
       {{#if newBlogPost}}
-        {{#if showAddFriends}}
-          <div>ADD FRIENDS:</div>
+        {{#if public}}
+          <button class="btn btn-lg btn-primary btn-block" {{action "toggleShowFriendsList"}} >+ADD FRIENDS+</button>
+          {{#if showFriendsList}}
+            <div>
+              {{#each session.data.authenticated.user.friends as |friend|}}
+                <button {{action "addfriend" friend}}> {{friend.username}} </button>
+              {{/each}}
+
+              <div>
+                <h1> Friends Added To This Post: </h1>
+                {{#each modelFriendsArray as |modelFriend|}}
+                  {{modelFriend.username}}
+                {{/each}}
+              </div>
+
+            </div>
+          {{/if}}
         {{/if}}
         <div>
           <form class="form-new-post" {{action 'newPost' model.blogPost on="submit"}}>
             <h2 class="form-signin-heading">New Blog Post</h2>
             {{input class="title" type="title" type="text" placeholder="Title" value=title}}<br>
-            {{input class="content" type="content" type="text" placeholder="Sub Title" value=subtitle}}<br>
+            {{input class="subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}<br>
             {{input class="content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
 
             <button class="btn btn-lg btn-primary btn-block" type="submit" type="blogPost"> Post </button>
