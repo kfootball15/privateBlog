@@ -182,6 +182,90 @@ var blogpostSeed = [
         title: 'This is Time',
         subtitle: 'And life is smelly'
     },
+        {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is a bad thing',
+        subtitle: 'And life is so so'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is a good thing',
+        subtitle: 'And life is good'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is my story',
+        subtitle: 'And life is beautiful'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is the way',
+        subtitle: 'And life is swell'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is a Hoot',
+        subtitle: 'And life is charmed'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is Time',
+        subtitle: 'And life is smelly'
+    },
+        {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is a bad thing',
+        subtitle: 'And life is so so'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is a good thing',
+        subtitle: 'And life is good'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is my story',
+        subtitle: 'And life is beautiful'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is the way',
+        subtitle: 'And life is swell'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is a Hoot',
+        subtitle: 'And life is charmed'
+    },
+    {
+        date: new Date(),
+        friends: [],
+        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        title: 'This is Time',
+        subtitle: 'And life is smelly'
+    }
 ];
 
 var publicOrPrivate = ['public', 'private'];
@@ -259,9 +343,10 @@ var seedDB = function() {
             console.log("numbfriends:", numfriends)
             if (blogType === 'public') {
               while (numfriends >= 0) {
-                blogPost.friends.push(userToAddToFriends1._id);
-                blogPost.friends.push(userToAddToFriends2._id);
-                blogPost.friends.push(userToAddToFriends3._id);
+                var tempfriend = randomizeSelector(usersList)
+                if (blogPost.friends.indexOf(tempfriend._id) === -1) blogPost.friends.push(tempfriend);
+                // blogPost.friends.push(userToAddToFriends2._id);
+                // blogPost.friends.push(userToAddToFriends3._id);
                 numfriends--;
               }
             }
