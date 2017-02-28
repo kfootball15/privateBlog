@@ -6,21 +6,25 @@ export default Ember.Route.extend({
   session: service(),
   model () {
     let friends = this.get('session.data.authenticated.user.friends')
-    let posts = [];
+    let promises = [];
 
     for (var i = 0; i < friends.length; i++) {
-      console.log("Should be an ID", friends[i])
-      this.get('store').query('blog-post', {
+      var promise = this.get('store').query('blog-post', {
         owner: friends[i]._id
       })
-      .then(function(friendsPosts){
-        console.log("friendsPosts", friendsPosts)
-        posts.push(friendsPosts)
-      });
+      promises.push(promise)
+      // .then(function(friendsPosts){
+      //   console.log("friendsPosts", friendsPosts)
+      //   posts.push(friendsPosts)
+      // });
     }
 
-    let dogs =[["cats", "dogs"], ["pigs"]]
-    return dogs
+    console.log(promises)
+
+    return Promise.all(promises)
+    .then(function(posts){
+      return posts
+    })
 
   }
   // model: function (params) {
