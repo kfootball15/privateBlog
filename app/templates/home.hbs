@@ -1,7 +1,11 @@
 <h1>HOME SCREEN</h1>
 
+<div>If NOT signed in, then offer sign up</div>
+<div>If NOT signed in, then offer sign up</div>
+<div>If NOT signed in, then offer sign up</div>
+<div>If NOT signed in, then offer sign up</div>
+
 {{#each model as |postarray|}}
-  <div>HELLO MOTO</div>
 
   {{#each postarray as |post|}}
     <div class="blogpost">
@@ -17,7 +21,6 @@
       {{/each}}
 
       <p> {{post.content}} </p>
-      <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
 
     </div>
   {{/each}}
