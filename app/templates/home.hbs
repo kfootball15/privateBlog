@@ -1,9 +1,20 @@
 <h1>HOME SCREEN</h1>
 
-<div>If NOT signed in, then offer sign up</div>
-<div>If NOT signed in, then offer sign up</div>
-<div>If NOT signed in, then offer sign up</div>
-<div>If NOT signed in, then offer sign up</div>
+{{#if session.isAuthenticated}}
+  {{!-- PUT INFORMATION YOU WANT SHOWN TO LOGGED IN USERS --}}
+{{else}}
+  <div>Welcome to The Private Blog. Please Log In or Sign Up to start creating blog posts</div>
+  <button class="btn btn-lg btn-primary" style="color:white;">
+    {{#link-to "login" }}
+      Log In
+    {{/link-to}}
+  </button>
+  <button class="btn btn-lg btn-primary" style="color:white;">
+    {{#link-to "signup" }}
+      Sign Up
+    {{/link-to}}
+  </button>
+{{/if}}
 
 {{#each model as |postarray|}}
 
