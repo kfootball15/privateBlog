@@ -1,16 +1,17 @@
 // Global Variables
 // Fonts
 $font-stack: Helvetica, sans-serif;
-$primary-font-color: #fce0ff;
-$secondary-font-color: #feffe0;
-$tertiary-font-color: #fce0ff;
+$primary-font-color: #fce0ff; // pink
+$secondary-font-color: #feffe0; // yellow
+$tertiary-font-color: #d2a0ef; // purple
 // Backgrounds
 $primary-background-color: #82c8ff; // darker blue
 $secondary-background-color: #e0fffd; // light blue
-$tertiary-background-color: #fce982; //yellow-orange
+$tertiary-background-color: #fce982; // yellow-orange
+$fourthiary-background-color: #fce0ff; // pink
 $warning-background-color: #fc8389; //red
 // Blogposts
-$width-newpost: 500px;
+$width-newpost: 800px;
 // Mixins
 @mixin border-radius($border-radius) {
   -webkit-border-radius: $border-radius;
@@ -53,6 +54,22 @@ body {
 #newpost-options {
 	width: 100%;
 }
+.newpost-button {
+  @include border-radius(10px);
+  width: 48.2%;
+  display: inline-block;
+  background-color: $fourthiary-background-color;
+  color: $tertiary-font-color;
+  margin: 5px;
+}
+.newpost-button > button {
+	@extend .buttons-default;
+  width: 100%;
+  margin: 0 auto;
+  display: block;
+  font-size: 24px;
+  height: 120px;
+}
 
 .options-addfriends {
 	@extend .buttons-default;
@@ -64,8 +81,8 @@ body {
   	width: 300px;
   	margin: 0 auto;
   	padding: 25px;
-  	color: $primary-font-color;
-  	background-color: $secondary-background-color;
+  	color: $secondary-font-color;
+  	background-color: $tertiary-background-color;
   }
 }
 
@@ -74,21 +91,21 @@ body {
 	width: $width-newpost;
 	margin: 0 auto;
 	text-align: center;
-	background-color: $secondary-background-color;
+	background-color: $fourthiary-background-color;
 	padding: 50px;
 
 	h2 {
-		color: $primary-font-color;
+		color: $tertiary-font-color;
 	}
 
 	input {
-		width: 350px;
+		width: $width-newpost - 150px;
 	}
 }
 
 .newpost-content {
-	width: 350px;
-	max-width: 350px;
+	width: $width-newpost - 150px;
+	max-width: $width-newpost - 150px;
 	height: 200px;
 }
 
@@ -109,12 +126,14 @@ body {
 	background-color: $warning-background-color;
 }
 .tokens-friendslist {
+  color: $secondary-font-color;
 	display: block;
 	text-align: center;
 }
-.tokens-xfriendslist > h2{
+.tokens-xfriendslist > h2 {
 	@include border-radius(15px);
-	background-color: $secondary-background-color;
+	background-color: $warning-background-color;
+	color: $secondary-font-color;
 	display: block;
 	margin: 5px auto;
 	padding: 20px;
@@ -163,31 +182,6 @@ body {
   width: 100%;
   margin: 0 auto;
   text-align: center;
-}
-.newpost-button {
-  width: 48.2%;
-  display: inline-block;
-  position: relative;
-  border: 1px solid grey;
-  border-radius: 5px;
-  height:120px;
-  margin: 5px;
-}
-.newpost-button > button {
-  width: 100%;
-  font-size: 24px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin: 0 auto;
-  height: 100px;
-  line-height: 100px;
-  white-space: nowrap;
-  text-align: center;
-  /*REMOVES DEFAULT BUTTON STYLING*/
-  color: black;
-  border: none;
-  background: none;
-
 }
 .blogpost {
   width: 100%;
