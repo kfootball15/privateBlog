@@ -9,7 +9,8 @@ $primary-background-color: #82c8ff; // darker blue
 $secondary-background-color: #e0fffd; // light blue
 $tertiary-background-color: #fce982; // yellow-orange
 $fourthiary-background-color: #fce0ff; // pink
-$warning-background-color: #fc8389; //red
+$negative-background-color: #fc8389; //red
+$positive-background-color: #b5ff84; //green
 // Blogposts
 $width-newpost: 800px;
 // Mixins
@@ -123,7 +124,7 @@ body {
 }
 .newpost-cancel-button {
 	@extend .newpost-buttons;
-	background-color: $warning-background-color;
+	background-color: $negative-background-color;
 }
 .tokens-friendslist {
   color: $secondary-font-color;
@@ -132,7 +133,7 @@ body {
 }
 .tokens-xfriendslist > h2 {
 	@include border-radius(15px);
-	background-color: $warning-background-color;
+	background-color: $positive-background-color;
 	color: $secondary-font-color;
 	display: block;
 	margin: 5px auto;
@@ -147,6 +148,7 @@ body {
 }
 .token-xfriend {
 	@extend .newpost-cancel-button;
+	background-color: $positive-background-color;
 	display: inline-block;
 	width: auto;
 }
