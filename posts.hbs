@@ -1,9 +1,0 @@
-<h2>List of Posts Should be Here:</h2>
-
-
-{{#each model as |post|}}
-  {{#link-to "post" post.id class="buttons post"}} <h3>{{post.title}}</h3> {{/link-to}}
-  <h4>{{post.content}}</h4>
-{{/each}}
-
-{{outlet}}

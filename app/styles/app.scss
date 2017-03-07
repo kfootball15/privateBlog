@@ -1,9 +1,199 @@
-/*Main CSS*/
+// Global Variables
+// Fonts
+$font-stack: Helvetica, sans-serif;
+$primary-font-color: #fce0ff;
+$secondary-font-color: #feffe0;
+$tertiary-font-color: #fce0ff;
+// Backgrounds
+$primary-background-color: #82c8ff; // darker blue
+$secondary-background-color: #e0fffd; // light blue
+$tertiary-background-color: #fce982; //yellow-orange
+$warning-background-color: #fc8389; //red
+// Blogposts
+$width-newpost: 500px;
+// Mixins
+@mixin border-radius($border-radius) {
+  -webkit-border-radius: $border-radius;
+     -moz-border-radius: $border-radius;
+      -ms-border-radius: $border-radius;
+          border-radius: $border-radius;
+}
+
+
+// GENERAL CSS
+.buttons-default {
+	background: none;
+	border: none;
+  border:none;
+  margin: 10px;
+}
+
+// Main
 body {
   padding-top: 40px;
   padding-bottom: 40px;
-  background-color: #eee;
+  background-color: $primary-background-color;
 }
+#main-container {
+  width: 990px;
+  margin: 50px auto;
+  // padding: 0 10%;
+}
+
+// blog-posts.hbs
+#blog-posts-header {
+	color: $primary-font-color;
+	margin: 20px 0;
+
+	h1 {
+		text-align: center;
+	}
+}
+
+#newpost-options {
+	width: 100%;
+}
+
+.options-addfriends {
+	@extend .buttons-default;
+	width: 100%;
+  font-size:1em;
+
+  h2 {
+  	@include border-radius(15px);
+  	width: 300px;
+  	margin: 0 auto;
+  	padding: 25px;
+  	color: $primary-font-color;
+  	background-color: $secondary-background-color;
+  }
+}
+
+#form-newpost {
+	@include border-radius(15px)
+	width: $width-newpost;
+	margin: 0 auto;
+	text-align: center;
+	background-color: $secondary-background-color;
+	padding: 50px;
+
+	h2 {
+		color: $primary-font-color;
+	}
+
+	input {
+		width: 350px;
+	}
+}
+
+.newpost-content {
+	width: 350px;
+	max-width: 350px;
+	height: 200px;
+}
+
+// #form-newpost 
+
+.newpost-buttons {
+	@extend .buttons-default;
+	@include border-radius(10px);
+	padding: 10px;
+	width: 90px;
+}
+.newpost-post-button {
+	@extend .newpost-buttons;
+	background-color: $tertiary-background-color;
+}
+.newpost-cancel-button {
+	@extend .newpost-buttons;
+	background-color: $warning-background-color;
+}
+.tokens-friendslist {
+	display: block;
+	text-align: center;
+}
+.tokens-xfriendslist > h2{
+	@include border-radius(15px);
+	background-color: $secondary-background-color;
+	display: block;
+	margin: 5px auto;
+	padding: 20px;
+	text-align: center;
+	width: $width-newpost;
+}
+.tokens-friend {
+	@extend .newpost-post-button;
+	display: inline-block;
+	width: auto;
+}
+.token-xfriend {
+	@extend .newpost-cancel-button;
+	display: inline-block;
+	width: auto;
+}
+
+
+
+
+
+
+/*BLOG POSTS*/
+/*BLOG POSTS*/
+.blogposts-container {
+  width: 100%;
+  display: inline-block;
+}
+/*.sidebar-container {
+  width: 33%;
+  display: inline-block;
+  border: 2px solid black;
+  border-radius: 5px;
+}*/
+.newpost-container {
+  display: block;
+  border: 2px solid black;
+  border-radius: 5px;
+}
+
+.blog-header {
+  display: block;
+  margin: 15px 0;
+}
+.blog-title {
+  width: 100%;
+  margin: 0 auto;
+  text-align: center;
+}
+.newpost-button {
+  width: 48.2%;
+  display: inline-block;
+  position: relative;
+  border: 1px solid grey;
+  border-radius: 5px;
+  height:120px;
+  margin: 5px;
+}
+.newpost-button > button {
+  width: 100%;
+  font-size: 24px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin: 0 auto;
+  height: 100px;
+  line-height: 100px;
+  white-space: nowrap;
+  text-align: center;
+  /*REMOVES DEFAULT BUTTON STYLING*/
+  color: black;
+  border: none;
+  background: none;
+
+}
+.blogpost {
+  width: 100%;
+}
+
+
 
 
 /*LOG IN PAGE*/
@@ -78,67 +268,7 @@ body {
   border-top-right-radius: 0;
 }
 
-/*BLOG POSTS*/
-/*BLOG POSTS*/
-.main-container {
-  width: 900px;
-  margin: 50px auto;
-  padding: 0 10%;
-}
-.blogposts-container {
-  width: 100%;
-  display: inline-block;
-}
-/*.sidebar-container {
-  width: 33%;
-  display: inline-block;
-  border: 2px solid black;
-  border-radius: 5px;
-}*/
-.newpost-container {
-  display: block;
-  border: 2px solid black;
-  border-radius: 5px;
-}
-
-.blog-header {
-  display: block;
-  margin: 15px 0;
-}
-.blog-title {
-  width: 100%;
-  margin: 0 auto;
-  text-align: center;
-}
-.newpost-button {
-  width: 48.2%;
-  display: inline-block;
-  position: relative;
-  border: 1px solid grey;
-  border-radius: 5px;
-  height:120px;
-  margin: 5px;
-}
-.newpost-button > button {
-  width: 100%;
-  font-size: 24px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin: 0 auto;
-  height: 100px;
-  line-height: 100px;
-  white-space: nowrap;
-  text-align: center;
-  /*REMOVES DEFAULT BUTTON STYLING*/
-  color: black;
-  border: none;
-  background: none;
-
-}
-.blogpost {
-  width: 100%;
-}
-
+//blogposts
 
 
 

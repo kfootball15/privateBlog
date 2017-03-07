@@ -1,60 +1,61 @@
-<div class="main-container">
+<div id="main-container">
 
-  <div class="blog-header">
-    <h1 class="blog-title">WELCOME</h1>
+  <div id="blog-posts-header">
+    <h1>WELCOME</h1>
   </div>
 
 
-  <div class="blogposts-container">
-    <div class="newpost-container">
-      {{#if newBlogPost}}
-        {{#if public}}
-          <button class="btn btn-lg btn-primary btn-block" {{action "toggleShowFriendsList"}} >+ADD FRIENDS+</button>
-          {{#if showFriendsList}}
-            <div>
-              {{#each session.data.authenticated.user.friends as |friend|}}
-                <button {{action "addfriend" friend}}> {{friend.username}} </button>
+  <div class="newpost-options">
+    {{#if newBlogPost}}
+      {{#if public}}
+        <button class="options-addfriends" {{action "toggleShowFriendsList"}} >
+          <h2> ADD FRIENDS </h2>
+        </button>
+        {{#if showFriendsList}}
+          <div class="tokens-friendslist">
+            {{#each session.data.authenticated.user.friends as |friend|}}
+              <button class="tokens-friend" {{action "addfriend" friend}}> + {{friend.username}} </button>
+            {{/each}}
+
+            <div class="tokens-xfriendslist">
+              <h2> Friends Added To This Post: </h2>
+              {{#each modelFriendsArray as |modelFriend|}}
+                <button class="token-xfriend" {{action "removefriend" modelFriend}} > x {{modelFriend.username}} </button>
               {{/each}}
-
-              <div>
-                <h1> Friends Added To This Post: </h1>
-                {{#each modelFriendsArray as |modelFriend|}}
-                  <button {{action "removefriend" modelFriend}} > x {{modelFriend.username}} </button>
-                {{/each}}
-              </div>
-
             </div>
-          {{/if}}
+
+          </div>
         {{/if}}
-        <div>
-          <form class="form-new-post" {{action 'newPost' model.blogPost on="submit"}}>
-            <h2 class="form-signin-heading">New Blog Post</h2>
-            {{input class="title" type="title" type="text" placeholder="Title" value=title}}<br>
-            {{input class="subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}<br>
-            {{input class="content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
-
-            <button class="btn btn-lg btn-primary btn-block" type="submit" type="blogPost"> Post </button>
-            <button class="btn btn-lg btn-danger btn-block" {{action "toggleNewPost"}} > Cancel </button>
-
-          </form>
-        </div>
-
-      {{else}}
-        <div>
-          <div class="newpost-button">
-            <button {{action "toggleNewPost" "private"}} > PRIVATE </button>
-          </div>
-          <div class="newpost-button">
-            <button {{action "toggleNewPost" "public"}}> PUBLIC </button>
-          </div>
-        </div>
       {{/if}}
+      <div>
+        <form id="form-newpost" {{action 'newPost' model.blogPost on="submit"}}>
+          <h2 class="form-signin-heading">New Blog Post</h2>
+          {{input class="newpost-title" type="title" type="text" placeholder="Title" value=title}}<br>
+          {{input class="newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}<br>
+          {{textarea class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
+
+          <button class="newpost-post-button" type="submit" type="blogPost"> Post </button>
+          <button class="newpost-cancel-button" {{action "toggleNewPost"}} > Cancel </button>
+
+        </form>
+      </div>
+
+    {{else}}
+      <div>
+        <div class="newpost-button">
+          <button {{action "toggleNewPost" "private"}} > PRIVATE </button>
+        </div>
+        <div class="newpost-button">
+          <button {{action "toggleNewPost" "public"}}> PUBLIC </button>
+        </div>
+      </div>
+    {{/if}}
+
+  </div>
 
 
-    </div>
 
-
-
+  <div class="blogposts-container">
     {{#each reverse as |post|}}
       <div class="blogpost">
         <h2 class="blog-post-title">{{post.title}}</h2>
