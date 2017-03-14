@@ -4,11 +4,13 @@ $font-stack: Helvetica, sans-serif;
 $primary-font-color: #fce0ff; // pink
 $secondary-font-color: #feffe0; // yellow
 $tertiary-font-color: #d2a0ef; // purple
+$fourthiary-font-color: #82c8ff; // darker blue
 // Backgrounds
 $primary-background-color: #82c8ff; // darker blue
 $secondary-background-color: #e0fffd; // light blue
 $tertiary-background-color: #fce982; // yellow-orange
 $fourthiary-background-color: #fce0ff; // pink
+$fourthiary-background-color-hover: #faddff; // darker pink
 $negative-background-color: #fc8389; //red
 $positive-background-color: #b5ff84; //green
 // Blogposts
@@ -39,7 +41,6 @@ body {
 #main-container {
   width: 990px;
   margin: 50px auto;
-  // padding: 0 10%;
 }
 
 // blog-posts.hbs
@@ -65,11 +66,15 @@ body {
 }
 .newpost-button > button {
 	@extend .buttons-default;
+  cursor: pointer;
   width: 100%;
   margin: 0 auto;
   display: block;
   font-size: 24px;
   height: 120px;
+}
+.newpost-button:hover {
+	background-color: $fourthiary-background-color-hover;
 }
 
 .options-addfriends {
@@ -90,7 +95,7 @@ body {
 #form-newpost {
 	@include border-radius(15px)
 	width: $width-newpost;
-	margin: 0 auto;
+	margin: 0 auto 10px;
 	text-align: center;
 	background-color: $fourthiary-background-color;
 	padding: 50px;
@@ -160,8 +165,94 @@ body {
 /*BLOG POSTS*/
 /*BLOG POSTS*/
 .blogposts-container {
-  width: 100%;
-  display: inline-block;
+  display: block;
+  position: relative;
+  text-align: left;
+  background-color: $tertiary-background-color;
+  border-radius: 10px;
+  padding: 25px 20px;
+}
+.blogpost {
+	display: block;
+	position: relative;
+	background-color: $primary-background-color;
+	padding: 10px 15px;
+	border-radius: 20px;
+	margin-bottom: 20px;
+	box-sizing: content-box;
+
+	.blogpost-title {
+		font-size: 36px;
+		text-align: center;
+		margin: 0px 0 5px 0;
+	}
+	.blogpost-subtitle {
+		text-align: center;
+		margin: 5px 0 0 0;
+	}
+	.blogpost-author {
+		display: block;
+		margin: 2px;
+		text-align: center;
+		h3 {
+			color: $fourthiary-font-color;
+			display: inline-block;
+			background-color: $secondary-background-color;
+			text-decoration: none;
+			padding: 5px 15px;
+			margin: 0 5px;
+			border-radius: 10px;
+		}
+	}	
+	.blogpost-date {
+		// float: left;
+		position: absolute;
+		top: 70px;
+		margin: 20px 0 0 10px;;
+	}
+	.blogpost-private {
+		position: absolute;
+		top: 0px;
+		left: 25px;
+		background-image: url('/assets/images/private-512.png');
+		background-color: $negative-background-color;
+		border-radius: 30px;
+		padding: 30px;
+		background-size: cover;
+	}	
+	.blogpost-public {
+		position: absolute;
+		top: 0px;
+		left: 25px;
+		background-image: url('/assets/images/public-512.png');
+		background-color: $positive-background-color;
+		border-radius: 10px;
+		padding: 30px;
+		background-size: cover;
+	}
+	.blogpost-lowerdiv {
+		display: block;
+		background-color: $secondary-background-color;
+		padding: 20px;
+		border-radius: 20px;
+		margin: 30px 20px;
+	}
+	.blogpost-friend {
+		display: inline-block;
+		margin: 2px;
+		text-align: center;
+		margin: 0 auto;
+		color: $fourthiary-font-color;
+		display: inline-block;
+		background-color: $tertiary-background-color;
+		text-decoration: none;
+		padding: 5px 15px;
+		margin: 0 5px;
+		border-radius: 10px;
+	}
+	.blogpost-content {
+		margin: 10px 20px;
+	}
 }
 /*.sidebar-container {
   width: 33%;
@@ -183,9 +274,6 @@ body {
   width: 100%;
   margin: 0 auto;
   text-align: center;
-}
-.blogpost {
-  width: 100%;
 }
 
 

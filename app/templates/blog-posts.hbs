@@ -58,19 +58,28 @@
   <div class="blogposts-container">
     {{#each reverse as |post|}}
       <div class="blogpost">
-        <h2 class="blog-post-title">{{post.title}}</h2>
-        <h4 class="blog-post-title">{{post.subtitle}}</h4>
-        <h5 class="blog-post-title">{{post.blogType}}</h5>
-        <p class="blog-post-meta">{{post.date}}
-          {{#link-to "profile-public" post.owner}} {{!-- Link-to will automatically use the post.owners id property https://guides.emberjs.com/v2.10.0/templates/links/  --}}
-            {{post.owner.username}}
-          {{/link-to}} </p>
-        {{#each post.friends as |friend|}}
-          <p class="blog-post-meta"> {{#link-to "profile-public" friend._id}} {{friend.username}} {{/link-to}} </p>
-        {{/each}}
+        <h2 class="blogpost-title">{{post.title}}</h2>
+        <h4 class="blogpost-subtitle">{{post.subtitle}}</h4>
+        <h5 class="blogpost-{{post.blogType}}"></h5>
 
-        <p> {{post.content}} </p>
-        <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
+        <p class="blogpost-date">{{post.date}}</p>
+
+        <p class="blogpost-author"> by
+          {{#link-to profile-public post.owner}} {{!-- Link-to will automatically use the post.owners id property https://guides.emberjs.com/v2.10.0/templates/links/  --}}
+            <h3>{{post.owner.username}}</h3>
+          {{/link-to}} 
+        </p>
+        
+        <div class="blogpost-lowerdiv">
+          {{#each post.friends as |friend|}}
+            {{#link-to "profile-public" friend._id}} 
+              <h3 class="blogpost-friend">  {{friend.username}}  </h3>
+            {{/link-to}}
+          {{/each}}
+
+          <p class="blogpost-content"> {{post.content}} </p>
+          <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
+        </div>
 
       </div>
     {{/each}}

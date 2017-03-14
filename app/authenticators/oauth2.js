@@ -1,5 +1,5 @@
 import OAuth2PasswordGrant from 'ember-simple-auth/authenticators/oauth2-password-grant';
-import Ember from 'ember';
+// import Ember from 'ember';
 
 
 // Authenticators like this one will make post requests to your specified "serverTokenEndpoint" and create a session with the data it receives from the server. This session is then 'maintained' by the authorizers.

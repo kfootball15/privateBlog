@@ -13,8 +13,8 @@ export default Ember.Controller.extend({
 
       var that = this;
       function setBlogType(type) {
-        that.get('blogType')
-        that.set('blogType', type)
+        that.get('blogType');
+        that.set('blogType', type);
       }
 
       // 1. Reset new blog post properties
@@ -22,10 +22,10 @@ export default Ember.Controller.extend({
       this.set('showFriendsList', false); // Toggles off the friends list
 
       // 2. If it is a public post, we want to allow them to add specific friends
-      if (typeFromTemplate === 'public') this.set('public', true);
-      else this.set('public', false);
+      if (typeFromTemplate === 'public') { this.set('public', true) }
+      else { this.set('public', false) };
 
-      setBlogType(typeFromTemplate) // 3. Now we want to set the blogType property to public/private so we can save it with the post in the database.
+      setBlogType(typeFromTemplate); // 3. Now we want to set the blogType property to public/private so we can save it with the post in the database.
     },
     togglepublic(){
       this.set('public', true);
@@ -96,14 +96,16 @@ export default Ember.Controller.extend({
         route.toggleProperty('newBlogPost');
 
       })
-      .catch(function(reason){console.error("ERROR: Failed to save Blog Post, ", reason)});
+      .catch(function(reason){
+        console.error("ERROR: Failed to save Blog Post, ", reason);
+      });
 
     },
     addfriend (friend) {
       let arr = this.get('modelFriendsArray');
 
       for (var i = 0; i < arr.length; i++) {
-        if(arr[i]._id ===friend._id) return;
+        if(arr[i]._id ===friend._id) { return };
       }
       arr.pushObject(friend); // using pushObject instead of push will update the template
     },
@@ -111,7 +113,7 @@ export default Ember.Controller.extend({
       let arr = this.get('modelFriendsArray');
 
       for (var i = 0; i < arr.length; i++) {
-        if(arr[i]._id === friend._id) arr.removeObject(arr[i]);
+        if(arr[i]._id === friend._id) { arr.removeObject(arr[i]) };
       }
     } // Pushes selected friend into friends Array
   },
