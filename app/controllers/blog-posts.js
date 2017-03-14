@@ -89,6 +89,7 @@ export default Ember.Controller.extend({
       // 2. Save it to DB - .save() will make our post request to our /blog-posts (because assigned the correct model above) route with our blogpost record, created above
       blogpost.save()
       .then(function(blogPost){
+        console.log("blg", Ember.inspect(blogPost))
         route.get('reverse').unshiftObject(blogPost); // 3. Push the new blog post onto the front of the array, so that the page updates in real time
         route.set('title', ''); // 4. reset all variables
         route.set('subtitle', '');

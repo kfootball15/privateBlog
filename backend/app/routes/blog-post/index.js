@@ -6,13 +6,27 @@ module.exports = router;
 
 router.post('/', function (req, res, next){
 
-  BlogPost.create(req.body.blogPost)
+  // BlogPost.create(req.body.blogPost)
+  // .then(function(newPost){
+  //   res.status(201).json({
+  //     blogPost: newPost
+  //   });
+  // })
+  // .catch(next);
+
+  BlogPost.findOneAndUpdate({_id:mongoose.Types.ObjectId()}, req.body.blogPost, {
+      new: true,
+      upsert: true,
+      runValidators: true,
+      setDefaultsOnInsert: true
+  })
+  .populate('owner friends')
+  .exec()
   .then(function(newPost){
     res.status(201).json({
       blogPost: newPost
-    });
-  })
-  .catch(next);
+    })
+  });
 
 });
 
