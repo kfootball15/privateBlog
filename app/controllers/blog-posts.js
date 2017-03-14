@@ -22,12 +22,12 @@ export default Ember.Controller.extend({
       this.set('showFriendsList', false); // Toggles off the friends list
 
       // 2. If it is a public post, we want to allow them to add specific friends
-      if (typeFromTemplate === 'public') { this.set('public', true) }
-      else { this.set('public', false) };
+      if (typeFromTemplate === 'private') { this.set('private', true) }
+      else { this.set('private', false) };
 
       setBlogType(typeFromTemplate); // 3. Now we want to set the blogType property to public/private so we can save it with the post in the database.
     },
-    togglepublic(){
+    togglePrivate(){
       this.set('public', true);
     },
     toggleShowFriendsList(){
