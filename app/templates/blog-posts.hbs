@@ -3,36 +3,39 @@
 {{!--   <div id="blog-posts-header">
     <h1>WELCOME</h1>
   </div> --}}
-
-
+{{!--  --}}
   <div class="newpost-options">
     {{#if newBlogPost}}
-      {{#if private}}
-        <button class="options-addfriends" {{action "toggleShowFriendsList"}} >
-          <h2> ADD FRIENDS </h2>
-        </button>
-        {{#if showFriendsList}}
-          <div class="tokens-friendslist">
-            {{#each session.data.authenticated.user.friends as |friend|}}
-              <button class="tokens-friend" {{action "addfriend" friend}}> + {{friend.username}} </button>
-            {{/each}}
-
-            <div class="tokens-xfriendslist">
-              <h2> Friends Added To This Post: </h2>
-              {{#each modelFriendsArray as |modelFriend|}}
-                <button class="token-xfriend" {{action "removefriend" modelFriend}} > x {{modelFriend.username}} </button>
-              {{/each}}
-            </div>
-
-          </div>
-        {{/if}}
-      {{/if}}
       <div>
         <form id="form-newpost" {{action 'newPost' model.blogPost on="submit"}}>
           <h2 class="form-signin-heading">New Post</h2>
+
+          {{!-- AVAILABLE ONLY IN PRIVATE MODE - ADD FRIENDS --}}
+          {{#if private}}
+            <div class="options-addfriends" {{action "toggleShowFriendsList"}} >
+              <h2> ADD FRIENDS </h2>
+            </div>
+            {{#if showFriendsList}}
+              <div class="tokens-friendslist">
+                {{#each session.data.authenticated.user.friends as |friend|}}
+                  <button class="tokens-friend" {{action "addfriend" friend}}> + {{friend.username}} </button>
+                {{/each}}
+              </div>
+
+              <div class="tokens-xfriendslist">
+                <h2> Friends Added To This Post: </h2>
+                {{#each modelFriendsArray as |modelFriend|}}
+                  <button class="token-xfriend" {{action "removefriend" modelFriend}} > x {{modelFriend.username}} </button>
+                {{/each}}
+              </div>
+
+            {{/if}}
+          {{/if}}
+
+          {{!-- STANDARD BLOG-POST INPUTS ... PRIVATE and PUBLIC --}}
           {{input class="newpost-title" type="title" type="text" placeholder="Title" value=title}}<br>
           {{input class="newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}<br>
-          {{textarea class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
+          {{textarea id="blogpost-textarea" class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
 
           <button class="newpost-post-button" type="submit" type="blogPost"> Post </button>
           <button class="newpost-cancel-button" {{action "toggleNewPost"}} > Cancel </button>
@@ -62,7 +65,7 @@
         <div class="blogpost-upperdiv">
           <h2 class="blogpost-title">{{post.title}}</h2>
           <h4 class="blogpost-subtitle">{{post.subtitle}}</h4>
-          <p class="blogpost-author"> by
+          <p class="blogpost-author"> written by
             {{#link-to "profile-public" post.owner}} {{!-- Link-to will automatically use the post.owners id property https://guides.emberjs.com/v2.10.0/templates/links/  --}}
               <h3>{{post.owner.username}}</h3>
             {{/link-to}} 
@@ -79,18 +82,11 @@
           {{/each}}
 
           <p class="blogpost-content"> {{post.content}} </p>
-          <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
         </div>
+          <button class="newpost-delete-button" {{action 'deletePost' post.id}}> Delete </button>
 
       </div>
     {{/each}}
-
-    <nav>
-      <ul class="pager">
-        <li><a href="#"> Previous (***)</a></li>
-        <li><a href="#"> Next (***)</a></li>
-      </ul>
-    </nav>
 
   </div>
 

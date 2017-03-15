@@ -74,6 +74,7 @@ export default Ember.Controller.extend({
       const blogType = this.get('blogType');
       const userId = this.get('session.data.authenticated.user._id');
       const friends = this.get('modelFriendsArray');
+      this.set('modelFriendsArray', [])
 
       var route = this;
       // 1. Create our blog-post record and store it in a variable
@@ -89,7 +90,6 @@ export default Ember.Controller.extend({
       // 2. Save it to DB - .save() will make our post request to our /blog-posts (because assigned the correct model above) route with our blogpost record, created above
       blogpost.save()
       .then(function(blogPost){
-        console.log("blg", Ember.inspect(blogPost))
         route.get('reverse').unshiftObject(blogPost); // 3. Push the new blog post onto the front of the array, so that the page updates in real time
         route.set('title', ''); // 4. reset all variables
         route.set('subtitle', '');

@@ -1,32 +1,24 @@
-<h1>Edit Your Profile</h1>
+<div id="profile-container">
+  <h1 class="username">{{model.user.username}}</h1>
+  <h2 class="name"> {{model.user.fullname}}</h2>
+  <h3 class="email"> {{model.user.email}}</h3>
+  <p class="bio"> {{model.user.bio}}</p>
+  <h3 class="avatar"> {{model.user.user}}</h3>
+</div>
 
-<div>
+<div id="profile-container">
 
   {{!-- If the 'editingUserName' property is true, show form for edit, otherwise show the users information --}}
   {{#if editingUserName}}
     <form {{action 'editUser' on="submit" }} >
       {{input type="text" placeholder="New User Name" value=newusername}}
       {{input type="text" placeholder="Confirm Your Password" value=password}}
-      <button class="btn btn-sm btn-warning" type="submit"> SAVE </button>
+      <button class="newpost-post-button" type="submit"> SAVE </button>
     </form>
-    <button class="btn btn-sm btn-danger" {{action "toggleEditUsername" }} > CANCEL </button>
+    <button class="newpost-cancel-button" {{action "toggleEditUsername" }} > CANCEL </button>
   {{else}}
-    <div style="display:block; width:auto"><p> <b>UserName:</b> {{session.data.authenticated.user.username}}</p></div>
-    <button class="btn btn-sm btn-danger" {{action "toggleEditUsername" }} > EDIT </button>
-  {{/if}}
-
-  {{!-- If the 'editingEmail' property is true, show form for edit, otherwise show the users information --}}
-  {{#if editingEmail}}
-    <form {{action 'editUser' on="submit"}}>
-      {{input type="text" placeholder="New Email" value=newemail}}
-      {{input type="text" placeholder="Confirm Your Password" value=password}}
-      <button class="btn btn-sm btn-warning" type="submit"> SAVE </button>
-    </form>
-    <button class="btn btn-sm btn-danger" {{action "toggleEditEmail" }} > CANCEL </button>
-  {{else}}
-      <div style="display:block; width:auto"><p> <b>Email:</b> {{session.data.authenticated.user.email}}</p></div>
-      {{!-- <div style="display:block; width:auto"><p> <b>Email:</b> {{currentUser.user.email}}</p></div> --}}
-      <button class="btn btn-sm btn-danger" {{action "toggleEditEmail"}} > EDIT </button>
+    <h1 class="username">{{session.data.authenticated.user.username}}</h1>
+    <button class="button-edit" {{action "toggleEditUsername" }} > EDIT </button>
   {{/if}}
 
   {{!-- If the 'editingName' property is true, show form for edit, otherwise show the users information --}}
@@ -35,13 +27,25 @@
         {{input type="text" placeholder="New First Name" value=newFirstname}}
         {{input type="text" placeholder="New Last Name" value=newLastname}}
         {{input type="text" placeholder="Confirm Your Password" value=password}}
-        <button class="btn btn-sm btn-warning" type="submit"> SAVE </button>
+        <button class="newpost-post-button" type="submit"> SAVE </button>
     </form>
-    <button class="btn btn-sm btn-danger" {{action "toggleEditName" }} > CANCEL </button>
+    <button class="newpost-cancel-button" {{action "toggleEditName" }} > CANCEL </button>
   {{else}}
-      <div style="display:block; width:auto"><p> <b>Name:</b> {{session.data.authenticated.user.firstname}} {{session.data.authenticated.user.lastname}}</p></div>
-      {{!-- <div style="display:block; width:auto"><p> <b>Email:</b> {{currentUser.user.email}}</p></div> --}}
-      <button class="btn btn-sm btn-danger" {{action "toggleEditName"}} > EDIT </button>
+      <h2 class="name"> {{session.data.authenticated.user.firstname}} {{session.data.authenticated.user.lastname}}</h2>
+      <button class="button-edit" {{action "toggleEditName"}} > EDIT </button>
+  {{/if}}
+
+  {{!-- If the 'editingEmail' property is true, show form for edit, otherwise show the users information --}}
+  {{#if editingEmail}}
+    <form {{action 'editUser' on="submit"}}>
+      {{input type="text" placeholder="New Email" value=newemail}}
+      {{input type="text" placeholder="Confirm Your Password" value=password}}
+      <button class="newpost-post-button" type="submit"> SAVE </button>
+    </form>
+    <button class="newpost-cancel-button" {{action "toggleEditEmail" }} > CANCEL </button>
+  {{else}}
+      <h3 class="email">{{session.data.authenticated.user.email}}</h3>
+      <button class="button-edit" {{action "toggleEditEmail"}} > EDIT </button>
   {{/if}}
 
   {{!-- If the 'editingName' property is true, show form for edit, otherwise show the users information --}}
@@ -49,13 +53,12 @@
     <form {{action 'editUser' on="submit"}}>
         {{input type="text" placeholder="New Bio" value=newBio}}
         {{input type="text" placeholder="Confirm Your Password" value=password}}
-        <button class="btn btn-sm btn-warning" type="submit"> SAVE </button>
+        <button class="newpost-post-button" type="submit"> SAVE </button>
     </form>
-    <button class="btn btn-sm btn-danger" {{action "toggleEditBio" }} > CANCEL </button>
+    <button class="newpost-cancel-button" {{action "toggleEditBio" }} > CANCEL </button>
   {{else}}
-      <div style="display:block; width:auto"><p> <b>Bio:</b> {{session.data.authenticated.user.bio}} </p></div>
-      {{!-- <div style="display:block; width:auto"><p> <b>Email:</b> {{currentUser.user.email}}</p></div> --}}
-      <button class="btn btn-sm btn-danger" {{action "toggleEditBio"}} > EDIT </button>
+      <p class="bio"> {{session.data.authenticated.user.bio}} </p>
+      <button class="button-edit" {{action "toggleEditBio"}} > EDIT </button>
   {{/if}}
 
 
@@ -69,7 +72,7 @@
   <br />
 
   {{#link-to "profile-public" session.data.authenticated.user._id}}
-    <button class="btn btn-lg btn-default"> View Your Profile </button>
+    <button class="button-edit"> View Your Public Profile </button>
   {{/link-to}}
 
 </div>

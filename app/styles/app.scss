@@ -7,11 +7,14 @@ $tertiary-font-color: #d2a0ef; // purple
 $fourthiary-font-color: #82c8ff; // darker blue
 // Backgrounds
 $primary-background-color: #ffffff; // darker blue
+$primary-background-color-dark: #f2f2f2; // darker blue
 $secondary-background-color: #f7feff; // light blue
-$tertiary-background-color: #fce982; // yellow-orange
+$tertiary-background-color: #fff8d6; // yellow-orange
+$tertiary-background-color-hover: #fffae2; // hover yellow-orange
 $fourthiary-background-color: #fce0ff; // pink
 $fourthiary-background-color-hover: #faddff; // darker pink
 $negative-background-color: #fc8389; //red
+$negative-background-color-hover: #ffa0a5; //red
 $positive-background-color: #b5ff84; //green
 // Blogposts
 $width-newpost: 800px;
@@ -30,6 +33,7 @@ $width-newpost: 800px;
 	border: none;
   border:none;
   margin: 10px;
+  cursor: pointer;
 }
 
 // Main
@@ -66,7 +70,6 @@ body {
 }
 .newpost-button > button {
 	@extend .buttons-default;
-  cursor: pointer;
   width: 100%;
   margin: 0 auto;
   display: block;
@@ -89,6 +92,9 @@ body {
   	padding: 25px;
   	color: $secondary-font-color;
   	background-color: $tertiary-background-color;
+  }
+  h2:hover {
+		background-color:  $tertiary-background-color-hover;
   }
 }
 
@@ -121,6 +127,10 @@ body {
 	@include border-radius(10px);
 	padding: 10px;
 	width: 90px;
+
+	&:hover {
+		background-color: $tertiary-background-color-hover;
+	}
 }
 .newpost-post-button {
 	@extend .newpost-buttons;
@@ -129,10 +139,19 @@ body {
 .newpost-cancel-button {
 	@extend .newpost-buttons;
 	background-color: $negative-background-color;
+	&:hover {
+		background-color: $negative-background-color-hover;
+	}
+}
+.newpost-delete-button {
+	@extend .newpost-cancel-button;
+	margin-left: 88%;
 }
 .tokens-friendslist {
   color: $secondary-font-color;
 	display: block;
+	height: 70px;
+	overflow: auto;
 	text-align: center;
 }
 .tokens-xfriendslist > h2 {
@@ -184,7 +203,7 @@ body {
 	.blogpost-upperdiv{
 		margin-left: 20px;
 		.blogpost-title {
-			font-size: 18px;
+			font-size: 24px;
 			text-align: left;
 			margin: 0px 0 5px 0;
 		}
@@ -209,14 +228,14 @@ body {
 			}
 		}	
 		.blogpost-date {
-			// float: left;
-			position: absolute;
-			top: 70px;
+			display: block;
+			margin: 5px 0;
+			font-size: 10px;
 		}
 		.blogpost-private {
 			position: absolute;
 			top: 0px;
-			right: 2px;
+			right: 30px;
 			background-image: url('/assets/images/private-512.png');
 			background-color: $negative-background-color;
 			border-radius: 30px;
@@ -226,7 +245,7 @@ body {
 		.blogpost-public {
 			position: absolute;
 			top: 0px;
-			right: 20px;;
+			right: 30px;;
 			background-image: url('/assets/images/public-512.png');
 			background-color: $positive-background-color;
 			border-radius: 10px;
@@ -239,7 +258,7 @@ body {
 		background-color: $primary-background-color;
 		padding: 20px;
 		border-radius: 20px;
-		margin: 30px 20px;
+		margin: 30px 20px 0;
 	}
 	.blogpost-friend {
 		font-size: 12px;
@@ -257,7 +276,8 @@ body {
 	}
 	.blogpost-content {
 		font-size: 12px;
-		margin: 10px 20px;
+		margin: 25px 20px;
+		background-color: $primary-background-color;
 	}
 }
 /*.sidebar-container {
@@ -281,6 +301,24 @@ body {
   margin: 0 auto;
   text-align: center;
 }
+
+
+
+
+
+// PUBLIC PROFILE
+#profile-container {
+	display: block;
+	background-color: $tertiary-background-color;
+	padding: 10px 20px;
+	margin: 20px;
+}
+.button-edit {
+	@extend .buttons-default;
+	@extend .newpost-post-button;
+	background-color: $fourthiary-background-color;
+}
+
 
 
 

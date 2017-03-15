@@ -6,9 +6,20 @@ const { service } = Ember.inject; // We declare 'service' so that we can inject 
 export default Ember.Route.extend({
   store: service(),
   model(params) {
-    return this.get('store').queryRecord('user', {
+
+  	var modelObject = {}
+
+    modelObject.user = this.get('store').queryRecord('user', {
         _id: params.user_id
     })
+
+    modelObject.posts = this.get('store').query('blog-post', {
+        owner: params.user_id
+    });
+
+    return modelObject
+
+
   }
 
 });
