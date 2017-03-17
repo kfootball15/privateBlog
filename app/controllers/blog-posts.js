@@ -7,6 +7,7 @@ const { service } = Ember.inject; // We declare 'service' so that we can inject 
 export default Ember.Controller.extend({
   store: service(),
   session: service(),
+  currentUser: service(),
   actions: {
     // Toggles appropriate properties and sets blogType to 'private' or 'public'
     toggleNewPost(typeFromTemplate){
@@ -119,6 +120,7 @@ export default Ember.Controller.extend({
     } // Pushes selected friend into friends Array
   },
   reverse: Ember.computed('model', function() {
+    console.log(this.get('session.data.authenticated.user'))
     return this.get('model').toArray().reverse();
   }) // This must be an Ember.computed property so that we watch for any changes made to the array.
 });

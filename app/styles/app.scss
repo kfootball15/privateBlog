@@ -6,9 +6,10 @@ $secondary-font-color: #feffe0; // yellow
 $tertiary-font-color: #d2a0ef; // purple
 $fourthiary-font-color: #82c8ff; // darker blue
 // Backgrounds
-$primary-background-color: #ffffff; // darker blue
-$primary-background-color-dark: #f2f2f2; // darker blue
-$secondary-background-color: #f7feff; // light blue
+$primary-background-color: #ffffff; // white
+$primary-background-color-dark: #f2f2f2; // darker white (grey)
+$secondary-background-color: #e5fbff; // light blue
+$secondary-background-color-dark: #82c8ff; // darker blue
 $tertiary-background-color: #fff8d6; // yellow-orange
 $tertiary-background-color-hover: #fffae2; // hover yellow-orange
 $fourthiary-background-color: #fce0ff; // pink
@@ -25,6 +26,11 @@ $width-newpost: 800px;
       -ms-border-radius: $border-radius;
           border-radius: $border-radius;
 }
+$color: #3cb878;
+$light: lighten($color,15%);
+$dark: darken($color,15%);
+$lighter: lighten($color,30%);
+$darker: darken($color,30%);
 
 
 // GENERAL CSS
@@ -62,7 +68,7 @@ body {
 }
 .newpost-button {
   @include border-radius(10px);
-  width: 48.2%;
+  width: 48.75%;
   display: inline-block;
   background-color: $fourthiary-background-color;
   color: $tertiary-font-color;
@@ -145,7 +151,7 @@ body {
 }
 .newpost-delete-button {
 	@extend .newpost-cancel-button;
-	margin-left: 88%;
+	margin-left: 550px;
 }
 .tokens-friendslist {
   color: $secondary-font-color;
@@ -178,19 +184,35 @@ body {
 
 
 
-
-
-
 /*BLOG POSTS*/
-/*BLOG POSTS*/
-.blogposts-container {
-  display: block;
+#blogposts-container {
+  display: inline-block;
   position: relative;
   text-align: left;
   background-color: $primary-background-color;
   border-radius: 10px;
-  padding: 25px 20px;
+  margin: 25px 0;
 }
+.blogposts-split {
+	width: 70%;
+}
+
+#friendslist-container {
+	display: inline-block;
+	float: right;
+	margin: 25px 0;
+	background-color: $secondary-background-color-dark;
+	border-radius: 5px;
+	padding: 20px 5px 10px;
+}
+#friendslist-container h1 {
+	width: 100px;
+	margin: 0 auto;
+}
+.friendslist-split {
+	width: 28%;
+}
+
 .blogpost {
 	display: block;
 	position: relative;
@@ -225,6 +247,10 @@ body {
 				padding: 5px 15px;
 				margin: 0 5px;
 				border-radius: 10px;
+			}			
+			h3:hover {
+				color: darken($fourthiary-font-color,15%);
+				background-color: darken($secondary-background-color, 5%);
 			}
 		}	
 		.blogpost-date {
@@ -302,6 +328,51 @@ body {
   text-align: center;
 }
 
+
+// CHIPS
+.chip {
+	font-size: 12px;
+	margin: 2px;
+	text-align: center;
+	text-decoration: none;
+	padding: 5px 15px; //Overwritten when given a size (large/small)
+	border-radius: 5px;
+}
+.chip:hover {
+		
+}
+.chip-block {
+  display: block;
+  padding: 20px 20px;
+  margin: 10px 30px;
+}
+.chip-inline {
+	display: inline-block;
+  padding: 20px 20px;
+  margin: 10px 30px;
+}
+.chip-large {
+  font-size: 18px;
+}
+.chip-small {
+  font-size: 12px;	
+}
+.yellow-blue {
+	color: $fourthiary-font-color;
+	background-color: $tertiary-background-color;
+}
+.yellow-blue:hover {
+	color: darken($fourthiary-font-color,15%);
+	background-color: darken($tertiary-background-color,15%);
+}
+.blue-yellow {
+	color: $fourthiary-font-color;
+	background-color: $tertiary-background-color;
+}
+.blue-yellow:hover {
+	color: darken($fourthiary-font-color,15%);
+	background-color: darken($tertiary-background-color,15%);
+}
 
 
 

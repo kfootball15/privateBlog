@@ -57,213 +57,45 @@
   </div>
 
 
-
-  <div class="blogposts-container">
-    {{#each reverse as |post|}}
-      <div class="blogpost">
-
-        <div class="blogpost-upperdiv">
-          <h2 class="blogpost-title">{{post.title}}</h2>
-          <h4 class="blogpost-subtitle">{{post.subtitle}}</h4>
-          <p class="blogpost-author"> written by
-            {{#link-to "profile-public" post.owner}} {{!-- Link-to will automatically use the post.owners id property https://guides.emberjs.com/v2.10.0/templates/links/  --}}
-              <h3>{{post.owner.username}}</h3>
-            {{/link-to}} 
-          </p>
-          <p class="blogpost-date">{{post.date}}</p>
-          <h5 class="blogpost-{{post.blogType}}"></h5>
-        </div>
-        
-        <div class="blogpost-lowerdiv">
-          {{#each post.friends as |friend|}}
-            {{#link-to "profile-public" friend._id}} 
-              <h3 class="blogpost-friend"> {{friend.username}} </h3>
-            {{/link-to}}
-          {{/each}}
-
-          <p class="blogpost-content"> {{post.content}} </p>
-        </div>
-          <button class="newpost-delete-button" {{action 'deletePost' post.id}}> Delete </button>
-
-      </div>
-    {{/each}}
-
-  </div>
-
-  {{outlet}}
-
-
-
-</div>
-
-
-
-<!--
-  {{#if newBlogPost}}
-    <div>
-      <form class="form-new-post" {{action 'newPost' model.blogPost on="submit"}}>
-        <h2 class="form-signin-heading">New Blog Post</h2>
-        {{input class="title" type="title" type="text" placeholder="Title" value=title}}<br>
-        {{input class="content" type="content" type="text" placeholder="Sub Title" value=subtitle}}<br>
-        {{input class="content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
-
-        <button class="btn btn-lg btn-primary btn-block" type="submit" type="blogPost"> Post </button>
-        <button class="btn btn-lg btn-danger btn-block" {{action "toggleNewPost"}} > Cancel </button>
-
-      </form>
-    </div>
-  {{else}}
-    <button class="btn btn-lg btn-primary btn-block" {{action "toggleNewPost" }} >  New Post  </button>
-  {{/if}}
-
-  <div class="row">
-
-    <div class="col-sm-8 blog-main">
-
+  <div id="user-container">
+    <div id="blogposts-container" class="blogposts-split">
       {{#each reverse as |post|}}
-        <div class="blog-post">
-          <h2 class="blog-post-title">{{post.title}}</h2>
-          <h4 class="blog-post-title">{{post.subtitle}}</h4>
-          <p class="blog-post-meta">{{post.date}} {{#link-to "profile-public" post.owner}} {{post.owner}} {{/link-to}} </p>
-          {{#each post.friends as friend}}
-            <p class="blog-post-meta"> {{#link-to "profile-public" friend.id}} Friend: {{friend}} {{/link-to}} </p>
-          {{/each}}
+        <div class="blogpost">
 
-          <p> {{post.content}} </p>
-          <button class="btn btn-sm btn-danger" {{action 'deletePost' post.id}}> Delete </button>
+          <div class="blogpost-upperdiv">
+            <h2 class="blogpost-title">{{post.title}}</h2>
+            <h4 class="blogpost-subtitle">{{post.subtitle}}</h4>
+            <p class="blogpost-author"> written by
+              {{#link-to "profile-public" post.owner}} {{!-- Link-to will automatically use the post.owners id property https://guides.emberjs.com/v2.10.0/templates/links/  --}}
+                <h3>{{post.owner.username}}</h3>
+              {{/link-to}} 
+            </p>
+            <p class="blogpost-date">{{post.date}}</p>
+            <h5 class="blogpost-{{post.blogType}}"></h5>
+          </div>
+          
+          <div class="blogpost-lowerdiv">
+            {{#each post.friends as |friend|}}
+              {{#link-to "profile-public" friend._id}} 
+                <h3 class="blogpost-friend"> {{friend.username}} </h3>
+              {{/link-to}}
+            {{/each}}
+
+            <p class="blogpost-content"> {{post.content}} </p>
+          </div>
+            <button class="newpost-delete-button" {{action 'deletePost' post.id}}> Delete </button>
 
         </div>
       {{/each}}
 
-      <nav>
-        <ul class="pager">
-          <li><a href="#"> Previous (***)</a></li>
-          <li><a href="#"> Next (***)</a></li>
-        </ul>
-      </nav>
-
     </div>
 
-    <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
-      <div class="sidebar-module sidebar-module-inset">
-        <h4>About (***)</h4>
-        <p>Etiam porta <em>sem malesuada magna</em> mollis euismod. Cras mattis consectetur purus sit amet fermentum. Aenean lacinia bibendum nulla sed consectetur.</p>
-      </div>
-      <div class="sidebar-module">
-        <h4>Archives (***)</h4>
-        <ol class="list-unstyled">
-          <li><a href="#">March 2014</a></li>
-          <li><a href="#">February 2014</a></li>
-          <li><a href="#">January 2014</a></li>
-          <li><a href="#">December 2013</a></li>
-          <li><a href="#">November 2013</a></li>
-          <li><a href="#">October 2013</a></li>
-          <li><a href="#">September 2013</a></li>
-          <li><a href="#">August 2013</a></li>
-          <li><a href="#">July 2013</a></li>
-          <li><a href="#">June 2013</a></li>
-          <li><a href="#">May 2013</a></li>
-          <li><a href="#">April 2013</a></li>
-        </ol>
-      </div>
-      <div class="sidebar-module">
-        <h4>Elsewhere</h4>
-        <ol class="list-unstyled">
-          <li><a href="#">GitHub</a></li>
-          <li><a href="#">Twitter</a></li>
-          <li><a href="#">Facebook</a></li>
-        </ol>
-      </div>
+    <div id="friendslist-container" class="friendslist-split">
+      <h1> Friends: </h1>
+      {{#each session.data.authenticated.user.friends as |friend|}}
+        {{#link-to "profile-public" friend._id}} <a class="chip chip-block chip-large blue-yellow"> {{friend.username}}</a> {{/link-to}}
+      {{/each}}
     </div>
-
   </div>
 
-</div> -->
-
-
-
-
-
-{{!-- --------------------------------------- --}}
-{{!-- --------------------------------------- --}}
-{{!-- UNCOMMENT FOR INDIVIDUAL BLOG POST PAGE --}}
-{{!-- --------------------------------------- --}}
-{{!-- --------------------------------------- --}}
-{{!--   <div class="blogpost_container_main">
-    <div class="blogpost_container_title">
-      <img class="blogpost_title_image" src="5760.jpg">
-      <div class="blogpost_title_text_container">
-        <div class="blogpost_title_headline">
-          LITTLE KID SOCCER GAMES, ON THE RISE?
-        </div>
-        <div class="blogpost_title_content">
-          These little tikes are taking the soccer world by storm, but are they ready for the big time? Iceland's senior vice president certainly thinks so.
-        </div>
-      </div>
-    </div>
-    <div class="blogpost_container_article">
-      <div class="blogpost_article_text">
-        <br>
-        <hr>
-          <div class="blogpost_article_meta">
-            <img class="icon" src="icon_facebook.png">
-            <!-- <img class="icon" src="icon_twitter.png"> -->
-            <img class="icon" src="icon_instagram.png">
-            <img class="icon" src="icon_email.png">
-            <div class="blogpost_container_meta">
-              January 31st, 2017. <a class="author" href="https://www.google.com/search?q=kfootball15&source=lnms&tbm=isch&sa=X&ved=0ahUKEwiq2Ze2rpDSAhUKlZAKHZeEDi8Q_AUICigD&biw=2106&bih=1047"> Kfootball15 </a>
-            </div>
-          </div>
-        <hr>
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-        asfdasdfasdfa sdfasdfdsafasdfsdaf sdfsadfsda fasdfdsf sdaf sdfsdaf sadfsad fasdf asdf sadfs
-        adsfasdfasdfsdfs sdf sadf dsaf dsaf dsf dsaf dsafasdfsadfadsfasdfadsfadsf sadf asdfsdafds asdf
-        asdf asdfdsafsdafdsafd fsdf asdfasdf sdaf asdfdasf asdfsdaf asdfadsf asdf sdaf sadf adsf adsfasd fdafs
-      </div>
-      <div class="blogpost_article_bio">
-        <h2 class="blogpost_bio_author">Jeffrey Fenster</h2>
-        <p class="blogpost_bio_text">
-          Jeff is a passionate young man with a host of abilities. In his free time, he does this shit and other shit too!
-          If you are interested in his shit, click <a href="google.com"> here </a>. Thank you and take care of yourselves. Remember, always write more stuff in this spot
-        </p>
-      </div>
-    </div>
-  </div> --}}
+</div>
