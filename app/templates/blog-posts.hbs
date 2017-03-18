@@ -75,11 +75,14 @@
           </div>
           
           <div class="blogpost-lowerdiv">
+            Readers: 
             {{#each post.friends as |friend|}}
               {{#link-to "profile-public" friend._id}} 
-                <h3 class="blogpost-friend"> {{friend.username}} </h3>
+                <h3 class="chip inline chip-small yellow-blue"> {{friend.username}} </h3>
               {{/link-to}}
             {{/each}}
+            
+            <div class="chip inline chip-small green-yellow"> + </div>
 
             <p class="blogpost-content"> {{post.content}} </p>
           </div>
@@ -93,7 +96,7 @@
     <div id="friendslist-container" class="friendslist-split">
       <h1> Friends: </h1>
       {{#each session.data.authenticated.user.friends as |friend|}}
-        {{#link-to "profile-public" friend._id}} <a class="chip chip-block chip-large blue-yellow"> {{friend.username}}</a> {{/link-to}}
+        {{#link-to "profile-public" friend._id}} <a class="chip block chip-large blue-yellow"> {{friend.username}}</a> {{/link-to}}
       {{/each}}
     </div>
   </div>

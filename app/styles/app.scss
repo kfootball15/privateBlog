@@ -10,13 +10,13 @@ $primary-background-color: #ffffff; // white
 $primary-background-color-dark: #f2f2f2; // darker white (grey)
 $secondary-background-color: #e5fbff; // light blue
 $secondary-background-color-dark: #82c8ff; // darker blue
-$tertiary-background-color: #fff8d6; // yellow-orange
-$tertiary-background-color-hover: #fffae2; // hover yellow-orange
+$yellow-orange: #ffeea5; // yellow-orange
+$yellow-orange-hover: #fffae2; // hover yellow-orange
 $fourthiary-background-color: #fce0ff; // pink
 $fourthiary-background-color-hover: #faddff; // darker pink
 $negative-background-color: #fc8389; //red
 $negative-background-color-hover: #ffa0a5; //red
-$positive-background-color: #b5ff84; //green
+$positive-color: #80ed8a; //green
 // Blogposts
 $width-newpost: 800px;
 // Mixins
@@ -31,6 +31,12 @@ $light: lighten($color,15%);
 $dark: darken($color,15%);
 $lighter: lighten($color,30%);
 $darker: darken($color,30%);
+
+// OVERRIDES
+	// Ember Link Override
+a:-webkit-any-link {
+	text-decoration: none;
+}
 
 
 // GENERAL CSS
@@ -97,10 +103,10 @@ body {
   	margin: 0 auto;
   	padding: 25px;
   	color: $secondary-font-color;
-  	background-color: $tertiary-background-color;
+  	background-color: $yellow-orange;
   }
   h2:hover {
-		background-color:  $tertiary-background-color-hover;
+		background-color:  $yellow-orange-hover;
   }
 }
 
@@ -135,12 +141,12 @@ body {
 	width: 90px;
 
 	&:hover {
-		background-color: $tertiary-background-color-hover;
+		background-color: $yellow-orange-hover;
 	}
 }
 .newpost-post-button {
 	@extend .newpost-buttons;
-	background-color: $tertiary-background-color;
+	background-color: $yellow-orange;
 }
 .newpost-cancel-button {
 	@extend .newpost-buttons;
@@ -162,7 +168,7 @@ body {
 }
 .tokens-xfriendslist > h2 {
 	@include border-radius(15px);
-	background-color: $positive-background-color;
+	background-color: $positive-color;
 	color: $secondary-font-color;
 	display: block;
 	margin: 5px auto;
@@ -177,7 +183,7 @@ body {
 }
 .token-xfriend {
 	@extend .newpost-cancel-button;
-	background-color: $positive-background-color;
+	background-color: $positive-color;
 	display: inline-block;
 	width: auto;
 }
@@ -273,7 +279,7 @@ body {
 			top: 0px;
 			right: 30px;;
 			background-image: url('/assets/images/public-512.png');
-			background-color: $positive-background-color;
+			background-color: $positive-color;
 			border-radius: 10px;
 			padding: 30px;
 			background-size: cover;
@@ -286,20 +292,20 @@ body {
 		border-radius: 20px;
 		margin: 30px 20px 0;
 	}
-	.blogpost-friend {
-		font-size: 12px;
-		display: inline-block;
-		margin: 2px;
-		text-align: center;
-		margin: 0 auto;
-		color: $fourthiary-font-color;
-		display: inline-block;
-		background-color: $tertiary-background-color;
-		text-decoration: none;
-		padding: 5px 15px;
-		margin: 0 5px;
-		border-radius: 10px;
-	}
+	// .blogpost-friend {
+	// 	font-size: 12px;
+	// 	display: inline-block;
+	// 	margin: 2px;
+	// 	text-align: center;
+	// 	margin: 0 auto;
+	// 	color: $fourthiary-font-color;
+	// 	display: inline-block;
+	// 	background-color: $yellow-orange;
+	// 	text-decoration: none;
+	// 	padding: 5px 15px;
+	// 	margin: 0 5px;
+	// 	border-radius: 10px;
+	// }
 	.blogpost-content {
 		font-size: 12px;
 		margin: 25px 20px;
@@ -331,6 +337,7 @@ body {
 
 // CHIPS
 .chip {
+	@extend .buttons-default;
 	font-size: 12px;
 	margin: 2px;
 	text-align: center;
@@ -338,40 +345,45 @@ body {
 	padding: 5px 15px; //Overwritten when given a size (large/small)
 	border-radius: 5px;
 }
-.chip:hover {
-		
-}
-.chip-block {
+.block {
   display: block;
-  padding: 20px 20px;
-  margin: 10px 30px;
 }
-.chip-inline {
+.inline {
 	display: inline-block;
-  padding: 20px 20px;
-  margin: 10px 30px;
 }
 .chip-large {
   font-size: 18px;
+  padding: 20px 20px;
+  margin: 10px 30px;
 }
 .chip-small {
   font-size: 12px;	
+  padding: 10px 20px;
+  margin: 5px 1px;
 }
 .yellow-blue {
 	color: $fourthiary-font-color;
-	background-color: $tertiary-background-color;
+	background-color: $yellow-orange;
 }
 .yellow-blue:hover {
 	color: darken($fourthiary-font-color,15%);
-	background-color: darken($tertiary-background-color,15%);
+	background-color: darken($yellow-orange,15%);
 }
 .blue-yellow {
 	color: $fourthiary-font-color;
-	background-color: $tertiary-background-color;
+	background-color: $yellow-orange;
 }
 .blue-yellow:hover {
 	color: darken($fourthiary-font-color,15%);
-	background-color: darken($tertiary-background-color,15%);
+	background-color: darken($yellow-orange,15%);
+}
+.green-yellow {
+	color: $fourthiary-font-color;
+	background-color: $positive-color;
+}
+.green-yellow:hover {
+	color: darken($fourthiary-font-color,15%);
+	background-color: darken($positive-color,15%);
 }
 
 
@@ -380,7 +392,7 @@ body {
 // PUBLIC PROFILE
 #profile-container {
 	display: block;
-	background-color: $tertiary-background-color;
+	background-color: $yellow-orange;
 	padding: 10px 20px;
 	margin: 20px;
 }
