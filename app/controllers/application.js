@@ -8,6 +8,6 @@ export default Ember.Controller.extend({
   actions: {
     logout(){
       this.get('session').invalidate(); // Here, we are grabbing our Session Service and using its invalidate method
-    },
+    }
   }
 });

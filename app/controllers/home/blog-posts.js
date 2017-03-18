@@ -122,6 +122,7 @@ export default Ember.Controller.extend({
   reverse: Ember.computed('model', function() {
     console.log(this.get('session.data.authenticated.user'))
     return this.get('model').toArray().reverse();
+    // return ;
   }) // This must be an Ember.computed property so that we watch for any changes made to the array.
 });
 

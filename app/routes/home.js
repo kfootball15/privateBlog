@@ -5,23 +5,19 @@ export default Ember.Route.extend({
   store: service(),
   session: service(),
   model () {
-    let friends = this.get('session.data.authenticated.user.friends');
-    let promises = [];
+    let user = this.get('session.data.authenticated.user');
 
-    if(friends){
-      for (var i = 0; i < friends.length; i++) {
-        var promise = this.get('store').query('blog-post', {
-          owner: friends[i]._id
-        });
-        promises.push(promise);
-      }
-      return Promise.all(promises)
-      .then(function(posts){
-        return posts;
-      });
+    if(user){
+      return user;
     } else {
-      return "SIGN UP"
+      // return "SIGN UP"
     }
 
+  },
+  afterModel (model, transition) {
+    if (model) {
+      console.log(model, transition)
+      this.transitionTo('home.blog-posts', model._id);
+    }
   }
 });

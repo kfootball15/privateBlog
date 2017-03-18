@@ -2,6 +2,8 @@
 
 {{#if session.isAuthenticated}}
   {{!-- PUT INFORMATION YOU WANT SHOWN TO LOGGED IN USERS --}}
+  {{outlet}}
+
 {{else}}
   <div>Welcome to The Private Blog. Please Log In or Sign Up to start creating blog posts</div>
   <button class="btn btn-lg btn-primary" style="color:white;">
@@ -15,41 +17,3 @@
     {{/link-to}}
   </button>
 {{/if}}
-
-<div id="blogposts-container">
-{{#each model as |postarray|}}
-  
-  {{#each postarray as |post|}}
-    <div class="blogpost">
-      <h2 class="blogpost-title">{{post.title}}</h2>
-      <h4 class="blogpost-subtitle">{{post.subtitle}}</h4>
-      <h5 class="blogpost-{{post.blogType}}"></h5>
-      <p class="blogpost-date">{{post.date}}</p>
-
-      <p class="blogpost-author"> by
-      {{#link-to "profile-public" post.owner}} {{!-- Link-to will automatically use the post.owners id property https://guides.emberjs.com/v2.10.0/templates/links/  --}}
-        <h3>{{post.owner.username}}</h3>
-      {{/link-to}}
-      </p>
-
-      <div class="blogpost-lowerdiv">
-       
-        {{#each post.friends as |friend|}}
-          {{#link-to "profile-public" friend._id}}
-            <h3 class="blogpost-friend"> {{friend.username}} </h3>
-          {{/link-to}}
-        {{/each}}
-        
-        <p class="blogpost-content"> {{post.content}} </p>
-
-      </div>
-
-
-    </div>
-  {{/each}}
-
-
-{{/each}}
-</div>
-
-{{outlet}}
