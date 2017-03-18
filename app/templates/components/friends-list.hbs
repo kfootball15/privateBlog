@@ -1,0 +1,15 @@
+{{#if friends}}
+  <h1> Friends: </h1>
+  <h3 style="display: block; text-align: center; background-color: red;">((Search Bar: ))</h3>
+    <a class="chip block chip-large green-yellow"> + New Friend</a> 
+    {{#each friends as |friend|}}
+        {{#link-to "profile-public" friend._id}} 
+          <a class="chip block chip-large blue-yellow"> {{friend.username}}</a> 
+      {{/link-to}}
+    {{/each}}
+    <a class="chip block chip-large green-yellow"> + New Friend</a> 
+{{else}}
+  <h1> Friends: </h1>
+  <h2> Add friends here by entering their email address or, if they are a signed up user, entering their username/email</h2>
+  <div class="chip block chip-large green-yellow"> + </div>
+{{/if}}

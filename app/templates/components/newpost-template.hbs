@@ -1,0 +1,52 @@
+{{#if newBlogPost}}
+  <div>
+    <form id="form-newpost" {{action 'newPost' model.blogPost on="submit"}}>
+      <h2 class="form-signin-heading">New Post</h2>
+
+      {{!-- AVAILABLE ONLY IN PRIVATE MODE - ADD FRIENDS OPTION--}}
+      {{#if private}}
+
+        <div class="options-addfriends" {{action "toggleShowFriendsList"}} >
+          <h2> Add Readers </h2>
+        </div>
+
+          {{#if showFriendsList}}
+            {{!-- FRIENDS LIST --}}
+            <div class="friendslist-container friendslist-short friendslist-blue">
+              {{friends-add 
+                friends=session.data.authenticated.user.friends
+                modelFriendsArray=modelFriendsArray
+                addfriendParent=(action 'addfriend')
+              }}
+            </div>
+            {{!-- ADDED FRIENDS --}}
+            <div class="friendslist-container friendslist-short friendslist-blue">
+              {{friends-added 
+                friends=modelFriendsArray
+                removefriendParent=(action 'removefriend')
+              }}
+            </div>
+          {{/if}}
+
+      {{/if}} {{!-- /private --}}
+
+      {{!-- STANDARD BLOG-POST INPUTS ... PRIVATE and PUBLIC --}}
+      {{input class="newpost-title" type="title" type="text" placeholder="Title" value=title}}<br>
+      {{input class="newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}<br>
+      {{textarea id="blogpost-textarea" class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
+
+      <button class="chip inline chip-small green" type="submit" type="blogPost"> Post </button>
+      <button class="chip inline chip-small red" {{action "toggleNewPost"}} > Cancel </button>
+
+    </form>
+  </div>
+{{else}}
+  <div>
+    <div class="newpost-button">
+      <button {{action "toggleNewPost" "private"}} > PRIVATE </button>
+    </div>
+    <div class="newpost-button">
+      <button {{action "toggleNewPost" "public"}}> PUBLIC </button>
+    </div>
+  </div>
+{{/if}} {{!-- /newBlogPost --}}

@@ -1,0 +1,10 @@
+{{#if friends}}
+  {{#each friends as |friend|}}
+      {{#link-to "profile-public" friend._id}} 
+    		<a class="chip block chip-large green-yellow warn" {{action "removefriend" friend}} > <span>x</span> {{friend.username}} </a> 
+		{{/link-to}}
+  {{/each}}
+{{else}}
+  <p class="chip block chip-large red"> No Friends Yet! </p>
+{{/if}}
+

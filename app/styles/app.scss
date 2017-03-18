@@ -17,6 +17,7 @@ $fourthiary-background-color-hover: #faddff; // darker pink
 $negative-background-color: #fc8389; //red
 $negative-background-color-hover: #ffa0a5; //red
 $positive-color: #80ed8a; //green
+$black: #1e1e1e; //black (actually dark grey)
 // Blogposts
 $width-newpost: 800px;
 // Mixins
@@ -159,34 +160,35 @@ body {
 	@extend .newpost-cancel-button;
 	margin-left: 550px;
 }
-.tokens-friendslist {
-  color: $secondary-font-color;
-	display: block;
-	height: 70px;
-	overflow: auto;
-	text-align: center;
-}
-.tokens-xfriendslist > h2 {
-	@include border-radius(15px);
-	background-color: $positive-color;
-	color: $secondary-font-color;
-	display: block;
-	margin: 5px auto;
-	padding: 20px;
-	text-align: center;
-	width: $width-newpost;
-}
-.tokens-friend {
-	@extend .newpost-post-button;
+
+
+
+
+// FRIENDS LISTS
+.friendslist-container {
 	display: inline-block;
-	width: auto;
+  margin: 5px 0;
+  border-radius: 5px;
+  padding: 20px 5px 10px;
 }
-.token-xfriend {
-	@extend .newpost-cancel-button;
-	background-color: $positive-color;
-	display: inline-block;
-	width: auto;
+.friendslist-container h1 {
+  width: 100px;
+  margin: 0 auto;
 }
+.friendslist-split {
+  float: right;
+  width: 28%;
+}
+.friendslist-short {
+  height: 410px;
+  overflow: scroll;
+}
+.friendslist-blue {
+  background-color: $secondary-background-color-dark;
+}
+
+
+
 
 
 
@@ -197,28 +199,11 @@ body {
   text-align: left;
   background-color: $primary-background-color;
   border-radius: 10px;
-  margin: 25px 0;
+  margin: 5px 0;
 }
 .blogposts-split {
-	width: 70%;
+  width: 70%;
 }
-
-#friendslist-container {
-	display: inline-block;
-	float: right;
-	margin: 25px 0;
-	background-color: $secondary-background-color-dark;
-	border-radius: 5px;
-	padding: 20px 5px 10px;
-}
-#friendslist-container h1 {
-	width: 100px;
-	margin: 0 auto;
-}
-.friendslist-split {
-	width: 28%;
-}
-
 .blogpost {
 	display: block;
 	position: relative;
@@ -292,32 +277,12 @@ body {
 		border-radius: 20px;
 		margin: 30px 20px 0;
 	}
-	// .blogpost-friend {
-	// 	font-size: 12px;
-	// 	display: inline-block;
-	// 	margin: 2px;
-	// 	text-align: center;
-	// 	margin: 0 auto;
-	// 	color: $fourthiary-font-color;
-	// 	display: inline-block;
-	// 	background-color: $yellow-orange;
-	// 	text-decoration: none;
-	// 	padding: 5px 15px;
-	// 	margin: 0 5px;
-	// 	border-radius: 10px;
-	// }
 	.blogpost-content {
 		font-size: 12px;
 		margin: 25px 20px;
 		background-color: $primary-background-color;
 	}
 }
-/*.sidebar-container {
-  width: 33%;
-  display: inline-block;
-  border: 2px solid black;
-  border-radius: 5px;
-}*/
 .newpost-container {
   display: block;
   border: 2px solid black;
@@ -331,6 +296,12 @@ body {
 .blog-title {
   width: 100%;
   margin: 0 auto;
+  text-align: center;
+}
+
+
+// EDIT POSTS
+#editPost-friends{
   text-align: center;
 }
 
@@ -364,26 +335,53 @@ body {
 .yellow-blue {
 	color: $fourthiary-font-color;
 	background-color: $yellow-orange;
-}
-.yellow-blue:hover {
-	color: darken($fourthiary-font-color,15%);
-	background-color: darken($yellow-orange,15%);
+  &:hover {
+    color: darken($fourthiary-font-color,15%);
+    background-color: darken($yellow-orange,15%);    
+  }
 }
 .blue-yellow {
 	color: $fourthiary-font-color;
 	background-color: $yellow-orange;
-}
-.blue-yellow:hover {
-	color: darken($fourthiary-font-color,15%);
-	background-color: darken($yellow-orange,15%);
+  &:hover {
+    color: darken($fourthiary-font-color,15%);
+    background-color: darken($yellow-orange,15%);    
+  }
 }
 .green-yellow {
-	color: $fourthiary-font-color;
+	color: $secondary-font-color;
 	background-color: $positive-color;
+  &:hover {
+    color: darken($secondary-font-color,15%);
+    background-color: darken($positive-color,15%);
+  }
 }
-.green-yellow:hover {
-	color: darken($fourthiary-font-color,15%);
-	background-color: darken($positive-color,15%);
+.red {
+  width: 100px;
+  color: $black;
+  background-color: $negative-background-color;
+  &:hover {
+    color: darken($black,15%);
+    background-color: darken($negative-background-color,15%);
+  }
+}
+.green {
+  width: 100px;
+  color: $black;
+  background-color: $positive-color;
+  &:hover {
+    color: darken($black,15%);
+    background-color: darken($positive-color,15%);
+  }
+}
+.chip.warn{
+  &:hover {
+    color: darken($black,15%);
+    background-color: darken($negative-background-color,15%);
+  }
+}
+.small{
+  width: 10px;
 }
 
 
