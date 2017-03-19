@@ -48,7 +48,23 @@
       {{/if}}
     </div>
 
-    <p class="blogpost-content"> {{post.content}} </p>
+    {{!-- CONTENT --}}
+    {{#if (eq post.blogType 'private') }} {{!-- 'eq' is a helper that lets us use conditionals--}}
+
+      {{#if showPrivateContent}}
+        <p class="blogpost-content"> {{private_content}} </p>
+      {{else}}
+        <p class="blogpost-content"> You must enter the password for this post to view its contents</p>
+
+        <form class="private-post form" {{action 'confirmPostPassword' post.id postPassword on="submit"}}>
+          {{input class="newpost-title" type="Post Password" type="text" placeholder="Enter Password" value=postPassword}}
+          <button class="chip inline chip-small green" type="submit"> Confirm </button>
+          <button class="chip inline chip-small red" {{action ""}} > Cancel </button>
+        </form>
+      {{/if}}
+    {{else}}
+      <p class="blogpost-content"> {{post.content}} </p>
+    {{/if}}
   </div>
   
     <button class="chip inline-block chip-large red chip-right" {{action 'deletePost' post.id}}> Delete </button>

@@ -3,7 +3,7 @@
     <form id="form-newpost" {{action 'newPost' model.blogPost on="submit"}}>
       <h2 class="form-signin-heading">New Post</h2>
 
-      {{!-- AVAILABLE ONLY IN PRIVATE MODE - ADD FRIENDS OPTION--}}
+      {{!--ADD FRIENDS OPTION (Private Only)--}}
       {{#if private}}
         <div style="width: 400px; margin:auto;">
           {{#if showFriendsList}}
@@ -37,7 +37,7 @@
 
       {{/if}} {{!-- /private --}}
 
-      {{!-- STANDARD BLOG-POST INPUTS ... PRIVATE and PUBLIC --}}
+      {{!-- Password Protect Post --}}
       {{#if private}}
         {{#if setPassword}}
           {{input class="newpost-password" type="password" type="text" placeholder="Password" value=postPassword}}<br>
@@ -50,8 +50,12 @@
           </div>
         {{/if}}
       {{/if}}
-      {{input class="newpost-title" type="title" type="text" placeholder="Title" value=title}}<br>
-      {{input class="newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}<br>
+      
+      {{!-- STANDARD BLOG-POST INPUTS ... PRIVATE and PUBLIC --}}
+      {{input class="newpost-title" type="title" type="text" placeholder="Title" value=title}}
+      <br>
+      {{input class="newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}
+      <br>
       {{textarea id="blogpost-textarea" class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
       <button class="chip inline chip-small green" type="submit" type="blogPost"> Post </button>
       <button class="chip inline chip-small red" {{action "toggleNewPost"}} > Cancel </button>

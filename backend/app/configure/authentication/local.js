@@ -3,6 +3,7 @@ var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var BlogPost = mongoose.model('blogPost');
 
 module.exports = function (app) {
 
@@ -77,6 +78,29 @@ module.exports = function (app) {
 
     });
 
+    app.post('/confirmPostPassword', function (req,res,next){
+
+      // 1. find user using the session data
+      BlogPost.findOne({ _id: req.body.postId })
+      .then(function (blogpost) {
+          // blogpost.correctPassword is a method from the blogpost schema.
+          console.log("confirmPostPassword", blogpost)
+          if (!blogpost || !blogpost.correctPassword(req.body.password)) {
+              return next(error)
+              //done(null, false);
+          } else {
+              // Properly authenticated.
+              res.status(200).json(
+                {
+                  blogPost: blogpost.sanitize()
+                }
+              )
+              //done(null, user);
+          }
+      })
+      .catch(next);
+
+    });
 
 
 };

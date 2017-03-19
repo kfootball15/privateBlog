@@ -1,9 +1,9 @@
 'use strict';
-var mongoose = require('mongoose');
 var crypto = require('crypto');
+var mongoose = require('mongoose');
 var _ = require('lodash');
 
-var schema = new mongoose.Schema({
+var blogSchema = new mongoose.Schema({
     date: {
         type: Date, default: Date.now
     },
@@ -46,7 +46,7 @@ var schema = new mongoose.Schema({
 });
 
 // method to remove sensitive information from user objects before sending them out
-schema.methods.sanitize = function () {
+blogSchema.methods.sanitize = function () {
     return _.omit(this.toJSON(), ['password', 'salt']);
 };
 
@@ -63,24 +63,26 @@ var encryptPassword = function (plainText, salt) {
     return hash.digest('hex');
 };
 
-schema.pre('save', function (next) {
+blogSchema.pre('save', function (next) {
 
-    if (this.isModified('password')) {
-        this.salt = this.constructor.generateSalt();
-        this.password = this.constructor.encryptPassword(this.password, this.salt);
+    if (this.blogType === 'private' && this.password) {
+        if (this.isModified('password')) {
+            this.salt = this.constructor.generateSalt();
+            this.password = this.constructor.encryptPassword(this.password, this.salt);
+        }
     }
 
     next();
 
 });
 
-schema.statics.generateSalt = generateSalt;
-schema.statics.encryptPassword = encryptPassword;
+blogSchema.statics.generateSalt = generateSalt;
+blogSchema.statics.encryptPassword = encryptPassword;
 
-schema.method('correctPassword', function (candidatePassword) {
+blogSchema.method('correctPassword', function (candidatePassword) {
     return encryptPassword(candidatePassword, this.salt) === this.password;
 });
 
 
 
-mongoose.model('blogPost', schema);
+mongoose.model('blogPost', blogSchema);

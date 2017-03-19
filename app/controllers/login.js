@@ -18,7 +18,7 @@ export default Ember.Controller.extend({
       this.get('session').authenticate('authenticator:oauth2', username, password)
       .then(function(){
         // route.transitionToRoute('home');
-        route.transitionToRoute('home', route.get('session.data.authenticated.user._id'));
+        route.transitionToRoute('home.blog-posts', route.get('session.data.authenticated.user._id'));
       })
       .catch((reason) => {
         this.set('errorMessage', reason.error);

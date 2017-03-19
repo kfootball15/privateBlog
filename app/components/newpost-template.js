@@ -30,8 +30,6 @@ export default Ember.Component.extend({
       let postPassword;
       if (this.get('setPassword') && blogType === 'private') {
         postPassword = this.get('postPassword');
-      } else {
-        postPassword = undefined;
       }
 
       console.log(blogType)

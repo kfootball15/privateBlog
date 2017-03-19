@@ -4,7 +4,7 @@ const { service } = Ember.inject;
 export default Ember.Component.extend({
   store: service(),
   session: service(),
-  currentUser: service(),
+  confirmPostPassword: service(),
   actions: {
     deletePost(postId) {
       // 1. store 'reverse' model in variable
@@ -31,6 +31,21 @@ export default Ember.Component.extend({
     },
     showFriends(){
       this.toggleProperty('showFriendsList')
+    },
+    toggleShowPrivateContent(){
+      this.toggleProperty('showPrivateContent')
+    },
+    confirmPostPassword(postId, postPassword){
+      let route = this;
+      this.get('confirmPostPassword').confirmPassword(postId, postPassword)
+      .then(function(blogPost){
+        console.log(blogPost.blogPost)
+        route.set('private_content', blogPost.blogPost.content);
+        route.set('showPrivateContent', true)
+      })
+      .catch(function(error){
+        console.error("Incorrect Password", error)
+      })
     }
   }
 });

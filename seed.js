@@ -123,6 +123,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a post to a blog',
         subtitle: 'And life is good'
     },
@@ -130,6 +131,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is my stuff',
         subtitle: 'And life is bad'
     },
@@ -137,6 +139,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is your stuff',
         subtitle: 'And life is ok'
     },
@@ -144,6 +147,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a bad thing',
         subtitle: 'And life is so so'
     },
@@ -151,6 +155,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a good thing',
         subtitle: 'And life is good'
     },
@@ -158,6 +163,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is my story',
         subtitle: 'And life is beautiful'
     },
@@ -165,6 +171,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is the way',
         subtitle: 'And life is swell'
     },
@@ -172,6 +179,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a Hoot',
         subtitle: 'And life is charmed'
     },
@@ -179,6 +187,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is Time',
         subtitle: 'And life is smelly'
     },
@@ -186,6 +195,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a bad thing',
         subtitle: 'And life is so so'
     },
@@ -193,6 +203,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a good thing',
         subtitle: 'And life is good'
     },
@@ -200,6 +211,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is my story',
         subtitle: 'And life is beautiful'
     },
@@ -207,6 +219,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is the way',
         subtitle: 'And life is swell'
     },
@@ -214,6 +227,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a Hoot',
         subtitle: 'And life is charmed'
     },
@@ -221,6 +235,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is Time',
         subtitle: 'And life is smelly'
     },
@@ -228,6 +243,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a bad thing',
         subtitle: 'And life is so so'
     },
@@ -235,6 +251,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a good thing',
         subtitle: 'And life is good'
     },
@@ -242,6 +259,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is my story',
         subtitle: 'And life is beautiful'
     },
@@ -249,6 +267,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is the way',
         subtitle: 'And life is swell'
     },
@@ -256,6 +275,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is a Hoot',
         subtitle: 'And life is charmed'
     },
@@ -263,6 +283,7 @@ var blogpostSeed = [
         date: new Date(),
         friends: [],
         content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
+        password: '123',
         title: 'This is Time',
         subtitle: 'And life is smelly'
     }
