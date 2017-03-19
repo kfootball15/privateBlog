@@ -76,6 +76,7 @@ router.get('/', function(req,res,next){
 
 router.delete('/:blogPostId', function(req,res,next){
 
+    // Add Security Here
     BlogPost.remove({_id: req.params.blogPostId})
     .then(function(post){
       res.status(200).json({

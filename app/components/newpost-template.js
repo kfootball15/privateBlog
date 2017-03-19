@@ -6,14 +6,35 @@ export default Ember.Component.extend({
   session: service(),
   currentUser: service(),
   actions: {
+    // initializeForm() {
+    //   console.log("initializeForm Ran")
+    //   this.set('modelFriendsArray', [])
+    //   this.set('title', '')
+    //   this.set('subtitle', '')
+    //   this.set('postcontent', '')
+    //   this.set('postPassword', undefined)
+    //   this.set('newBlogPost', false)
+    //   this.set('showFriendsList', false)
+    // },
+    // listener: Ember.computed('model', function() {
+    //   this.initializeForm();
+    // }),
     newPost () {
       // Initialize blogPost information:
-      const title = this.get('title');
-      const subtitle = this.get('subtitle');
-      const postcontent = this.get('postcontent');
-      const blogType = this.get('blogType');
-      const userId = this.get('session.data.authenticated.user._id');
-      const friends = this.get('modelFriendsArray');
+      let title = this.get('title');
+      let subtitle = this.get('subtitle');
+      let postcontent = this.get('postcontent');
+      let blogType = this.get('blogType');
+      let userId = this.get('session.data.authenticated.user._id');
+      let friends = this.get('modelFriendsArray');
+      let postPassword;
+      if (this.get('setPassword') && blogType === 'private') {
+        postPassword = this.get('postPassword');
+      } else {
+        postPassword = undefined;
+      }
+
+      console.log(blogType)
 
       var route = this;
       // 1. Create our blog-post record and store it in a variable
@@ -24,29 +45,31 @@ export default Ember.Component.extend({
         friends: friends,
         title: title,
         subtitle: subtitle,
-        content: postcontent
+        content: postcontent,
+        password: postPassword
       });
       // 2. Save it to DB - .save() will make our post request to our /blog-posts (because assigned the correct model above) route with our blogpost record, created above
       blogpost.save()
       .then(function(blogPost){
+        console.log(blogPost)
         route.get('reverse').unshiftObject(blogPost); // 3. Push the new blog post onto the front of the array, so that the page updates in real time
         route.set('title', ''); // 4. reset all variables
         route.set('subtitle', '');
         route.set('postcontent', '');
+        route.set('postPassword', undefined);
+        route.set('setPassword', false);
         route.toggleProperty('newBlogPost');
 
       })
-      .catch(function(reason){
-        console.error("ERROR: Failed to save Blog Post, ", reason);
+      .catch(function(error){
+        console.error("ERROR: Failed to save Blog Post, ", error);
       });
 
     },
     toggleNewPost(type) {
 
-      console.log("what da eff")
-
       // Initialize an empty array for this blog posts 'friends'
-      this.set('modelFriendsArray', [])
+      this.set('modelFriendsArray', []);
       
       // Function: sets blogType property to 'private' or 'public'
       var that = this;
@@ -65,11 +88,16 @@ export default Ember.Component.extend({
 
       setBlogType(type); // 3. Now we want to set the blogType property to public/private so we can save it with the post in the database.
     },
+    toggleSetPassword(){
+      this.toggleProperty('setPassword')
+      // If 'setPassword' is false, lets make sure we reset anything entered into the password field
+      if (!this.get('setPassword')) this.set('postPassword', undefined)
+    },
     togglePrivate(){
       this.set('public', true);
     },
     toggleShowFriendsList () {
-        this.toggleProperty('showFriendsList');
+      this.toggleProperty('showFriendsList');
     },
     setBlogTypePrivate(){
       this.get('blogType');

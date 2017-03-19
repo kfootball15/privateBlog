@@ -20,12 +20,16 @@
         <h3 class="chip inline chip-small yellow-blue"> {{friend.username}} </h3>
       {{/link-to}}
     {{/each}}
+
+    {{!-- Toggle FriendsList --}}
     {{#if showFriendsList}}
       <div class="chip inline chip-small red small" {{action "showFriends"}} > x </div>
     {{else}}
       <div class="chip inline chip-small green small" {{action "showFriends"}} > + </div>
     {{/if}}
+
     <div id="editPost-friends">
+      {{!-- SHOW FRIENDS LIST --}}
       {{#if showFriendsList}}
         {{!-- FRIENDS LIST --}}
         <div class="friendslist-container friendslist-short friendslist-blue">
@@ -47,6 +51,6 @@
     <p class="blogpost-content"> {{post.content}} </p>
   </div>
   
-    <button class="newpost-delete-button" {{action 'deletePost' post.id}}> Delete </button>
+    <button class="chip inline-block chip-large red chip-right" {{action 'deletePost' post.id}}> Delete </button>
 
 </div>

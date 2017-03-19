@@ -21,9 +21,9 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
   actions: {
     // This action is attached to the "Your Blog Posts" button
       // The reason we are using an action instead of using 'link-to' and passing it the model() hook, is becuase we want the button to have access to the userId even after the user log ins and the model() has not yet been refreshed and given the oppurtunity to fetch the userId()
-    routeToBlogPosts() {
+    routeToHome() {
       const userId = this.get('session.data.authenticated.user._id');
-      this.transitionTo('blog-posts', userId);
+      this.transitionTo('home.blog-posts', userId);
     }
   },
   session: service(),

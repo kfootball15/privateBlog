@@ -8,5 +8,6 @@ export default DS.Model.extend({
   friends: DS.attr('array'),
   content: DS.attr('string'),
   title: DS.attr('string'),
-  subtitle: DS.attr('string')
+  subtitle: DS.attr('string'),
+  password: DS.attr('string')
 });

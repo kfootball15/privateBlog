@@ -11,8 +11,10 @@ export default Ember.Route.extend(AuthenticatedRouteMixin, {
   session: service(),
   model: function (params) {
 
+    let route = this
     return this.get('store').query('blog-post', {
-        owner: params.user_id
+        owner: params.user_id,
+        userId: route.get('session.data.authenticated.user._id')
     })// Makes a GET request to "http://localhost:1337/api/blog-posts?owner=5875a0ffff80ca1c5189f25c"
     .then(function(posts){
       if (posts) { return posts };

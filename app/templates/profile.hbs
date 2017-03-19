@@ -19,7 +19,7 @@
       <button class="newpost-cancel-button" {{action "toggleEditUsername" }} > CANCEL </button>
     {{else}}
       <h1 class="username">{{session.data.authenticated.user.username}}</h1>
-      <button class="button-edit" {{action "toggleEditUsername" }} > EDIT </button>
+      <button class="chip inline chip-large blue-yellow" {{action "toggleEditUsername" }} > EDIT </button>
     {{/if}}
 
     {{!-- If the 'editingName' property is true, show form for edit, otherwise show the users information --}}
@@ -33,7 +33,7 @@
       <button class="newpost-cancel-button" {{action "toggleEditName" }} > CANCEL </button>
     {{else}}
         <h2 class="name"> {{session.data.authenticated.user.firstname}} {{session.data.authenticated.user.lastname}}</h2>
-        <button class="button-edit" {{action "toggleEditName"}} > EDIT </button>
+        <button class="chip inline chip-large blue-yellow" {{action "toggleEditName"}} > EDIT </button>
     {{/if}}
 
     {{!-- If the 'editingEmail' property is true, show form for edit, otherwise show the users information --}}
@@ -46,7 +46,7 @@
       <button class="newpost-cancel-button" {{action "toggleEditEmail" }} > CANCEL </button>
     {{else}}
         <h3 class="email">{{session.data.authenticated.user.email}}</h3>
-        <button class="button-edit" {{action "toggleEditEmail"}} > EDIT </button>
+        <button class="chip inline chip-large blue-yellow" {{action "toggleEditEmail"}} > EDIT </button>
     {{/if}}
 
     {{!-- If the 'editingName' property is true, show form for edit, otherwise show the users information --}}
@@ -59,7 +59,7 @@
       <button class="newpost-cancel-button" {{action "toggleEditBio" }} > CANCEL </button>
     {{else}}
         <p class="bio"> {{session.data.authenticated.user.bio}} </p>
-        <button class="button-edit" {{action "toggleEditBio"}} > EDIT </button>
+        <button class="chip inline chip-large blue-yellow" {{action "toggleEditBio"}} > EDIT </button>
     {{/if}}
 
 
@@ -73,7 +73,7 @@
     <br />
 
     {{#link-to "profile-public" session.data.authenticated.user._id}}
-      <button class="button-edit"> View Your Public Profile </button>
+      <button class="chip inline chip-large blue-yellow"> View Your Public Profile </button>
     {{/link-to}}
 
   </div>
