@@ -5,28 +5,35 @@
 
       {{!-- AVAILABLE ONLY IN PRIVATE MODE - ADD FRIENDS OPTION--}}
       {{#if private}}
-
-        <div class="options-addfriends" {{action "toggleShowFriendsList"}} >
-          <h2> Add Readers </h2>
-        </div>
-
+        <div style="width: 400px; margin:auto;">
           {{#if showFriendsList}}
-            {{!-- FRIENDS LIST --}}
-            <div class="friendslist-container friendslist-short friendslist-blue">
-              {{friends-add 
-                friends=session.data.authenticated.user.friends
-                modelFriendsArray=modelFriendsArray
-                addfriendParent=(action 'addfriend')
-              }}
+            <div class="chip chip-large block warn" {{action "toggleShowFriendsList"}} >
+              <h2> x </h2>
             </div>
-            {{!-- ADDED FRIENDS --}}
-            <div class="friendslist-container friendslist-short friendslist-blue">
-              {{friends-added 
-                friends=modelFriendsArray
-                removefriendParent=(action 'removefriend')
-              }}
+          {{else}}
+            <div class="chip chip-large block blue-yellow" {{action "toggleShowFriendsList"}} >
+              <h2> Add Readers </h2>
             </div>
           {{/if}}
+        </div>
+
+        {{#if showFriendsList}}
+          {{!-- FRIENDS LIST --}}
+          <div class="friendslist-container friendslist-short friendslist-blue">
+            {{friends-add 
+              friends=session.data.authenticated.user.friends
+              modelFriendsArray=modelFriendsArray
+              addfriendParent=(action 'addfriend')
+            }}
+          </div>
+          {{!-- ADDED FRIENDS --}}
+          <div class="friendslist-container friendslist-short friendslist-blue">
+            {{friends-added 
+              friends=modelFriendsArray
+              removefriendParent=(action 'removefriend')
+            }}
+          </div>
+        {{/if}}
 
       {{/if}} {{!-- /private --}}
 

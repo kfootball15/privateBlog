@@ -4,4 +4,8 @@ const { service } = Ember.inject; // We declare 'service' so that we can inject 
 
 
 export default Ember.Controller.extend({
+	// Reverses order of posts array so they are in date order
+	reverse: Ember.computed('model.posts', function() {
+	    return this.get('model.posts').toArray().reverse();
+	})
 });

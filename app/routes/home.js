@@ -16,7 +16,6 @@ export default Ember.Route.extend({
   },
   afterModel (model, transition) {
     if (model) {
-      console.log(model, transition)
       this.transitionTo('home.blog-posts', model._id);
     }
   }

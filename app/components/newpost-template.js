@@ -43,6 +43,8 @@ export default Ember.Component.extend({
     },
     toggleNewPost(type) {
 
+      console.log("what da eff")
+
       // Initialize an empty array for this blog posts 'friends'
       this.set('modelFriendsArray', [])
       
