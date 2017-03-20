@@ -7,17 +7,19 @@ export default Ember.Service.extend({
   session: service('session'),
   store: service(),
   confirmPassword(postId, password){
+  	
   	let postDetails = {
   		postId: postId,
   		password: password
   	}
+
     const checkPostPassword = new Ember.RSVP.Promise(function(resolve, reject){
       Ember.$.ajax({
           type: 'POST',
           url:"http://localhost:1337/confirmPostPassword",
           data: postDetails,
           success: function(response){
-          	console.log("SCCUEESSS")
+          	console.log("SUCCESS", response)
             resolve(response);
           },
           error: function(reason){

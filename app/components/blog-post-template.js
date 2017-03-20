@@ -36,8 +36,9 @@ export default Ember.Component.extend({
       this.toggleProperty('showPrivateContent')
     },
     confirmPostPassword(postId, postPassword){
+      console.log(postId, postPassword)
       let route = this;
-      this.get('confirmPostPassword').confirmPassword(postId, postPassword)
+      this.get('confirmPostPassword').confirmPassword(postId.toString(), postPassword.toString())
       .then(function(blogPost){
         console.log(blogPost.blogPost)
         route.set('private_content', blogPost.blogPost.content);

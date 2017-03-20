@@ -10,7 +10,9 @@
 
     <div id="blogposts-container">
       {{#each reverse as |post|}}
-        {{blog-post-template post=post}}
+        {{blog-post-template 
+          reverse=reverse
+          post=post}}
       {{/each}}
 
     </div>

@@ -79,7 +79,6 @@ module.exports = function (app) {
     });
 
     app.post('/confirmPostPassword', function (req,res,next){
-
       // 1. find user using the session data
       BlogPost.findOne({ _id: req.body.postId })
       .then(function (blogpost) {
