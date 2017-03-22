@@ -84,7 +84,9 @@ export default Ember.Component.extend({
       if (type === 'private') { this.set('private', true) }
       else { this.set('private', false) };
 
-      setBlogType(type); // 3. Now we want to set the blogType property to public/private so we can save it with the post in the database.
+      // 3. Now we want to set the blogType property to public/private so we can save it with the post in the database.
+      setBlogType(type); 
+
     },
     toggleSetPassword(){
       this.toggleProperty('setPassword')

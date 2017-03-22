@@ -19,7 +19,7 @@
         {{blog-post-template 
             post=post
             reverse=reverse
-            }} 
+          }} 
       {{/each}}
 
     </div>
@@ -34,23 +34,11 @@
 {{else}} {{!-- else !reverse --}}
 
   <div class="newpost-options">
-    {{#if newBlogPost}}
-      {{!-- newpost-template Component --}}
-      {{newpost-template 
-          newBlogPost=newBlogPost
-          reverse=reverse
-          friends=session.data.authenticated.user.friends
-        }}
-    {{else}} {{!-- else !newBlogPost --}}
-      <div>
-        <div class="newpost-button">
-          <button {{action "toggleNewPost" "private"}} > PRIVATE </button>
-        </div>
-        <div class="newpost-button">
-          <button {{action "toggleNewPost" "public"}}> PUBLIC </button>
-        </div>
-      </div>
-    {{/if}}
+    {{newpost-template 
+        newBlogPost=newBlogPost
+        reverse=reverse
+        friends=session.data.authenticated.user.friends
+      }}
 
   {{!-- FRIENDS LIST COMPONENT --}}
   <div class="friendslist-container friendslist-split friendslist-blue">

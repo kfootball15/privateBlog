@@ -54,10 +54,9 @@
       {{#if showPrivateContent}}
         <p class="blogpost-content"> {{private_content}} </p>
       {{else}}
-        <p class="blogpost-content"> You must enter the password for this post to view its contents</p>
 
         <form class="private-post form" {{action 'confirmPostPassword' post.id postPassword on="submit"}}>
-          {{input class="newpost-title" type="Post Password" type="text" placeholder="Enter Password" value=postPassword}}
+          {{input class="post-password" type="Post Password" type="text" placeholder="Enter Password" value=postPassword}}
           <button class="chip inline chip-small green" type="submit"> Confirm </button>
           <button class="chip inline chip-small red" {{action ""}} > Cancel </button>
         </form>

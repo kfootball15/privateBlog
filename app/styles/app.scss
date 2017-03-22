@@ -112,7 +112,7 @@ body {
 }
 
 #form-newpost {
-	@include border-radius(15px)
+	@include border-radius(15px);
 	width: $width-newpost;
 	margin: 0 auto 10px;
 	text-align: center;
@@ -372,6 +372,21 @@ body {
 	margin: 20px;
 }
 
+
+// FORMS
+.private-post .post-password {
+  @include border-radius(15px);
+  display: block;
+  width: 100%;
+  height: 80px;
+  text-align: center;
+  font-size: 50px;
+  margin: 10px 0;
+  outline: none;
+  &:focus {
+    background-color: $secondary-background-color;
+  }
+}
 
 
 
