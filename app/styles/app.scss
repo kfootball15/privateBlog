@@ -17,6 +17,7 @@ $fourthiary-background-color-hover: #faddff; // darker pink
 $negative-background-color: #fc8389; //red
 $negative-background-color-hover: #ffa0a5; //red
 $positive-color: #80ed8a; //green
+$edit-color: #4286f4; //blue
 $black: #1e1e1e; //black (actually dark grey)
 // Blogposts
 $width-newpost: 800px;
@@ -94,40 +95,48 @@ body {
 }
 
 .options-addfriends {
-	@extend .buttons-default;
-	width: 100%;
+  @extend .buttons-default;
+  width: 100%;
   font-size:1em;
 
   h2 {
-  	@include border-radius(15px);
-  	width: 300px;
-  	margin: 0 auto;
-  	padding: 25px;
-  	color: $secondary-font-color;
-  	background-color: $yellow-orange;
+    @include border-radius(15px);
+    width: 300px;
+    margin: 0 auto;
+    padding: 25px;
+    color: $secondary-font-color;
+    background-color: $yellow-orange;
   }
   h2:hover {
-		background-color:  $yellow-orange-hover;
+    background-color:  $yellow-orange-hover;
   }
 }
 
 #form-newpost {
-	@include border-radius(15px);
-	width: $width-newpost;
-	margin: 0 auto 10px;
-	text-align: center;
-	background-color: $fourthiary-background-color;
-	padding: 50px;
+  @include border-radius(15px);
+  width: $width-newpost;
+  margin: 0 auto 10px;
+  text-align: center;
+  background-color: $fourthiary-background-color;
+  padding: 50px;
 
-	h2 {
-		color: $tertiary-font-color;
-	}
+  h2 {
+    color: $tertiary-font-color;
+  }
 
-	input {
-		width: $width-newpost - 150px;
-	}
 }
-
+#form-newpost-standardinputs {
+  
+  input {
+    width: $width-newpost - 150px;
+  }
+}
+#newpost-password {
+  display: inline-block;
+  padding-left: 10px;
+  width: 494px;
+  height: 30px;
+}
 .newpost-content {
 	width: $width-newpost - 150px;
 	max-width: $width-newpost - 150px;
@@ -251,10 +260,19 @@ body {
 		border-radius: 20px;
 		margin: 30px 20px 0;
 	}
-	.blogpost-content {
+  .blogpost-content {
+    font-size: 12px;
+    margin: 25px 20px;
+    background-color: $primary-background-color;
+  }	
+  .blogpost-content-edit {
 		font-size: 12px;
 		margin: 25px 20px;
 		background-color: $primary-background-color;
+    width: 100%;
+    padding: 10px 10px;
+    box-sizing: border-box;
+    margin-left: 0px;
 	}
 }
 .newpost-container {
@@ -339,6 +357,15 @@ body {
     background-color: darken($negative-background-color,15%);
   }
 }
+.blue {
+  width: 100px;
+  color: $black;
+  background-color: $edit-color;
+  &:hover {
+    color: darken($black,15%);
+    background-color: darken($edit-color,15%);
+  }
+}
 .green {
   width: 100px;
   color: $black;
@@ -357,8 +384,17 @@ body {
 .small {
   width: 10px;
 }
-.chip-right {
-  margin-left: 540px;
+.chips-right {
+  text-align: right;
+  padding: 5px 20px;
+}
+.password-confirm {
+  margin-left: 10px;
+  margin-top: -1px;
+
+  img {
+    margin: 10px 0 0 0;
+  }
 }
 
 
@@ -373,11 +409,20 @@ body {
 }
 
 
-// FORMS
+// ----- //
+// FORMS //
+// ----- //
+
+// Private Password Form
+.private-post {
+  // display: block;
+  display: flex;
+  align-items: center;
+}
 .private-post .post-password {
   @include border-radius(15px);
-  display: block;
-  width: 100%;
+  // display: inline-block;
+  width: 80%;
   height: 80px;
   text-align: center;
   font-size: 50px;
@@ -387,9 +432,6 @@ body {
     background-color: $secondary-background-color;
   }
 }
-
-
-
 /*LOG IN PAGE*/
 .form-signin {
   max-width: 330px;

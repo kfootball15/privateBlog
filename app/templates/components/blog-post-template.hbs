@@ -14,7 +14,7 @@
   
   <div class="blogpost-lowerdiv">
 
-    <h3 style="display:inline-block">Readers:</h3>
+    {{!-- <h3 style="display:inline-block">Readers:</h3> --}}
     {{#each post.friends as |friend|}}
       {{#link-to "profile-public" friend._id}} 
         <h3 class="chip inline chip-small yellow-blue"> {{friend.username}} </h3>
@@ -52,20 +52,40 @@
     {{#if (eq post.blogType 'private') }} {{!-- 'eq' is a helper that lets us use conditionals--}}
 
       {{#if showPrivateContent}}
-        <p class="blogpost-content"> {{private_content}} </p>
+        {{#if editingPost}}
+          <input class="blogpost-content-edit" value={{private_content}}> 
+          <button class="chip inline-block chip-small red" {{action 'cancelEdit'}}> Cancel </button>  
+          <button class="chip inline-block chip-small blue" {{action 'cancelEdit'}}> Save </button>  
+        {{else}}
+          <p class="blogpost-content" onclick={{action 'editPost' post}}> {{private_content}} </p>
+        {{/if}}
+        
       {{else}}
 
         <form class="private-post form" {{action 'confirmPostPassword' post.id postPassword on="submit"}}>
           {{input class="post-password" type="Post Password" type="text" placeholder="Enter Password" value=postPassword}}
-          <button class="chip inline chip-small green" type="submit"> Confirm </button>
-          <button class="chip inline chip-small red" {{action ""}} > Cancel </button>
+          <button class="chip inline chip-small green password-confirm" type="submit">
+            <img style="width:50px;" src="assets/images/check.png">
+          </button>
+          {{!-- <button class="chip inline chip-small red" {{action ""}} > Cancel </button> --}}
         </form>
       {{/if}}
     {{else}}
-      <p class="blogpost-content"> {{post.content}} </p>
+        {{#if editingPost}}
+          <input class="blogpost-content-edit" value={{post.content}}> 
+          <button class="chip inline-block chip-small red" {{action 'cancelEdit'}}> Cancel </button>
+          <button class="chip inline-block chip-small blue" {{action 'cancelEdit'}}> Save </button>  
+        {{else}}
+          <p class="blogpost-content" onclick={{action 'editPost' post}}> {{post.content}} </p>
+        {{/if}}
     {{/if}}
   </div>
-  
-    <button class="chip inline-block chip-large red chip-right" {{action 'deletePost' post}}> Delete </button>
+    
+    {{#if (eq post.owner._id currentUser.user.id)}}
+      <div class="chips-right">
+        <button class="chip inline-block chip-small red" {{action 'deletePost' post}}> Delete </button>      
+        {{!-- <button class="chip inline-block chip-small blue" {{action 'editPost' post}}> Edit </button> --}}
+      </div>
+    {{/if}}
 
 </div>

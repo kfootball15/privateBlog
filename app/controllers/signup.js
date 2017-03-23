@@ -5,16 +5,16 @@ export default Ember.Controller.extend({
   session: service(),
   actions: {
     signup () {
-      const email = this.get('email');
-      const username = this.get('username');
-      const password = this.get('password');
-      const firstname = this.get('firstname');
-      const lastname = this.get('lastname');
-      const bio = this.get('bio');
-      const session = this.get('session'); // We use this later to log user in after sign up
+      let email = this.get('email');
+      let username = this.get('username');
+      let password = this.get('password');
+      let firstname = this.get('firstname');
+      let lastname = this.get('lastname');
+      let bio = this.get('bio');
+      let session = this.get('session'); // We use this later to log user in after sign up
 
       // 'user' here refers to the model 'user'
-      const user = this.store.createRecord('user', {
+      let user = this.store.createRecord('user', {
         email: email,
         username: username,
         firstname: firstname,
@@ -23,12 +23,6 @@ export default Ember.Controller.extend({
         password: password
       });
 
-      this.set('email', '');
-      this.set('username', '');
-      this.set('firstname', '');
-      this.set('lastname', '');
-      this.set('bio', '');
-      this.set('password', '');
 
       var route = this;
       // Makes a POST request to /api/users/:id
@@ -38,6 +32,13 @@ export default Ember.Controller.extend({
         return session.authenticate('authenticator:oauth2', email, password)
       })
       .then(function(){
+        // If we successfully create the user, reset all fields. Otherwise, keep them so they dont have to start over.
+        this.set('email', '');
+        this.set('username', '');
+        this.set('firstname', '');
+        this.set('lastname', '');
+        this.set('bio', '');
+        this.set('password', '');
         // After successfully authenticating session, route to home
         route.transitionToRoute('home')
       })

@@ -40,9 +40,9 @@
       {{!-- Password Protect Post --}}
       {{#if private}}
         {{#if setPassword}}
-          {{input class="newpost-password" type="password" type="text" placeholder="Password" value=postPassword}}<br>
           <div style="text-align: left; margin: 0 70px;">
             <div class="chip chip-small inline red" {{action "toggleSetPassword"}} >NeverMind</div>
+            {{input id="newpost-password" type="password" type="text" placeholder="Password" value=postPassword}}
           </div>
         {{else}}
           <div style="text-align: left; margin: 0 70px;">
@@ -52,13 +52,15 @@
       {{/if}}
       
       {{!-- STANDARD BLOG-POST INPUTS ... PRIVATE and PUBLIC --}}
-      {{input class="newpost-title" type="title" type="text" placeholder="Title" value=title}}
-      <br>
-      {{input class="newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}
-      <br>
-      {{textarea id="blogpost-textarea" class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
-      <button class="chip inline chip-small green" type="submit" type="blogPost"> Post </button>
-      <button class="chip inline chip-small red" {{action "toggleNewPost"}} > Cancel </button>
+      <div id="form-newpost-standardinputs">
+        {{input class="newpost-input newpost-title" type="title" type="text" placeholder="Title" value=title}}
+        <br>
+        {{input class="newpost-input newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}
+        <br>
+        {{textarea id="newpost-inputblogpost-textarea" class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
+        <button class="chip inline chip-small green" type="submit" type="blogPost"> Post </button>
+        <button class="chip inline chip-small red" {{action "toggleNewPost"}} > Cancel </button>
+      </div>
 
     </form>
   </div>

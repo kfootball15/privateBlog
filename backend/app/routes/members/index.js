@@ -19,19 +19,16 @@ var ensureAuthenticated = function (req, res, next) {
 router.post('/', function (req, res, next){
   User.create(req.body.user)
   .then(function(newUser){
-    console.log("New User", newUser)
-    res.status(201).json({user: newUser})
+    res.status(201).json({user: newUser.sanitize()})
   })
   .catch(next)
 })
 
 // Get user (params)
 router.get('/:user_id', function (req, res, next){
-  console.log("Get Users (params)")
   User.findOne({_id: req.params.user_id})
   .populate('friends').exec()
   .then(function(fetchedUser){
-    console.log("Fetched User", fetchedUser.sanitize())
     res.status(200).json({user: fetchedUser.sanitize()})
   })
   .catch(next)
@@ -39,19 +36,12 @@ router.get('/:user_id', function (req, res, next){
 
 // Get user (query)
 router.get('/', function (req, res, next){
-  console.log("Get Users (query)")
   if (req.query){
     User.findById(req.query._id)
     .populate('friends')
     .then(function(fetchedUser){
       console.log("Fetched User", fetchedUser.sanitize())
       res.status(200).json({user: fetchedUser.sanitize()})
-    })
-    .catch(next)
-  } else {
-    User.find({})
-    .then(function(allusers){
-      res.status(200).json({users:allusers})
     })
     .catch(next)
   }
@@ -67,8 +57,14 @@ router.patch('/:user_id', function (req, res, next){
     bio: req.body.user.bio
     }}, {new: true })
   .then(function (updatedUser) {
-    console.log("UPDATED USER", updatedUser)
-    res.status(201).json( { user: updatedUser } );
+    res.status(201).json( { user: updatedUser.sanitize() } );
   });
 });
 
+
+  //   User.find({})
+  //   .then(function(allusers){
+  //     res.status(200).json({users:allusers})
+  //   })
+  //   .catch(next)
+  // }

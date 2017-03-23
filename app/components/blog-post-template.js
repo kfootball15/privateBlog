@@ -4,6 +4,7 @@ const { service } = Ember.inject;
 export default Ember.Component.extend({
   store: service(),
   session: service(),
+  currentUser: service(),
   confirmPostPassword: service(),
   actions: {
     deletePost(post) {
@@ -35,6 +36,13 @@ export default Ember.Component.extend({
       } else {
         console.error('You do not have permission to delete other users posts')
       }
+    },
+    editPost(post) {
+      console.log('post', post),
+      this.toggleProperty('editingPost');
+    },
+    cancelEdit() {
+      this.toggleProperty('editingPost');
     },
     showFriends(){
       this.toggleProperty('showFriendsList')
