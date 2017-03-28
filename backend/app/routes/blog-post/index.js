@@ -62,7 +62,7 @@ router.get('/', function(req,res,next){
         // Otherwise, lets just send back the posts that the user has permissions to view (public posts and posts the are a 'reader', or friend, of)
         let filteredPosts = [];
         for (var i = 0; i < posts.length; i++) {
-          if(posts[i].blogType === 'public' || userIsFriend(posts[i].friends)){
+          if(!posts[i].private || userIsFriend(posts[i].friends)){
             filteredPosts.push(posts[i])
           }
         }

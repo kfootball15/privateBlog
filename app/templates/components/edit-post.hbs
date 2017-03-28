@@ -1,0 +1,7 @@
+{{#if editingPost}}
+  <input class="blogpost-content-edit" value={{content}}> 
+  <button class="chip inline-block chip-small red" {{action 'cancelEdit'}}> Cancel </button>
+  <button class="chip inline-block chip-small blue" {{action 'cancelEdit'}}> Save </button>  
+{{else}}
+  <p class="blogpost-content" onclick={{action 'editPost' post}}> {{content}} </p>
+{{/if}}

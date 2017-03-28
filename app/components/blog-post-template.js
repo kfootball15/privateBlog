@@ -37,13 +37,6 @@ export default Ember.Component.extend({
         console.error('You do not have permission to delete other users posts')
       }
     },
-    editPost(post) {
-      console.log('post', post),
-      this.toggleProperty('editingPost');
-    },
-    cancelEdit() {
-      this.toggleProperty('editingPost');
-    },
     showFriends(){
       this.toggleProperty('showFriendsList')
     },
@@ -60,8 +53,31 @@ export default Ember.Component.extend({
         route.set('showPrivateContent', true)
       })
       .catch(function(error){
-        console.error("Incorrect Password", error)
+        console.error('Incorrect Password', error);
+        let active = $('#passwordForm_'+postId).find('input')
+        active.css('background-color','#ff84a5');
+        shake('passwordForm_'+postId)
+        setTimeout(function(){
+          active.css('background-color','#e5fbff');
+        }, 700)
       })
     }
   }
 });
+
+function shake(cssId) {
+  console.log("ranooj")
+    var div = document.getElementById(cssId);
+    var interval = 100;
+    var distance = 10;
+    var times = 4;
+
+    $(div).css('position', 'relative');
+
+    for (var iter = 0; iter < (times + 1) ; iter++) {
+        $(div).animate({
+            left: ((iter % 2 == 0 ? distance : distance * -1))
+        }, interval);
+    }                                                                                                          
+    $(div).animate({ left: 0 }, interval);
+}

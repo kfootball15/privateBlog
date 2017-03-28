@@ -1,14 +1,14 @@
 
 <div class="container">
-  <div class="form-signin">
+  <div class="form-signup">
     <h2>Sign up by Filling out the form below</h2><br>
     <form class="form-signin" {{action 'signup' on="submit"}}>
-      {{input class="form-control" autofocus="" required="" type="text" placeholder="Username" value=username}}<br>
-      {{input class="form-control" autofocus="" required="" type="text" placeholder="Email" value=email}}<br>
-      {{input class="form-control" autofocus="" required="" type="text" placeholder="Password" value=password}}<br>
-      {{input class="form-control" autofocus="" required="" type="text" placeholder="firstname" value=firstname}}<br>
-      {{input class="form-control" autofocus="" required="" type="text" placeholder="lastname" value=lastname}}<br>
-      {{input class="form-control" autofocus="" required="" type="text" placeholder="bio" value=bio}}<br>
+      {{input required="required" class="form-control" autofocus="" type="text" placeholder="Username" value=username}}<br>
+      {{input required="required" class="form-control" autofocus="" type="email" placeholder="Email" value=email}}<br>
+      {{input required="required" class="form-control" autofocus="" type="password" placeholder="Password" value=password}}<br>
+      {{input required="required" class="form-control" autofocus="" type="text" placeholder="firstname" value=firstname}}<br>
+      {{input required="required" class="form-control" autofocus="" type="text" placeholder="lastname" value=lastname}}<br>
+      {{input class="form-control" autofocus="" type="text" placeholder="bio" value=bio}}<br>
 
       <button type="submit" class="btn btn-lg btn-primary btn-block"> Sign Up </button>
 

@@ -18,9 +18,13 @@ var blogSchema = new mongoose.Schema({
     salt: {
         type: String
     },
-    blogType: {
-      type: String,
-      default: 'private'
+    private: {
+      type: Boolean,
+      default: false
+    },
+    hasPassword: {
+        type: Boolean,
+        default: false
     },
     friends: [{
         type: mongoose.Schema.Types.ObjectId,
@@ -64,17 +68,21 @@ var encryptPassword = function (plainText, salt) {
 };
 
 blogSchema.pre('save', function (next) {
-
-    if (this.blogType === 'private' && this.password) {
+    if (this.private && this.password) {
         if (this.isModified('password')) {
             this.salt = this.constructor.generateSalt();
             this.password = this.constructor.encryptPassword(this.password, this.salt);
         }
     }
-
     next();
-
 });
+
+blogSchema.pre('save', function(next) {
+    console.log("pre password", this.password)
+    if (this.password) this.hasPassword = true;
+    console.log("hasPassword", this.hasPassword)
+    next();
+})
 
 blogSchema.statics.generateSalt = generateSalt;
 blogSchema.statics.encryptPassword = encryptPassword;

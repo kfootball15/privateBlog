@@ -4,7 +4,7 @@
       <h2 class="form-signin-heading">New Post</h2>
 
       {{!--ADD FRIENDS OPTION (Private Only)--}}
-      {{#if private}}
+      {{#if isPrivate}}
         <div style="width: 400px; margin:auto;">
           {{#if showFriendsList}}
             <div class="chip chip-large block warn" {{action "toggleShowFriendsList"}} >
@@ -38,7 +38,7 @@
       {{/if}} {{!-- /private --}}
 
       {{!-- Password Protect Post --}}
-      {{#if private}}
+      {{#if isPrivate}}
         {{#if setPassword}}
           <div style="text-align: left; margin: 0 70px;">
             <div class="chip chip-small inline red" {{action "toggleSetPassword"}} >NeverMind</div>
@@ -53,11 +53,11 @@
       
       {{!-- STANDARD BLOG-POST INPUTS ... PRIVATE and PUBLIC --}}
       <div id="form-newpost-standardinputs">
-        {{input class="newpost-input newpost-title" type="title" type="text" placeholder="Title" value=title}}
+        {{input required="required" class="newpost-input newpost-title" type="title" type="text" placeholder="Title" value=title}}
         <br>
-        {{input class="newpost-input newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}
+        {{input required="required" class="newpost-input newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}
         <br>
-        {{textarea id="newpost-inputblogpost-textarea" class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
+        {{textarea required="required" id="newpost-inputblogpost-textarea" class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
         <button class="chip inline chip-small green" type="submit" type="blogPost"> Post </button>
         <button class="chip inline chip-small red" {{action "toggleNewPost"}} > Cancel </button>
       </div>

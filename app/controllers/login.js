@@ -22,6 +22,9 @@ export default Ember.Controller.extend({
       })
       .catch((reason) => {
         this.set('errorMessage', reason.error);
+        $('.form-signin').append(
+          "<p style='color:red'><strong>Incorrect Username or Password</strong></p>"
+          )
       });
 
     }

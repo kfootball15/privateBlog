@@ -1,45 +1,42 @@
 import Ember from 'ember';
 const { service } = Ember.inject; // We declare 'service' so that we can inject it more easily like so: session: service();
 
+
 export default Ember.Component.extend({
   store: service(),
   session: service(),
   currentUser: service(),
+  resetPostForm: function () {
+    console.log("resetForms Ran")
+    this.set('modelFriendsArray', [])
+    this.set('title', '')
+    this.set('subtitle', '')
+    this.set('postcontent', '')
+    this.set('postPassword', undefined)
+    this.set('newBlogPost', false)
+    this.set('showFriendsList', false)
+  },
   actions: {
-    // initializeForm() {
-    //   console.log("initializeForm Ran")
-    //   this.set('modelFriendsArray', [])
-    //   this.set('title', '')
-    //   this.set('subtitle', '')
-    //   this.set('postcontent', '')
-    //   this.set('postPassword', undefined)
-    //   this.set('newBlogPost', false)
-    //   this.set('showFriendsList', false)
-    // },
-    // listener: Ember.computed('model', function() {
-    //   this.initializeForm();
-    // }),
     newPost () {
       // Initialize blogPost information:
       let title = this.get('title');
       let subtitle = this.get('subtitle');
       let postcontent = this.get('postcontent');
-      let blogType = this.get('blogType');
+      let isPrivate = this.get('isPrivate');
       let userId = this.get('session.data.authenticated.user._id');
       let friends = this.get('modelFriendsArray');
       let postPassword;
-      if (this.get('setPassword') && blogType === 'private') {
+      if (this.get('setPassword') && isPrivate) {
         postPassword = this.get('postPassword');
       }
 
-      console.log(blogType)
-
+      console.log("isPrivate", isPrivate)
       var route = this;
       // 1. Create our blog-post record and store it in a variable
       const blogpost = this.get('store').createRecord('blog-post', {
         date: new Date(),
         owner: userId,
-        blogType: blogType,
+        private: isPrivate,
         friends: friends,
         title: title,
         subtitle: subtitle,
@@ -65,28 +62,19 @@ export default Ember.Component.extend({
 
     },
     toggleNewPost(type) {
+      // Reset all input fields
+      this.resetPostForm()
 
       // Initialize an empty array for this blog posts 'friends'
       this.set('modelFriendsArray', []);
-      
-      // Function: sets blogType property to 'private' or 'public'
-      var that = this;
-      function setBlogType(blogType) {
-        that.get('blogType');
-        that.set('blogType', blogType);
-      }
 
       // 1. Reset new blog post properties
       this.toggleProperty('newBlogPost'); // Toggles on/off the new blog post field
       this.set('showFriendsList', false); // Toggles off the friends list
 
       // 2. If it is a public post, we want to allow them to add specific friends
-      if (type === 'private') { this.set('private', true) }
-      else { this.set('private', false) };
-
-      // 3. Now we want to set the blogType property to public/private so we can save it with the post in the database.
-      setBlogType(type); 
-
+      if (type === 'private') { this.set('isPrivate', true) }
+      else { this.set('isPrivate', false) };
     },
     toggleSetPassword(){
       this.toggleProperty('setPassword')
