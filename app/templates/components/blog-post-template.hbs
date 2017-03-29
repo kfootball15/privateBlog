@@ -1,8 +1,11 @@
 <div class="blogpost">
 
   <div class="blogpost-upperdiv">
-    <h2 class="blogpost-title">{{post.title}}</h2>
-    <h4 class="blogpost-subtitle">{{post.subtitle}}</h4>
+
+    {{edit-post content=post.title post=post class="blogpost-title"}}
+    {{edit-post content=post.subtitle post=post class="blogpost-subtitle"}}
+    {{!-- <h2 class="blogpost-title">{{post.title}}</h2> --}}
+    {{!-- <h4 class="blogpost-subtitle">{{post.subtitle}}</h4> --}}
     <p class="blogpost-author"> written by
       {{#link-to "profile-public" post.owner._id}} {{!-- Link-to will automatically use the post.owners id property https://guides.emberjs.com/v2.10.0/templates/links/  --}}
         <h3>{{post.owner.username}}</h3>
@@ -58,7 +61,7 @@
     {{#if post.private }}
         {{#if post.hasPassword}}
             {{#if showPrivateContent}}
-              {{edit-post content=private_content post=post}} 
+              {{edit-post content=private_content post=post class="blogpost-content"}} 
             {{else}} {{!-- If Private, hasPassword, but no password has been entered --}}
               <form id="passwordForm_{{post.id}}" class="private-post form" {{action 'confirmPostPassword' post.id postPassword on="submit"}}>
                 {{input class="post-password" placeholder="Enter Password" value=postPassword}}
@@ -68,10 +71,10 @@
               </form>
             {{/if}}
         {{else}} {{!-- !hasPassword --}}
-            {{edit-post content=post.content post=post}}
+            {{edit-post content=post.content post=post class="blogpost-content"}}
         {{/if}}
     {{else}} {{!-- !Private --}}
-        {{edit-post content=post.content post=post}}
+        {{edit-post content=post.content post=post class="blogpost-content"}}
     {{/if}}
   </div>
     
