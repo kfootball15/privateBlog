@@ -1,21 +1,31 @@
 {{#if newBlogPost}}
   <div>
     <form id="form-newpost" {{action 'newPost' model.blogPost on="submit"}}>
-      <h2 class="form-signin-heading">New Post</h2>
+      <h2 class="form-signin-heading">New {{#if isPrivate}}Private{{else}}Public{{/if}} Post</h2>
 
       {{!--ADD FRIENDS OPTION (Private Only)--}}
       {{#if isPrivate}}
-        <div style="width: 400px; margin:auto;">
-          {{#if showFriendsList}}
-            <div class="chip chip-large block warn" {{action "toggleShowFriendsList"}} >
-              <h2> x </h2>
+
+        {{#if setPassword}}
+          <div class="newpost-chip-container">
+            <div class="chip chip-small inline red" {{action "toggleSetPassword"}} >NeverMind</div>
+            {{input id="newpost-password" type="password" type="text" placeholder="Password" value=postPassword}}
+          </div>
+        {{else}}
+          <div class="newpost-chip-container">
+            <div class="chip chip-small inline blue-yellow" {{action "toggleSetPassword"}} >Password Protect ?</div>
+          </div>
+        {{/if}}
+
+        {{#if showFriendsList}}
+          <div class="chip chip-large block warn" {{action "toggleShowFriendsList"}} >
+            <h2> x </h2>
+          </div>
+        {{else}}
+            <div class="newpost-chip-container">
+              <div class="chip chip-small inline blue-yellow" {{action "toggleShowFriendsList"}}> Add Readers </div>
             </div>
-          {{else}}
-            <div class="chip chip-large block blue-yellow" {{action "toggleShowFriendsList"}} >
-              <h2> Add Readers </h2>
-            </div>
-          {{/if}}
-        </div>
+        {{/if}}
 
         {{#if showFriendsList}}
           {{!-- FRIENDS LIST --}}
@@ -32,21 +42,6 @@
               friends=modelFriendsArray
               removefriendParent=(action 'removefriend')
             }}
-          </div>
-        {{/if}}
-
-      {{/if}} {{!-- /private --}}
-
-      {{!-- Password Protect Post --}}
-      {{#if isPrivate}}
-        {{#if setPassword}}
-          <div style="text-align: left; margin: 0 70px;">
-            <div class="chip chip-small inline red" {{action "toggleSetPassword"}} >NeverMind</div>
-            {{input id="newpost-password" type="password" type="text" placeholder="Password" value=postPassword}}
-          </div>
-        {{else}}
-          <div style="text-align: left; margin: 0 70px;">
-            <div class="chip chip-small inline blue-yellow" {{action "toggleSetPassword"}} >Password Protect ?</div>
           </div>
         {{/if}}
       {{/if}}
