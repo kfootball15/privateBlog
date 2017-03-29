@@ -86,15 +86,18 @@ router.get('/', function(req,res,next){
 
 });
 
+
 router.get('/:id', function(req,res,next){
   console.log(req.params.id)
   BlogPost.find({_id: req.params.id})
+  .populate('owner friends', ['_id', 'username', 'email', 'bio', 'firstname', 'lastname', 'friends'])
   .then(function(post){
     res.status(200).json({
       blogPost: post[0].sanitize()
     })
   })
-})
+});
+
 
 router.patch('/:id', function (req, res, next){
   BlogPost.findByIdAndUpdate(req.params.id, {$set: {
@@ -114,6 +117,7 @@ router.patch('/:id', function (req, res, next){
     });
   });
 });
+
 
 
 router.delete('/:blogPostId', function(req,res,next){
