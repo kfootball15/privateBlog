@@ -19,7 +19,7 @@ export default Ember.Component.extend({
         .then(function(post) {
           post.deleteRecord(); // 3. Deletes Record form store
           return post.save(); // 4. Makes DELETE request to /blog-posts/:postId   //-->
-           // post.destroyRecord(); // => Alternatively, we could use .destroyRecord() delete the record AND make DELETE to /blog-posts/2
+          // post.destroyRecord(); // => Alternatively, we could use .destroyRecord() delete the record AND make DELETE to /blog-posts/2
         })
         .then(function(post){
           // 5. Find correct post and remove from 'reverse' so that screen live updates properly.
@@ -44,11 +44,9 @@ export default Ember.Component.extend({
       this.toggleProperty('showPrivateContent')
     },
     confirmPostPassword(postId, postPassword){
-      console.log(postId, postPassword)
       let route = this;
       this.get('confirmPostPassword').confirmPassword(postId.toString(), postPassword.toString())
       .then(function(blogPost){
-        console.log(blogPost.blogPost)
         route.set('private_content', blogPost.blogPost.content);
         route.set('showPrivateContent', true)
       })
@@ -65,8 +63,8 @@ export default Ember.Component.extend({
   }
 });
 
+// Shake Function for incorrect password animation
 function shake(cssId) {
-  console.log("ranooj")
     var div = document.getElementById(cssId);
     var interval = 100;
     var distance = 10;

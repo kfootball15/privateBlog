@@ -58,7 +58,7 @@
     {{#if post.private }}
         {{#if post.hasPassword}}
             {{#if showPrivateContent}}
-              {{edit-post content=private_content}} 
+              {{edit-post content=private_content post=post}} 
             {{else}} {{!-- If Private, hasPassword, but no password has been entered --}}
               <form id="passwordForm_{{post.id}}" class="private-post form" {{action 'confirmPostPassword' post.id postPassword on="submit"}}>
                 {{input class="post-password" placeholder="Enter Password" value=postPassword}}
@@ -68,10 +68,10 @@
               </form>
             {{/if}}
         {{else}} {{!-- !hasPassword --}}
-            {{edit-post content=post.content}}
+            {{edit-post content=post.content post=post}}
         {{/if}}
     {{else}} {{!-- !Private --}}
-        {{edit-post content=post.content}}
+        {{edit-post content=post.content post=post}}
     {{/if}}
   </div>
     
