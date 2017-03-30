@@ -1,11 +1,12 @@
 {{#if friends}}
-  <h2> Friends List: </h2>
-  <h3 style="display: block; text-align: center; background-color: red;">((Search Bar: ))</h3>
-  <h3 style="display: block; text-align: center; background-color: red;">((Add an Email: ))</h3>
-  {{#each friends as |friend|}}
-		<a class="chip block chip-large blue-yellow" {{action "addfriend" friend}} > + {{friend.username}} </a> 
+	<form style="display:inline-block;">
+		{{input value=search}}
+	</form>
+    
+    {{#each sortedFriends as |friend|}}
+		<a class="chip inline chip-small blue-yellow" {{action "addfriend" friend}} > + {{friend.username}} </a> 
   {{/each}}
 {{else}}
-	<p class="chip block chip-large red"> You havent added any friends yet. Add friends by selected the add friends button in your friends list. They can be current users or just email addresses. </p>
+	<p class="chip inline chip-small red"> You havent added any friends yet. Add friends in your friends list by selected the <strong>New Friend</strong>0 button </p>
 {{/if}}
 

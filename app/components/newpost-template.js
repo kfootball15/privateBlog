@@ -7,7 +7,6 @@ export default Ember.Component.extend({
   session: service(),
   currentUser: service(),
   resetPostForm: function () {
-    console.log("resetForms Ran")
     this.set('modelFriendsArray', [])
     this.set('title', '')
     this.set('subtitle', '')

@@ -41,13 +41,13 @@
       {{!-- SHOW FRIENDS LIST --}}
       {{#if showFriendsList}}
         {{!-- FRIENDS LIST --}}
-        <div class="friendslist-container friendslist-short friendslist-blue">
+        <div class="friendslist-container friendslist-short background-blue">
           {{friends-add 
             friends=session.data.authenticated.user.friends
           }}
         </div>
         {{!-- ADDED FRIENDS --}}
-        <div class="friendslist-container friendslist-short friendslist-blue">
+        <div class="friendslist-container friendslist-short background-blue">
           {{friends-added 
             friends=modelFriendsArray
           }}

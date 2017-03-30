@@ -6,44 +6,56 @@
       {{!--ADD FRIENDS OPTION (Private Only)--}}
       {{#if isPrivate}}
 
-        {{#if setPassword}}
-          <div class="newpost-chip-container">
-            <div class="chip chip-small inline red" {{action "toggleSetPassword"}} >NeverMind</div>
-            {{input id="newpost-password" type="password" type="text" placeholder="Password" value=postPassword}}
-          </div>
-        {{else}}
-          <div class="newpost-chip-container">
-            <div class="chip chip-small inline blue-yellow" {{action "toggleSetPassword"}} >Password Protect ?</div>
-          </div>
-        {{/if}}
+        <div class="newpost-chips-container">
 
-        {{#if showFriendsList}}
-          <div class="chip chip-large block warn" {{action "toggleShowFriendsList"}} >
-            <h2> x </h2>
+          {{!-- Set Password Options --}}
+          <div class="newpost-password-protect">
+            {{#if setPassword}}
+              <div class="newpost-button-container">
+                <div class="chip chip-small inline red newpostchip" {{action "toggleSetPassword"}} >NeverMind</div>
+                {{input id="newpost-password" type="password" type="text" placeholder="Password" value=postPassword}}
+              </div>
+            {{else}}
+              <div class="newpost-button-container">
+                <div class="chip chip-small inline blue-yellow newpostchip" {{action "toggleSetPassword"}} >Password Protect ?</div>
+              </div>
+            {{/if}}
           </div>
-        {{else}}
-            <div class="newpost-chip-container">
-              <div class="chip chip-small inline blue-yellow" {{action "toggleShowFriendsList"}}> Add Readers </div>
+          {{!-- Add Readers Options --}}
+          <div class="newpost-readers-container">
+            {{#if showFriendsList}}
+              <div class="newpost-button-container" {{action "toggleShowFriendsList"}} >
+                <div class="chip chip-small inline red warn newpostchip"> Cancel </div>
+              </div>
+            {{else}}
+              <div class="newpost-button-container">
+                <div class="chip chip-small inline blue-yellow newpostchip" {{action "toggleShowFriendsList"}}> Add Readers </div>
+              </div>
+            {{/if}}
+          {{#if showFriendsList}}
+            <div class="addfriends-container">
+              {{!-- FRIENDS LIST --}}
+              <div class="friendslist-container background-blue">
+                {{friends-add 
+                  friends=session.data.authenticated.user.friends
+                  modelFriendsArray=modelFriendsArray
+                  addfriendParent=(action 'addfriend')
+                }}
+              </div>
             </div>
-        {{/if}}
+            <div class="addedfriends-container">
+              {{!-- ADDED FRIENDS --}}
+              <div class="friendslist-container background-blue">
+                {{friends-added 
+                  friends=modelFriendsArray
+                  removefriendParent=(action 'removefriend')
+                }}
+              </div>
+            </div>
+          {{/if}}
+          </div>
+        </div>
 
-        {{#if showFriendsList}}
-          {{!-- FRIENDS LIST --}}
-          <div class="friendslist-container friendslist-short friendslist-blue">
-            {{friends-add 
-              friends=session.data.authenticated.user.friends
-              modelFriendsArray=modelFriendsArray
-              addfriendParent=(action 'addfriend')
-            }}
-          </div>
-          {{!-- ADDED FRIENDS --}}
-          <div class="friendslist-container friendslist-short friendslist-blue">
-            {{friends-added 
-              friends=modelFriendsArray
-              removefriendParent=(action 'removefriend')
-            }}
-          </div>
-        {{/if}}
       {{/if}}
       
       {{!-- STANDARD BLOG-POST INPUTS ... PRIVATE and PUBLIC --}}

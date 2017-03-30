@@ -93,6 +93,11 @@ body {
 .newpost-button:hover {
 	background-color: $fourthiary-background-color-hover;
 }
+.newpost-readers-container {
+  display: block;
+}
+
+
 
 .options-addfriends {
   @extend .buttons-default;
@@ -142,33 +147,63 @@ body {
 	max-width: $width-newpost - 150px;
 	height: 200px;
 }
+.newpost-password-protect {
+  display: block;
+}
 
 
 
 
 
 // FRIENDS LISTS
+.addfriends-container {
+  float: right;
+  display: inline-block;
+  width: 500px;
+  margin-right: 80px;
+}
+.addedfriends-container {
+  float: right;
+  display: inline-block;
+  width: 500px;
+  margin-right: 80px;
+}
 .friendslist-container {
-	display: inline-block;
+	display: block;
   margin: 5px 0;
   border-radius: 5px;
-  padding: 20px 5px 10px;
-}
-.friendslist-container h1 {
-  width: 100px;
-  margin: 0 auto;
+  overflow-x: scroll;
+  overflow-y: hidden;
+  white-space: nowrap;
+  text-align: left;
+  border: 14px solid $secondary-background-color-dark;
+  border-top: 5px;
+  border-bottom: 5px;
+
+  h1 {
+    width: 100px;
+    margin: 0 auto;
+  }
+  input {
+    @extend .inline;
+    @extend .chip-small;
+      font-size: 12px;
+      margin: 2px;
+      text-align: center;
+      text-decoration: none;
+      padding: 5px 15px; //Overwritten when given a size (large/small)
+      border-radius: 5px; 
+      outline: none;
+  }
 }
 .friendslist-split {
   float: right;
   width: 28%;
 }
-.friendslist-short {
-  height: 410px;
-  overflow: scroll;
-}
-.friendslist-blue {
+.background-blue {
   background-color: $secondary-background-color-dark;
 }
+
 
 
 
@@ -299,9 +334,13 @@ body {
   border: 2px solid black;
   border-radius: 5px;
 }
-.newpost-chip-container {
+.newpost-chips-container {
+  text-align: left;
+}
+.newpost-button-container {
   text-align: left; 
-  margin: 0 70px;
+  margin: 0 0 0 70px;
+  display: inline-block;
 }
 
 .blog-header {
@@ -323,13 +362,22 @@ body {
 
 // CHIPS
 .chip {
-	@extend .buttons-default;
-	font-size: 12px;
-	margin: 2px;
-	text-align: center;
-	text-decoration: none;
-	padding: 5px 15px; //Overwritten when given a size (large/small)
-	border-radius: 5px;
+  @extend .buttons-default;
+  font-size: 12px;
+  margin: 2px;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px 15px; //Overwritten when given a size (large/small)
+  border-radius: 5px;
+}
+.chip-input {
+  font-size: 12px;
+  margin: 2px;
+  text-align: center;
+  text-decoration: none;
+  padding: 5px 15px; //Overwritten when given a size (large/small)
+  border-radius: 5px; 
+  outline: none;
 }
 .block {
   display: block;
@@ -372,7 +420,6 @@ body {
   }
 }
 .red {
-  width: 100px;
   color: $black;
   background-color: $negative-background-color;
   &:hover {
@@ -381,7 +428,6 @@ body {
   }
 }
 .blue {
-  width: 100px;
   color: $black;
   background-color: $edit-color;
   &:hover {
@@ -403,6 +449,9 @@ body {
     color: darken($black,15%);
     background-color: darken($negative-background-color,15%);
   }
+}
+.newpostchip {
+  width: 100px;
 }
 .small {
   width: 10px;
