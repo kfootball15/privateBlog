@@ -39,7 +39,6 @@
                 {{friends-add 
                   friends=session.data.authenticated.user.friends
                   modelFriendsArray=modelFriendsArray
-                  addfriendParent=(action 'addfriend')
                 }}
               </div>
             </div>
@@ -47,8 +46,7 @@
               {{!-- ADDED FRIENDS --}}
               <div class="friendslist-container background-blue">
                 {{friends-added 
-                  friends=modelFriendsArray
-                  removefriendParent=(action 'removefriend')
+                  modelFriendsArray=modelFriendsArray
                 }}
               </div>
             </div>

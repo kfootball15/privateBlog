@@ -4,10 +4,8 @@
 
     {{edit-post content=post.title post=post class="blogpost-title"}}
     {{edit-post content=post.subtitle post=post class="blogpost-subtitle"}}
-    {{!-- <h2 class="blogpost-title">{{post.title}}</h2> --}}
-    {{!-- <h4 class="blogpost-subtitle">{{post.subtitle}}</h4> --}}
     <p class="blogpost-author"> written by
-      {{#link-to "profile-public" post.owner._id}} {{!-- Link-to will automatically use the post.owners id property https://guides.emberjs.com/v2.10.0/templates/links/  --}}
+      {{#link-to "profile-public" post.owner._id}} 
         <h3>{{post.owner.username}}</h3>
       {{/link-to}} 
     </p>
@@ -23,44 +21,43 @@
   
   <div class="blogpost-lowerdiv">
 
-    {{!-- <h3 style="display:inline-block">Readers:</h3> --}}
-    {{#each post.friends as |friend|}}
-      {{#link-to "profile-public" friend._id}} 
-        <h3 class="chip inline chip-small yellow-blue"> {{friend.username}} </h3>
-      {{/link-to}}
-    {{/each}}
 
-    {{!-- Toggle FriendsList --}}
-    {{#if showFriendsList}}
-      <div class="chip inline chip-small red small" {{action "showFriends"}} > x </div>
-    {{else}}
-      <div class="chip inline chip-small green small" {{action "showFriends"}} > + </div>
-    {{/if}}
 
-    <div id="editPost-friends">
-      {{!-- SHOW FRIENDS LIST --}}
-      {{#if showFriendsList}}
-        {{!-- FRIENDS LIST --}}
-        <div class="friendslist-container friendslist-short background-blue">
-          {{friends-add 
-            friends=session.data.authenticated.user.friends
-          }}
-        </div>
-        {{!-- ADDED FRIENDS --}}
-        <div class="friendslist-container friendslist-short background-blue">
-          {{friends-added 
-            friends=modelFriendsArray
-          }}
-        </div>
-        {{!-- OK BUTTOn --}}
-        <div class="chip block chip-large green-yellow"> OK </div>
-      {{/if}}
-    </div>
 
     {{!-- CONTENT --}}
     {{#if post.private }}
         {{#if post.hasPassword}}
             {{#if showPrivateContent}}
+              <div id="editPost-friends">
+                {{!-- SHOW FRIENDS LIST --}}
+                {{#if showFriendsList}}
+                    <div class="chip inline chip-small red small" {{action "showFriends" post}} > x </div>
+                  {{!-- FRIENDS LIST --}}
+                  <div class="friendslist-container friendslist-short background-blue">
+                    {{friends-add 
+                      modelFriendsArray=modelFriendsArray
+                      friends=session.data.authenticated.user.friends
+                    }}
+                  </div>
+                  {{!-- ADDED FRIENDS --}}
+                  <div class="friendslist-container friendslist-short background-blue">
+                    {{friends-added 
+                      modelFriendsArray=modelFriendsArray
+                    }}
+                  </div>
+                  {{!-- OK BUTTOn --}}
+                  <div class="chip block chip-large green-yellow" {{action "saveFriends" post}}> OK </div>
+                {{else}}
+                  {{!-- Toggle FriendsList --}}
+                    {{!-- <h3 style="display:inline-block">Readers:</h3> --}}
+                    {{#each post.friends as |friend|}}
+                      {{#link-to "profile-public" friend._id}} 
+                        <h3 class="chip inline chip-small yellow-blue"> {{friend.username}} </h3>
+                      {{/link-to}}
+                    {{/each}}
+                    <div class="chip inline chip-small green small" {{action "showFriends"}} > + </div>
+                {{/if}}
+              </div>
               {{edit-post content=private_content post=post class="blogpost-content"}} 
             {{else}} {{!-- If Private, hasPassword, but no password has been entered --}}
               <form id="passwordForm_{{post.id}}" class="private-post form" {{action 'confirmPostPassword' post.id postPassword on="submit"}}>
@@ -71,6 +68,36 @@
               </form>
             {{/if}}
         {{else}} {{!-- !hasPassword --}}
+            <div id="editPost-friends">
+                {{!-- SHOW FRIENDS LIST --}}
+                {{#if showFriendsList}}
+                    <div class="chip inline chip-small red small" {{action "showFriends"}} > x </div>
+                  {{!-- FRIENDS LIST --}}
+                  <div class="friendslist-container friendslist-short background-blue">
+                    {{friends-add 
+                      modelFriendsArray=modelFriendsArray
+                      friends=session.data.authenticated.user.friends
+                    }}
+                  </div>
+                  {{!-- ADDED FRIENDS --}}
+                  <div class="friendslist-container friendslist-short background-blue">
+                    {{friends-added 
+                      modelFriendsArray=modelFriendsArray
+                    }}
+                  </div>
+                  {{!-- OK BUTTOn --}}
+                  <div class="chip block chip-large green-yellow" {{action "saveFriends" modelFriendsArray}}> OK </div>
+                {{else}}
+                  {{!-- Toggle FriendsList --}}
+                    {{!-- <h3 style="display:inline-block">Readers:</h3> --}}
+                    {{#each post.friends as |friend|}}
+                      {{#link-to "profile-public" friend._id}} 
+                        <h3 class="chip inline chip-small yellow-blue"> {{friend.username}} </h3>
+                      {{/link-to}}
+                    {{/each}}
+                    <div class="chip inline chip-small green small" {{action "showFriends"}} > + </div>
+                {{/if}}
+              </div>
             {{edit-post content=post.content post=post class="blogpost-content"}}
         {{/if}}
     {{else}} {{!-- !Private --}}

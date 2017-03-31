@@ -37,8 +37,32 @@ export default Ember.Component.extend({
         console.error('You do not have permission to delete other users posts')
       }
     },
-    showFriends(){
+    showFriends(post){
+      // console.log(this.get('post.friends'))
+      // this.set('modelFriendsArray', this.get('post.friends'))
+      let that = this;
+      if (post){
+        that.get('store').findRecord('blog-post', post.id)
+        .then(function(post) {
+          that.set('modelFriendsArray', post.get('friends'));
+        })
+      }
       this.toggleProperty('showFriendsList')
+    },
+    saveFriends(post){
+      let currentUserId = this.get('session.data.authenticated.user._id')
+      let postOwnerId = post.get('owner')._id
+      let that = this;
+
+      // If our user owns this post, allow him to save these friends to the database
+      if(currentUserId === postOwnerId) {
+        that.get('store').findRecord('blog-post', post.id)
+        .then(function(post) {
+          that.set('friends', that.get('modelFriendsArray'));
+          return post.save()
+        })
+      }
+      this.toggleProperty('showFriendsList');
     },
     toggleShowPrivateContent(){
       this.toggleProperty('showPrivateContent')

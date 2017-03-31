@@ -17,6 +17,7 @@
     <div id="blogposts-container" class="blogposts-split">
       {{#each reverse as |post|}}
         {{blog-post-template 
+            modelFriendsArray=post.friends
             post=post
             reverse=reverse
           }} 
@@ -25,7 +26,7 @@
     </div>
 
     {{!-- FRIENDS LIST COMPONENT --}}
-    <div class="friendslist-container friendslist-split friendslist-blue">
+    <div class="friendslist-container friendslist-split background-blue">
       {{friends-list friends=session.data.authenticated.user.friends}}
     </div>
 
@@ -41,7 +42,7 @@
       }}
 
     {{!-- FRIENDS LIST COMPONENT --}}
-    <div class="friendslist-container friendslist-split friendslist-blue">
+    <div class="friendslist-container friendslist-split background-blue">
       {{friends-list friends=session.data.authenticated.user.friends}}
     </div>
 

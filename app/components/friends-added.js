@@ -7,7 +7,11 @@ export default Ember.Component.extend({
   currentUser: service(),
   actions: {
     removefriend (friend) {
-      this.get('removefriendParent')(friend)
-    }
+      let arr = this.get('modelFriendsArray');
+
+      for (var i = 0; i < arr.length; i++) {
+        if(arr[i]._id === friend._id) { arr.removeObject(arr[i]) };
+      }
+    } // Pushes selected friend into friends Array
   }
 });

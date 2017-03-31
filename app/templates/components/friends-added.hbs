@@ -1,10 +1,10 @@
-{{#if friends}}
-  {{#each friends as |friend|}}
+{{#if modelFriendsArray}}
+  {{#each modelFriendsArray as |friend|}}
       {{#link-to "profile-public" friend._id}} 
     		<a class="chip inline chip-small green-yellow warn" {{action "removefriend" friend}} > <span>x</span> {{friend.username}} </a> 
 		{{/link-to}}
   {{/each}}
 {{else}}
-  <p class="chip inline chip-small red"> No Friends Yet! </p>
+  <p class="chip inline chip-small red"> Click the chips above to add a reader to this post. </p>
 {{/if}}
 

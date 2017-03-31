@@ -15,6 +15,7 @@ export default Ember.Component.extend({
     this.set('newBlogPost', false)
     this.set('showFriendsList', false)
   },
+  modelFriendsArray: [],
   actions: {
     newPost () {
       // Initialize blogPost information:
@@ -93,22 +94,22 @@ export default Ember.Component.extend({
     setBlogTypePublic(){
       this.get('blogType');
       this.set('blogType', 'public');
-    },
-        // Toggles appropriate properties and sets blogType to 'private' or 'public'
-    addfriend (friend) {
-      let arr = this.get('modelFriendsArray');
+    }
+    // // Toggles appropriate properties and sets blogType to 'private' or 'public'
+    // addfriend (friend) {
+    //   let arr = this.get('modelFriendsArray');
 
-      for (var i = 0; i < arr.length; i++) {
-        if(arr[i]._id ===friend._id) { return };
-      }
-      arr.pushObject(friend); // using pushObject instead of push will update the template
-    },
-    removefriend (friend) {
-      let arr = this.get('modelFriendsArray');
+    //   for (var i = 0; i < arr.length; i++) {
+    //     if(arr[i]._id ===friend._id) { return };
+    //   }
+    //   arr.pushObject(friend); // using pushObject instead of push will update the template
+    // },
+    // removefriend (friend) {
+    //   let arr = this.get('modelFriendsArray');
 
-      for (var i = 0; i < arr.length; i++) {
-        if(arr[i]._id === friend._id) { arr.removeObject(arr[i]) };
-      }
-    } // Pushes selected friend into friends Array
+    //   for (var i = 0; i < arr.length; i++) {
+    //     if(arr[i]._id === friend._id) { arr.removeObject(arr[i]) };
+    //   }
+    // } // Pushes selected friend into friends Array
   }
 });
