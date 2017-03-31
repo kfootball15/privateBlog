@@ -4,7 +4,7 @@
 	</form>
     
     {{#each sortedFriends as |friend|}}
-		<a class="chip inline chip-small blue-yellow" {{action "addfriend" friend}} > + {{friend.username}} </a> 
+		<a id="friend-{{friend._id}}" class="chip inline chip-small blue-yellow" {{action "addfriend" friend}} > + {{friend.username}} </a> 
   {{/each}}
 {{else}}
 	<p class="chip inline chip-small red"> You havent added any friends yet. Add friends in your friends list by selected the <strong>New Friend</strong>0 button </p>

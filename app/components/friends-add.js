@@ -27,7 +27,11 @@ export default Ember.Component.extend({
 	      let arr = this.get('modelFriendsArray');
 
 	      for (var i = 0; i < arr.length; i++) {
-	        if(arr[i]._id ===friend._id) { return };
+	        if(arr[i]._id ===friend._id) { 
+	        	let active = $('#friend-'+friend._id)
+	        	shake("friend-"+friend._id, active)
+	        	return 
+	        };
 	      }
 	      arr.pushObject(friend); // using pushObject instead of push will update the template
 	    }

@@ -77,29 +77,8 @@ export default Ember.Component.extend({
       .catch(function(error){
         console.error('Incorrect Password', error);
         let active = $('#passwordForm_'+postId).find('input')
-        active.css('background-color','#ff84a5');
-        shake('passwordForm_'+postId)
-        setTimeout(function(){
-          active.css('background-color','#e5fbff');
-        }, 700)
+        shake('passwordForm_'+postId, active) // public/assets/ui-actions --> Shakes the div and turns background red
       })
     }
   }
 });
-
-// Shake Function for incorrect password animation
-function shake(cssId) {
-    var div = document.getElementById(cssId);
-    var interval = 100;
-    var distance = 10;
-    var times = 4;
-
-    $(div).css('position', 'relative');
-
-    for (var iter = 0; iter < (times + 1) ; iter++) {
-        $(div).animate({
-            left: ((iter % 2 == 0 ? distance : distance * -1))
-        }, interval);
-    }                                                                                                          
-    $(div).animate({ left: 0 }, interval);
-}
