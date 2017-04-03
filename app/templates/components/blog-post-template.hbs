@@ -70,7 +70,7 @@
             <div id="editPost-friends">
                 {{!-- SHOW FRIENDS LIST --}}
                 {{#if showFriendsList}}
-                    <div class="chip inline chip-small red small" {{action "showFriends"}} > x </div>
+                    <div class="chip inline chip-small red small" {{action "showFriends" post}} > x </div>
                   {{!-- FRIENDS LIST --}}
                   <div class="friendslist-container friendslist-short background-blue">
                     {{friends-add 
@@ -85,7 +85,7 @@
                     }}
                   </div>
                   {{!-- OK BUTTOn --}}
-                  <div class="chip block chip-large green-yellow" {{action "saveFriends" modelFriendsArray}}> OK </div>
+                  <div class="chip block chip-large green-yellow" {{action "saveFriends" post}}> OK </div>
                 {{else}}
                   {{!-- Toggle FriendsList --}}
                     {{!-- <h3 style="display:inline-block">Readers:</h3> --}}
