@@ -5,6 +5,7 @@ const { service } = Ember.inject; // We declare 'service' so that we can inject 
 export default Ember.Component.extend({
   store: service(),
   session: service(),
+  email: service(),
   currentUser: service(),
   resetPostForm: function () {
     this.set('modelFriendsArray', [])
@@ -23,7 +24,8 @@ export default Ember.Component.extend({
       let subtitle = this.get('subtitle');
       let postcontent = this.get('postcontent');
       let isPrivate = this.get('isPrivate');
-      let userId = this.get('session.data.authenticated.user._id');
+      let user = this.get('session.data.authenticated.user');
+      let userId = user._id;
       let friends = this.get('modelFriendsArray');
       let postPassword;
       if (this.get('setPassword') && isPrivate) {
@@ -46,7 +48,17 @@ export default Ember.Component.extend({
       // 2. Save it to DB - .save() will make our post request to our /blog-posts (because assigned the correct model above) route with our blogpost record, created above
       blogpost.save()
       .then(function(blogPost){
-        console.log(blogPost)
+        let emailObject = {
+          password: postPassword,
+          postId: blogPost.id
+        }
+        let emailUser = route.get('email').emailUser
+        let friends = blogPost.get('friends')
+        console.log(emailUser, blogPost, friends)
+        for (var i = 0; i < friends.length; i++) {
+          emailUser(friends[i], user, emailObject)
+        }
+
         route.get('reverse').unshiftObject(blogPost); // 3. Push the new blog post onto the front of the array, so that the page updates in real time
         route.set('title', ''); // 4. reset all variables
         route.set('subtitle', '');
@@ -95,21 +107,5 @@ export default Ember.Component.extend({
       this.get('blogType');
       this.set('blogType', 'public');
     }
-    // // Toggles appropriate properties and sets blogType to 'private' or 'public'
-    // addfriend (friend) {
-    //   let arr = this.get('modelFriendsArray');
-
-    //   for (var i = 0; i < arr.length; i++) {
-    //     if(arr[i]._id ===friend._id) { return };
-    //   }
-    //   arr.pushObject(friend); // using pushObject instead of push will update the template
-    // },
-    // removefriend (friend) {
-    //   let arr = this.get('modelFriendsArray');
-
-    //   for (var i = 0; i < arr.length; i++) {
-    //     if(arr[i]._id === friend._id) { arr.removeObject(arr[i]) };
-    //   }
-    // } // Pushes selected friend into friends Array
   }
 });

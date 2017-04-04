@@ -30,7 +30,6 @@
               <div id="editPost-friends">
                 {{!-- SHOW FRIENDS LIST --}}
                 {{#if showFriendsList}}
-                    <div class="chip inline chip-small red small" {{action "showFriends" post}} > x </div>
                   {{!-- FRIENDS LIST --}}
                   <div class="friendslist-container friendslist-short background-blue">
                     {{friends-add 
@@ -44,8 +43,15 @@
                       modelFriendsArray=modelFriendsArray
                     }}
                   </div>
-                  {{!-- OK BUTTOn --}}
-                  <div class="chip block chip-large green-yellow" {{action "saveFriends" post}}> OK </div>
+
+                  {{!-- CANCEL BUTTON --}}
+                    <div class="chip inline chip-half red" {{action "showFriends" post}} > Cancel </div>
+                  {{!-- OK BUTTON --}}
+                    <div class="chip inline chip-half green-yellow" {{action "saveFriends" post}}> OK </div>
+                    {{!-- {{action "saveFriends" post}} --}}
+
+                  
+
                 {{else}}
                   {{!-- Toggle FriendsList --}}
                     {{!-- <h3 style="display:inline-block">Readers:</h3> --}}
@@ -70,7 +76,6 @@
             <div id="editPost-friends">
                 {{!-- SHOW FRIENDS LIST --}}
                 {{#if showFriendsList}}
-                    <div class="chip inline chip-small red small" {{action "showFriends" post}} > x </div>
                   {{!-- FRIENDS LIST --}}
                   <div class="friendslist-container friendslist-short background-blue">
                     {{friends-add 
@@ -84,8 +89,10 @@
                       modelFriendsArray=modelFriendsArray
                     }}
                   </div>
-                  {{!-- OK BUTTOn --}}
-                  <div class="chip block chip-large green-yellow" {{action "saveFriends" post}}> OK </div>
+                  {{!-- CANCEL BUTTON --}}
+                  <div class="chip inline chip-half red" {{action "showFriends" post}} > Cancel </div>
+                  {{!-- OK BUTTON --}}
+                  <div class="chip inline chip-half green-yellow" {{action "saveFriends" post}}> OK </div>
                 {{else}}
                   {{!-- Toggle FriendsList --}}
                     {{!-- <h3 style="display:inline-block">Readers:</h3> --}}

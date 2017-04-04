@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   session: service(),
   currentUser: service(),
   confirmPostPassword: service(),
+  email: service(),
   actions: {
     deletePost(post) {
       console.log()
@@ -38,8 +39,6 @@ export default Ember.Component.extend({
       }
     },
     showFriends(post){
-      // console.log(this.get('post.friends'))
-      // this.set('modelFriendsArray', this.get('post.friends'))
       let that = this;
       if (post){
         that.get('store').findRecord('blog-post', post.id)
@@ -50,10 +49,19 @@ export default Ember.Component.extend({
       this.toggleProperty('showFriendsList')
     },
     saveFriends(post){
-      let currentUserId = this.get('session.data.authenticated.user._id')
-      let postOwnerId = post.get('owner')._id
-      let that = this;
+      let currentUser = this.get('session.data.authenticated.user');
+      let currentUserId = currentUser._id;
+      let postOwner = post.get('owner') || post.owner;
+      let postOwnerId = postOwner._id;
+      let postPassword;
+      if (this.postPassword) postPassword = this.postPassword;
 
+      let emailObject = {
+        password: postPassword,
+        postId: post.get('id')
+      }
+
+      let that = this;
       // If our user owns this post, allow him to save these friends to the database
       if(currentUserId === postOwnerId) {
         that.get('store').findRecord('blog-post', post.id)
@@ -61,20 +69,36 @@ export default Ember.Component.extend({
           that.set('friends', that.get('modelFriendsArray'));
           return post.save()
         })
+        .then(function(post){
+          let friends = post.get('friends')
+          if(emailObject){
+            for (var i = 0; i < friends.length; i++) {
+              that.get('email').emailUser(friends[i], currentUser, emailObject)
+            }
+          }
+        })
+        .catch(function(error){
+          console.error(error)
+        })
       }
       this.toggleProperty('showFriendsList');
     },
     toggleShowPrivateContent(){
       this.toggleProperty('showPrivateContent')
     },
+    toggleReadyToAddFriends() {
+      this.toggleProperty('readyToAddFriends')
+    },
     confirmPostPassword(postId, postPassword){
       let route = this;
       this.get('confirmPostPassword').confirmPassword(postId.toString(), postPassword.toString())
       .then(function(blogPost){
+        // If the password is correct:
         route.set('private_content', blogPost.blogPost.content);
         route.set('showPrivateContent', true)
       })
       .catch(function(error){
+        // If the password is correct:
         console.error('Incorrect Password', error);
         let active = $('#passwordForm_'+postId).find('input')
         shake('passwordForm_'+postId, active) // public/assets/ui-actions --> Shakes the div and turns background red
