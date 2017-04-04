@@ -1,9 +1,10 @@
 import Ember from 'ember';
+import AuthenticatedRouteMixin from 'ember-simple-auth/mixins/authenticated-route-mixin';
 
 const { service } = Ember.inject; // We declare 'service' so that we can inject it more easily like so: session: service();
 
 
-export default Ember.Route.extend({
+export default Ember.Route.extend(AuthenticatedRouteMixin, {
   store: service(),
   session: service(),
   model(params) {

@@ -74,8 +74,10 @@
             {{/if}}
         {{else}} {{!-- !hasPassword --}}
             <div id="editPost-friends">
+
                 {{!-- SHOW FRIENDS LIST --}}
                 {{#if showFriendsList}}
+                  
                   {{!-- FRIENDS LIST --}}
                   <div class="friendslist-container friendslist-short background-blue">
                     {{friends-add 
@@ -83,6 +85,7 @@
                       friends=session.data.authenticated.user.friends
                     }}
                   </div>
+
                   {{!-- ADDED FRIENDS --}}
                   <div class="friendslist-container friendslist-short background-blue">
                     {{friends-added 
@@ -103,6 +106,7 @@
                     {{/each}}
                     <div class="chip inline chip-small green small" {{action "showFriends"}} > + </div>
                 {{/if}}
+
               </div>
             {{edit-post content=post.content post=post class="blogpost-content"}}
         {{/if}}
