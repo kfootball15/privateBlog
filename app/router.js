@@ -22,6 +22,7 @@ Router.map(function() {
   this.route('login');
   this.route('profile');
   this.route('profile-public', {path: '/profile-public/:user_id' });
+  this.route('post', {path: '/post/:post_id'});
 });
 
 export default Router;

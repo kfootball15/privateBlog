@@ -9,13 +9,13 @@ export default Ember.Service.extend({
 			sender_email: sender.email,
 			sender_fullname: sender.firstname + " " + sender.lastname,
 			post_password: emailObject.password,
-			post_url: generateURL(sender)
+			post_url: generateURL(emailObject)
 		})
 	}
 });
 
-function generateURL (sender) {
-	let url = "http://localhost:4200/profile-public/" + sender._id;
+function generateURL (emailObject) {
+	let url = "http://localhost:4200/post/" + emailObject.postId;
 	console.log(url)
 	return url
 }
