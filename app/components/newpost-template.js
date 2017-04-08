@@ -7,6 +7,7 @@ export default Ember.Component.extend({
   session: service(),
   email: service(),
   currentUser: service(),
+  createTempFriends: service(),
   resetPostForm: function () {
     this.set('modelFriendsArray', [])
     this.set('title', '')
@@ -33,44 +34,16 @@ export default Ember.Component.extend({
       }
 
       
+      // 1. First, we need to create and save a user record for each of the 'pure' email addresses 
+      //    the user added to this post. In other words, all email addresses without an account need
+      //    to have a temporary account created.
+
+      // createPromiseArray is a service that will create an array of .save() promises we can .then() off of below
+      let promiseArray = this.get('createTempFriends').createPromiseArray(friends);    
+
       var route = this;
-      // 1. First, we need to create (and later save) a user record for each of the pure email addresses 
-      //    the user added to this post
-
-      let promiseArray = [];
-      console.log("pre", friends)
-      for (var i = 0; i < friends.length; i++) {  
-        if(friends[i].isTemp) {
-
-          let tempFriend = route.get('store').createRecord('user', {
-            email: friends[i].email,
-            username: friends[i].email,
-            firstname: "None",
-            lastname: "None",
-            bio: "None",
-            password: "temp"
-          });
-          friends.splice(i, 1) // remove the tempFriend object
-          promiseArray.push(newPromise(tempFriend))
-
-          function newPromise (friend) {          
-            return new Promise(function(resolve, reject) {
-              return friend.save()
-              .then(function(updatedFriend){
-                console.log("updated", updatedFriend.user)
-                resolve(updatedFriend)
-              })
-              .catch(function(error){
-                reject(error)
-              })
-
-            });
-          }
-
-        }
-      }
-
       Promise.all(promiseArray)
+      // After we have created the temporary accounts, we want to update the friendslist with these accounts and save them to the blog post
       .then(function(updatedFriends){
         updatedFriends.forEach(function(friend){
           console.log(friend, friend.get('id'))
@@ -91,6 +64,8 @@ export default Ember.Component.extend({
         return blogpost.save()
       })
       .then(function(blogPost){
+
+        // 4. Now we just set up our email object and send it to all of the readers on our friends list.
         let emailObject = {
           password: postPassword,
           postId: blogPost.id
@@ -101,6 +76,7 @@ export default Ember.Component.extend({
           emailUser(friends[i], user, emailObject)
         }
 
+        // Push our new blogpost onto our model and refresh the input tags
         route.get('reverse').unshiftObject(blogPost); // 3. Push the new blog post onto the front of the array, so that the page updates in real time
         route.set('title', ''); // 4. reset all variables
         route.set('subtitle', '');

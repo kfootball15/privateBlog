@@ -6,6 +6,7 @@ export default Ember.Component.extend({
   session: service(),
   currentUser: service(),
   confirmPostPassword: service(),
+  createTempFriends: service(),
   email: service(),
   actions: {
     deletePost(post) {
@@ -62,14 +63,26 @@ export default Ember.Component.extend({
       }
 
       let that = this;
-      // If our user owns this post, allow him to save these friends to the database
+      // 1. Check to make sure that it is the post owner that is making edits to friends list
       if(currentUserId === postOwnerId) {
-        that.get('store').findRecord('blog-post', post.id)
+        // 2. Check the added friends for email addresses without associated accounts, and create temp accounts for them
+        let promiseArray = this.get('createTempFriends').createPromiseArray(that.get('modelFriendsArray'));   
+        Promise.all(promiseArray) 
+        .then(function(updatedFriends){
+          updatedFriends.forEach(function(friend){
+            that.get('modelFriendsArray').push(friend.get('id')) // Push the new temp accounts into the friends array
+          })
+          // 3. Find and update the correct blog post
+          return that.get('store').findRecord('blog-post', post.id)
+        })
         .then(function(post) {
+          // 4. Make sure our 'friends' array and 'modelFriendArray' are in tune with eachother
           that.set('friends', that.get('modelFriendsArray'));
+          // 5. Save the edits to the posts friends list
           return post.save()
         })
         .then(function(post){
+          // 6. Email everyone on the friends list (Should fix this to just email the new friends)
           let friends = post.get('friends')
           if(emailObject){
             for (var i = 0; i < friends.length; i++) {
