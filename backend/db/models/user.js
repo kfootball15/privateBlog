@@ -27,6 +27,10 @@ var schema = new mongoose.Schema({
         type: String,
         required: true
     },
+    isTemp: {
+        type: Boolean,
+        default: false
+    },
     password: {
         type: String,
         required: true

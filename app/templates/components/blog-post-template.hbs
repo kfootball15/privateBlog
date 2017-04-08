@@ -104,7 +104,9 @@
                         <h3 class="chip inline chip-small yellow-blue"> {{friend.username}} </h3>
                       {{/link-to}}
                     {{/each}}
+                    {{#if (eq post.owner._id currentUser.user.id)}}
                     <div class="chip inline chip-small green small" {{action "showFriends"}} > + </div>
+                    {{/if}} {{!-- Show the Green Add Friends Button only if post owner --}}
                 {{/if}}
 
               </div>

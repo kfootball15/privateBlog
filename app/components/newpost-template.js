@@ -32,21 +32,64 @@ export default Ember.Component.extend({
         postPassword = this.get('postPassword');
       }
 
-      console.log("isPrivate", isPrivate)
+      
       var route = this;
-      // 1. Create our blog-post record and store it in a variable
-      const blogpost = this.get('store').createRecord('blog-post', {
-        date: new Date(),
-        owner: userId,
-        private: isPrivate,
-        friends: friends,
-        title: title,
-        subtitle: subtitle,
-        content: postcontent,
-        password: postPassword
-      });
-      // 2. Save it to DB - .save() will make our post request to our /blog-posts (because assigned the correct model above) route with our blogpost record, created above
-      blogpost.save()
+      // 1. First, we need to create (and later save) a user record for each of the pure email addresses 
+      //    the user added to this post
+
+      let promiseArray = [];
+      console.log("pre", friends)
+      for (var i = 0; i < friends.length; i++) {  
+        if(friends[i].isTemp) {
+
+          let tempFriend = route.get('store').createRecord('user', {
+            email: friends[i].email,
+            username: friends[i].email,
+            firstname: "None",
+            lastname: "None",
+            bio: "None",
+            password: "temp"
+          });
+          friends.splice(i, 1) // remove the tempFriend object
+          promiseArray.push(newPromise(tempFriend))
+
+          function newPromise (friend) {          
+            return new Promise(function(resolve, reject) {
+              return friend.save()
+              .then(function(updatedFriend){
+                console.log("updated", updatedFriend.user)
+                resolve(updatedFriend)
+              })
+              .catch(function(error){
+                reject(error)
+              })
+
+            });
+          }
+
+        }
+      }
+
+      Promise.all(promiseArray)
+      .then(function(updatedFriends){
+        updatedFriends.forEach(function(friend){
+          console.log(friend, friend.get('id'))
+          friends.push(friend.get('id'))
+        })
+        // 2. Create our blog-post record and store it in a variable
+        const blogpost = route.get('store').createRecord('blog-post', {
+          date: new Date(),
+          owner: userId,
+          private: isPrivate,
+          friends: friends,
+          title: title,
+          subtitle: subtitle,
+          content: postcontent,
+          password: postPassword
+        });
+        // 3. Save it to DB - .save() will make our post request to our /blog-posts (because assigned the correct model above) route with our blogpost record, created above
+        return blogpost.save()
+      })
       .then(function(blogPost){
         let emailObject = {
           password: postPassword,
@@ -54,7 +97,6 @@ export default Ember.Component.extend({
         }
         let emailUser = route.get('email').emailUser
         let friends = blogPost.get('friends')
-        console.log(emailUser, blogPost, friends)
         for (var i = 0; i < friends.length; i++) {
           emailUser(friends[i], user, emailObject)
         }
@@ -82,11 +124,15 @@ export default Ember.Component.extend({
 
       // 1. Reset new blog post properties
       this.toggleProperty('newBlogPost'); // Toggles on/off the new blog post field
-      this.set('showFriendsList', false); // Toggles off the friends list
+
 
       // 2. If it is a public post, we want to allow them to add specific friends
       if (type === 'private') { this.set('isPrivate', true) }
       else { this.set('isPrivate', false) };
+
+      $( document ).ready(function() {
+        let simplemde = new SimpleMDE({ element: document.getElementById("newpost-inputblogpost-textarea") });
+      });
     },
     toggleSetPassword(){
       this.toggleProperty('setPassword')
@@ -97,6 +143,7 @@ export default Ember.Component.extend({
       this.set('public', true);
     },
     toggleShowFriendsList () {
+      this.set('modelFriendsArray', [])
       this.toggleProperty('showFriendsList');
     },
     setBlogTypePrivate(){

@@ -1,6 +1,6 @@
 {{#if friends}}
-	<form style="display:inline-block;">
-		{{input value=search placeholder="Email"}}
+	<form style="display:inline-block;" onsubmit="return false">
+		{{input value=search placeholder="Email" type="text" action="keyPress"}}
 	</form>
     
     {{#each sortedFriends as |friend|}}

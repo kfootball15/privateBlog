@@ -15,7 +15,7 @@ var ensureAuthenticated = function (req, res, next) {
     }
 };
 
-// Create User
+// POST : Create User
 router.post('/', function (req, res, next){
   User.create(req.body.user)
   .then(function(newUser){

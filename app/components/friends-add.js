@@ -20,20 +20,33 @@ export default Ember.Component.extend({
 		else return this.get('friends')
 	}),
 	actions: {
-		// addfriend (friend) {
-		//   this.get('addfriendParent')(friend)
-		// }, // Toggles appropriate properties and sets blogType to 'private' or 'public'
-	    addfriend (friend) {
-	      let arr = this.get('modelFriendsArray');
+		keyPress (e) {
+			var keyCodeEnter = 13;
+			let arr = this.get('modelFriendsArray');
+			let friend = {
+				email: this.get('search'),
+				username: this.get('search'),
+				firstname: this.get('search'),
+				isTemp: true
+			}
 
-	      for (var i = 0; i < arr.length; i++) {
-	        if(arr[i]._id ===friend._id) { 
-	        	let active = $('#friend-'+friend._id)
-	        	shake("friend-"+friend._id, active)
-	        	return 
-	        };
-	      }
-	      arr.pushObject(friend); // using pushObject instead of push will update the template
+	    	arr.pushObject(friend)
+	    	this.set('search', '')
+	        return false;
+		    
+		},
+	    addfriend (friend) {
+
+	        let arr = this.get('modelFriendsArray');
+
+	        for (var i = 0; i < arr.length; i++) {
+	            if(arr[i]._id ===friend._id) { 
+	        	    let active = $('#friend-'+friend._id)
+	        	    shake("friend-"+friend._id, active)
+	        	    return 
+	            };
+	        }
+	        arr.pushObject(friend); // using pushObject instead of push will update the template
 	    }
 	}
 });

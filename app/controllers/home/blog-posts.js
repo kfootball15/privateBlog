@@ -15,15 +15,3 @@ export default Ember.Controller.extend({
     // return ;
   }) // This must be an Ember.computed property so that we watch for any changes made to the array.
 });
-
-
-
-
-
-
-
-
-
-
-
-
