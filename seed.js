@@ -129,7 +129,7 @@ var blogpostSeed = [
         subtitle: 'The contents of this post are password protected! (Hint: 12345)',
         content: "Above, you'll see all of the other users you've invited to come look at you're post. \n Each added user received an email with an invitation to read. \n To add a new user, click the green '+' button and select a user account or, if you have a friend in mind that does not yet have an account, simply type in an email address. ",
         isTutorialPost: true,
-        private: false
+        private: true
     },
     {
         date: new Date(),
