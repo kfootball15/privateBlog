@@ -62,7 +62,8 @@
         <br>
         {{input required="required" class="newpost-input newpost-subtitle" type="subtitle" type="text" placeholder="Sub Title" value=subtitle}}
         <br>
-        {{textarea required="required" id="newpost-inputblogpost-textarea" class="newpost-content" type="content" type="text" placeholder="Content" value=postcontent}}<br>
+        <textarea name="inputblog" id="newpost-inputblogpost-textarea{{tinymceCounter}}" class="newpost-inputblogpost-textarea newpost-content" type="content" type="text" placeholder="Content"></textarea>
+        <br>
         <button class="chip inline chip-small green" type="submit" type="blogPost"> Post </button>
         <button class="chip inline chip-small red" {{action "toggleNewPost"}} > Cancel </button>
       </div>

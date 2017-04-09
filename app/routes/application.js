@@ -31,12 +31,10 @@ export default Ember.Route.extend(ApplicationRouteMixin, {
 
   // Here, we are making sure that each of our authentication methods, aquired from ApplicationRouteMixin, are calling our currentUser services load() method before our model is loaded, which will get the user information we need to properly render templates
   beforeModel() {
-    console.log("Application.js Route: currentUser service .load() is being called from beforeModel()");
     return this._loadCurrentUser();
   },
 
   sessionAuthenticated() {
-    console.log("Application.js Route: currentUser service .load() is being called from sessionAutenticated()");
     // Here, we call this.super(...arguments) because we are overriding a method, and all of the parent objects neccessary methods must still be called properly -- see Embers Object Model page
       // ex:
         // In certain cases, you will want to pass arguments to _super() before or after overriding.

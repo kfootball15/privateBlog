@@ -19,7 +19,7 @@
     {{/if}}
   </div>
   
-  <div class="blogpost-lowerdiv">
+  <div class="blogpost-lowerdiv {{post.id}}">
 
 
 
@@ -60,7 +60,9 @@
                         <h3 class="chip inline chip-small yellow-blue"> {{friend.username}} </h3>
                       {{/link-to}}
                     {{/each}}
-                    <div class="chip inline chip-small green small" {{action "showFriends"}} > + </div>
+                    {{#if (eq post.owner._id currentUser.user.id)}}
+                      <div class="chip inline chip-small green small" {{action "showFriends"}} > + </div>
+                    {{/if}}
                 {{/if}}
               </div>
               {{edit-post content=private_content post=post class="blogpost-content"}} 

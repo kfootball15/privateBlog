@@ -17,11 +17,20 @@ var ensureAuthenticated = function (req, res, next) {
 
 // POST : Create User
 router.post('/', function (req, res, next){
-  User.create(req.body.user)
+  User.create(req.body.user) // If the user does not exist, we are creating it.
   .then(function(newUser){
     res.status(201).json({user: newUser.sanitize()})
   })
-  .catch(next)
+  .catch(function(error){ // If we get a duplicate key error, send back the original user (we use it with temp users)
+    if(error.message.indexOf("E11000 duplicate key error") > -1) {
+      return User.findOne({username: req.body.user.username})
+    } else {
+      next(error)
+    }
+  })
+  .then(function(tempUser){ 
+    res.status(200).json({user: tempUser.sanitize()})
+  })
 })
 
 // Get user (params)

@@ -47,10 +47,10 @@
 
   <div>Write your first Blog Post by selecting whether it is a privately vieweable post or a publicly viewable above</div>
 
-{{/if}}
     {{!-- FRIENDS LIST COMPONENT --}}
     <div class="friendslist-container friendslist-split background-blue">
       {{friends-list friends=session.data.authenticated.user.friends}}
     </div>
+{{/if}}
 
 </div>

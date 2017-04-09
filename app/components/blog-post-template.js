@@ -107,6 +107,7 @@ export default Ember.Component.extend({
       this.get('confirmPostPassword').confirmPassword(postId.toString(), postPassword.toString())
       .then(function(blogPost){
         // If the password is correct:
+        // $('.'+blogPost.blogPost._id).append(blogPost.blogPost.content)
         route.set('private_content', blogPost.blogPost.content);
         route.set('showPrivateContent', true)
       })

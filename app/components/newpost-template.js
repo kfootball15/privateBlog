@@ -8,6 +8,8 @@ export default Ember.Component.extend({
   email: service(),
   currentUser: service(),
   createTempFriends: service(),
+  modelFriendsArray: [],
+  tinymceCounter: 0,
   resetPostForm: function () {
     this.set('modelFriendsArray', [])
     this.set('title', '')
@@ -17,13 +19,28 @@ export default Ember.Component.extend({
     this.set('newBlogPost', false)
     this.set('showFriendsList', false)
   },
-  modelFriendsArray: [],
+  didRender() {
+    this._super(...arguments)
+    tinymce.init({ 
+      selector:'#newpost-inputblogpost-textarea'+this.get('tinymceCounter'),
+      value: this.get('postcontent'),
+      height: 300,
+      menubar: false,
+      plugins: [
+        'advlist autolink lists link image charmap print preview anchor',
+        'searchreplace visualblocks code fullscreen',
+        'insertdatetime media table contextmenu paste code'
+      ],
+      toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
+      content_css: '//www.tinymce.com/css/codepen.min.css' 
+    });       
+  },
   actions: {
     newPost () {
       // Initialize blogPost information:
       let title = this.get('title');
       let subtitle = this.get('subtitle');
-      let postcontent = this.get('postcontent');
+      let postcontent = tinyMCE.get('newpost-inputblogpost-textarea'+this.get('tinymceCounter')).getContent()
       let isPrivate = this.get('isPrivate');
       let user = this.get('session.data.authenticated.user');
       let userId = user._id;
@@ -33,7 +50,7 @@ export default Ember.Component.extend({
         postPassword = this.get('postPassword');
       }
 
-      
+      console.log(postcontent)
       // 1. First, we need to create and save a user record for each of the 'pure' email addresses 
       //    the user added to this post. In other words, all email addresses without an account need
       //    to have a temporary account created.
@@ -42,7 +59,7 @@ export default Ember.Component.extend({
       let promiseArray = this.get('createTempFriends').createPromiseArray(friends);    
 
       var route = this;
-      Promise.all(promiseArray)
+      Promise.all(promiseArray) // Here is where we create temporary accounts for email addresses without accounts.
       // After we have created the temporary accounts, we want to update the friendslist with these accounts and save them to the blog post
       .then(function(updatedFriends){
         updatedFriends.forEach(function(friend){
@@ -101,14 +118,12 @@ export default Ember.Component.extend({
       // 1. Reset new blog post properties
       this.toggleProperty('newBlogPost'); // Toggles on/off the new blog post field
 
+      // Increment the tinymceCounter so that we an initialize a new text editor
+      this.incrementProperty('tinymceCounter');
 
       // 2. If it is a public post, we want to allow them to add specific friends
       if (type === 'private') { this.set('isPrivate', true) }
       else { this.set('isPrivate', false) };
-
-      $( document ).ready(function() {
-        let simplemde = new SimpleMDE({ element: document.getElementById("newpost-inputblogpost-textarea") });
-      });
     },
     toggleSetPassword(){
       this.toggleProperty('setPassword')

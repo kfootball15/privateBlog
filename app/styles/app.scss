@@ -13,7 +13,7 @@ $secondary-background-color-dark: #82c8ff; // darker blue
 $yellow-orange: #ffeea5; // yellow-orange
 $yellow-orange-hover: #fffae2; // hover yellow-orange
 $fourthiary-background-color: #fce0ff; // pink
-$fourthiary-background-color-hover: #faddff; // darker pink
+$fourthiary-background-color-hover: darken($fourthiary-background-color,5%);; // darker pink
 $negative-background-color: #fc8389; //red
 $negative-background-color-hover: #ffa0a5; //red
 $positive-color: #80ed8a; //green

@@ -22,12 +22,10 @@
         })();
     </script>
     <!-- END EMAILJS -->
-
-    <!-- SIMPLE MDE -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.css">
-    <script src="https://cdn.jsdelivr.net/simplemde/latest/simplemde.min.js" async></script>
-    <!-- END SIMPLE MDE -->
-
+    
+    <!-- TINY MCE -->
+    <script src="https://cloud.tinymce.com/stable/tinymce.min.js?apiKey=62sxq304ynoswdjnhj02kph0rylmw7990jwlyvew5wahlt3m"></script>
+    <!-- END TINY MCE -->
 
     {{content-for "head-footer"}}
   </head>
@@ -44,21 +42,6 @@
 <!--     <script src="./dist/js/bootstrap.min.js"></script>
     IE10 viewport hack for Surface/desktop Windows 8 bug
     <script src="./assets/js/ie10-viewport-bug-workaround.js"></script> -->
-    <script src="//cloud.tinymce.com/stable/tinymce.min.js"></script>
-    <script>
-    tinymce.init({ 
-      selector:'textarea',
-      height: 500,
-      menubar: false,
-      plugins: [
-        'advlist autolink lists link image charmap print preview anchor',
-        'searchreplace visualblocks code fullscreen',
-        'insertdatetime media table contextmenu paste code'
-      ],
-      toolbar: 'undo redo | insert | styleselect | bold italic | alignleft aligncenter alignright alignjustify | bullist numlist outdent indent | link image',
-      content_css: '//www.tinymce.com/css/codepen.min.css' 
-    });
-    </script>
 
     {{content-for "body-footer"}}
   </body>

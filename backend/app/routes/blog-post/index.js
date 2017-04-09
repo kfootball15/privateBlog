@@ -74,7 +74,7 @@ router.get('/', function(req,res,next){
     }
     else if (req.query.isTutorialPost) {
       console.log("Got here, isTutorialPost")
-      BlogPost.updateMany({ isTutorialPost: req.query.isTutorialPost }, { $set: { owner: req.query.newOwner }})
+      BlogPost.updateMany({ isTutorialPost: req.query.isTutorialPost }, { $set: { owner: req.query.newOwner }}, {new: true})
       // BlogPost.find({isTutorialPost: req.query.isTutorialPost})
       .populate('friends', ['_id', 'username', 'email', 'bio', 'firstname', 'lastname', 'friends'])
       .then(function(posts){

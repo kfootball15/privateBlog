@@ -116,7 +116,7 @@ var blogpostSeed = [
         hasPassword: false,
         title: "This is a 'Public' blog post",
         subtitle: 'The contents of this post can be seen by anyone and everyone!',
-        content: "To edit this post and its contents, simply click on the text you would like to edit!",
+        content: "To edit a post and its contents, simply click on the text you would like to edit!",
         isTutorialPost: true,
         private: false
     },    
@@ -127,7 +127,7 @@ var blogpostSeed = [
         hasPassword: true,
         title: "This is a 'Private' blog post",
         subtitle: 'The contents of this post are password protected! (Hint: 12345)',
-        content: "Above, you'll see all of the other users you've invited to come look at you're post. \n Each added user received an email with an invitation to read. \n To add a new user, click the green '+' button and select a user account or, if you have a friend in mind that does not yet have an account, simply type in an email address. ",
+        content: "Above, you'll see all of the other users you've invited to come look at you're post. \n Each added user receives an email with an invitation to read. \n To add a new user, click the green '+' button and select a user account or, if you have a friend in mind that does not yet have an account, simply type in an email address. ",
         isTutorialPost: true,
         private: true
     },
