@@ -27,105 +27,109 @@ var Blogposts = mongoose.model('blogPost');
 
 var userSeed = [
     {
-        username: 'jchan',
-        email: 'jchan@me.com',
+        email: 'test@test.com',
+        username: 'Ironman',
         friends: [],
-        bio: 'Jacky is an avid blog writer and an unbelievable mixed martial artist. With an amazing, 20 year career in film and television, Jacky Chan has has brought in over 2 billion dollars in box office revenue.',
-        firstname: 'Jacky',
-        lastname: 'Chan',
+        firstname: 'Tony',
+        lastname: 'Stark',
+        bio: 'You know who I am.',
         password: '123',
-        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+        isTutorialFriend: true
     },
     {
-        username: 'mjordan',
-        email: 'mjordan@me.com',
+        email: 'test1@test.com',
+        username: 'Hulksmash',
         friends: [],
-        bio: 'Michael Jordan is one of the premiere web developers in the United States. After a decorated career as a professional basketball player, Jordan awoke one day with a desire to dominate the world of code, and he has done so spectacularly winning 5 championships.',
-        firstname: 'Michael',
-        lastname: 'Jordan',
+        firstname: 'Bruce',
+        lastname: 'Banner',
+        bio: 'Dr. Bruce Banner is a genius in nuclear physics, possessing a mind so brilliant that it cannot be measured on any known intelligence test. When Banner is the Hulk, Banner\'s consciousness is buried within the Hulk\'s, and can influence the Hulks behavior only to a very limited extent.',
         password: '123',
-        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+        isTutorialFriend: true
     },
     {
-        username: 'tmandelkern',
-        email: 'tmandelkern@me.com',
+        email: 'test2@test.com',
+        username: 'Batman',
         friends: [],
-        bio: 'Talya Mandelkern is one of the brightest minds we have seen this century. With a degree in biomedical engineering, Talya has exploded onto the scene as a stand out medical student at the University of Pittsburgh. A lovely smile, and wonderful rack, and an ass that simply does not quit.',
-        firstname: 'Talya',
-        lastname: 'Mandelkern',
+        firstname: 'Bruce',
+        lastname: 'Wayne',
+        bio: 'Batman is the superhero protector of Gotham City, a man dressed like a bat who fights against evil and strikes terror into the hearts of criminals everywhere. In his secret identity he is Bruce Wayne, billionaire industrialist and notorious playboy. Although he has no superhuman powers, he is one of the world\'s smartest men and greatest fighters. His physical prowess and technical ingenuity make him an incredibly dangerous opponent. He is also a founding member of the Justice League and the Outsiders.',
         password: '123',
-        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+        isTutorialFriend: true
     },
     {
-        username: 'jarcher',
-        email: 'jarcher@me.com',
+        email: 'test3@test.com',
+        username: 'Hammerman',
         friends: [],
-        bio: 'John Archer is a spi! And an American Patriot.',
-        firstname: 'John',
-        lastname: 'Arcjer',
+        firstname: 'Thor',
+        lastname: 'Hammer',
+        bio: 'Thor is a fictional superhero appearing in American comic books published by Marvel Comics. The character, based on the Norse mythological deity of the same name, is the Asgardian god of thunder and possesses the enchanted hammer Mjolnir, which grants him the ability of flight and weather manipulation amongst his other superhuman attributes.',
         password: '123',
-        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+        isTutorialFriend: true
     },
     {
-        username: 'owinfrey',
-        email: 'owinfrey@me.com',
+        email: 'test4@test.com',
+        username: 'Superman',
         friends: [],
-        bio: 'Oprah Winfrey is a Television woman! And what a rotund lady she has become despite here addition to weight watching.',
-        firstname: 'Oprah',
-        lastname: 'Winfrey',
+        firstname: 'Clark',
+        lastname: 'Kent',
+        bio: 'Superman is a fictional superhero appearing in American comic books published by DC Comics. The character was created by writer Jerry Siegel and artist Joe Shuster, high school students living in Cleveland, Ohio, in 1933. They sold Superman to Detective Comics, the future DC Comics, in 1938.',
         password: '123',
-        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+        isTutorialFriend: true
     },
     {
-        username: 'hstern',
-        email: 'hstern@me.com',
+        email: 'test5@test.com',
+        username: 'CatWoman',
         friends: [],
-        bio: 'Howard Stern is a man amongst children. His penis, though tiny, is known around the world',
-        firstname: 'Howard',
-        lastname: 'Stern',
+        firstname: 'Selina',
+        lastname: 'Kyle',
+        bio: "Catwoman (Selina Kyle) is a fictional character appearing in American comic books published by DC Comics, commonly in association with the superhero Batman. The character was created by Bob Kane and Bill Finger, and she made her debut in Batman #1 (Spring 1940), in which she is known as 'the Cat'.",
         password: '123',
-        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+        isTutorialFriend: true
     },
     {
-        username: 'timmy',
-        email: 'timmy @me.com',
+        email: 'test6@test.com',
+        username: 'CaptainAmerica',
         friends: [],
-        bio: 'Timmy is not a real person...',
-        firstname: 'timmy',
-        lastname: 'noname',
+        firstname: 'Steve',
+        lastname: 'Rogers',
+        bio: 'In World War II patriotic solider Steve Rogers recipient of the "Super Soldier Serum" became the living symbol of freedom, Captain America. Left for dead while frozen in ice, the star-spangled hero with an indestructible shield awoke years later to continue his never-ending battle for liberty.',
         password: '123',
-        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+        isTutorialFriend: true
     },
     {
-        username: 'admin',
-        email: 'admin@me.com',
+        email: 'test7@test.com',
+        username: 'Deadpool',
         friends: [],
-        bio: 'This is the admin. He is king around here.',
-        firstname: 'admin',
-        lastname: 'istrator',
+        firstname: 'Wade',
+        lastname: 'Wilson',
+        bio: "Wade Wilson's early life is mostly unknown. His mother died of cancer while he was young and his father (who was in the military) was physically abusive. Wade was a deliquent in his teenage years, possibly to spite his father. However one night while drinking with his friends his father attempt to take him out of the club one of his friends stole Wade\'s Fathers handgun and killed him.",
         password: '123',
-        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
+        isTutorialFriend: true
     },
-    {
-        username: 'me',
-        email: 'me@me.com',
-        friends: [],
-        bio: 'Jeff is really your standard development account that allows for all kinds of tests and experimentation to be done and executed on point until the completion of the application. If life were easier, I would have someone else do this seed file. Such is life.',
-        firstname: 'Jeff',
-        lastname: 'Fenster',
-        password: '123',
-        // avatar: 'http://quindrycom.richardquindryph.netdna-cdn.com/wp-content/gallery/people/corporate-headshot-Philadelphia-36-Square.jpg'
-    }
+    
 ];
 
 var blogpostSeed = [
     {
         date: new Date(),
         friends: [],
-        content: "Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.Life is great, which is why I have decided to right this blog post. It may repeat itself, but it is to symbolize the wonderful unity of life.",
-        password: '123',
-        title: 'This is a post to a blog',
-        subtitle: 'And life is good'
+        hasPassword: false,
+        title: "This is a 'Public' blog post",
+        subtitle: 'The contents of this post can be seen by anyone and everyone!',
+        content: "To edit this post and its contents, simply click on the text you would like to edit!",
+        isTutorialPost: true,
+        private: false
+    },    
+    {
+        date: new Date(),
+        friends: [],
+        password: '12345',
+        hasPassword: true,
+        title: "This is a 'Private' blog post",
+        subtitle: 'The contents of this post are password protected! (Hint: 12345)',
+        content: "Above, you'll see all of the other users you've invited to come look at you're post. \n Each added user received an email with an invitation to read. \n To add a new user, click the green '+' button and select a user account or, if you have a friend in mind that does not yet have an account, simply type in an email address. ",
+        isTutorialPost: true,
+        private: false
     },
     {
         date: new Date(),
@@ -289,9 +293,7 @@ var blogpostSeed = [
     }
 ];
 
-var publicOrPrivate = ['public', 'private'];
-
-var numberOfFriends = [1,2,3,4,5,6,7,8,9]
+var numberOfFriends = [4,5,6,7,8,9]
 
 // var storySeed = [
 //     {
@@ -331,7 +333,7 @@ var seedDB = function() {
         var friendsArray = [];
         for (var i = 0; i < usersList.length; i++){
 
-          var counter = 10;
+          var counter = 8;
           while (counter > 0) {
             var tempfriend = randomizeSelector(usersList)._id;
             if(friendsArray.indexOf(tempfriend) === -1) friendsArray.push(tempfriend)
@@ -339,7 +341,7 @@ var seedDB = function() {
           }
 
           console.log("friendsArray", friendsArray)
-          User.findByIdAndUpdate(usersList[i]._id,
+          return User.findByIdAndUpdate(usersList[i]._id,
             { "$set": { "friends": friendsArray } },
             { "new": true, "upsert": true },
             function (err, friends) {
@@ -350,19 +352,12 @@ var seedDB = function() {
       })
       .then(function(users){
         return Promise.map(blogpostSeed, function(blogPost) {
-            var blogType = randomizeSelector(publicOrPrivate)
             var numfriends = randomizeSelector(numberOfFriends)
-
-            //Creation of random blogPosts and users
-            var userToAddToFriends1 = randomizeSelector(usersList);
-            var userToAddToFriends2 = randomizeSelector(usersList);
-            var userToAddToFriends3 = randomizeSelector(usersList);
 
             //Pushing them into the seedfile object
             blogPost.owner = randomizeSelector(usersList);
-            blogPost.blogType = blogType;
             console.log("numbfriends:", numfriends)
-            if (blogType === 'public') {
+            if (blogPost.private === true) {
               while (numfriends >= 0) {
                 var tempfriend = randomizeSelector(usersList)
                 if (blogPost.friends.indexOf(tempfriend._id) === -1) blogPost.friends.push(tempfriend);

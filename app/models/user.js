@@ -10,6 +10,7 @@ export default DS.Model.extend({
   email: DS.attr('string'),
   password: DS.attr('string'),
   isTemp: DS.attr('boolean'),
+  isTutorialFriend: DS.attr('boolean'),
   fullname: function() {
     return this.get('firstname') + ' ' + this.get('lastname');
   }.property('firstName', 'lastName')

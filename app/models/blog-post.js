@@ -10,5 +10,6 @@ export default DS.Model.extend({
   content: DS.attr('string'),
   title: DS.attr('string'),
   subtitle: DS.attr('string'),
-  password: DS.attr('string')
+  password: DS.attr('string'),
+  isTutorialPost: DS.attr('boolean')
 });

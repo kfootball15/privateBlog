@@ -35,42 +35,63 @@ router.post('/', function (req, res, next){
 
 router.get('/', function(req,res,next){
 
+    if (req.query.owner) {
+      BlogPost.find({owner: req.query.owner})
+      .populate('owner friends', ['_id', 'username', 'email', 'bio', 'firstname', 'lastname', 'friends'])
+      .then(function(posts){
 
-    BlogPost.find({owner: req.query.owner})
-    .populate('owner friends', ['_id', 'username', 'email', 'bio', 'firstname', 'lastname', 'friends'])
-    .then(function(posts){
+        // If the user making the request is also the owner of the all the posts, it means the user is requesting his own posts and has permission to all posts.
+        if (req.query.userId === req.query.owner){
 
-      // If the user making the request is also the owner of the all the posts, it means the user is requesting his own posts and has permission to all posts.
-      if (req.query.userId === req.query.owner){
-
-        let sanitizedPosts = [];
-        for (var i = 0; i < posts.length; i++) {
-            sanitizedPosts.push(posts[i].sanitize())
-        }
-
-        res.status(200).json({
-          blogPost: sanitizedPosts
-        });
-
-      } 
-
-      else {
-
-        // Otherwise, lets just send back the posts that the user has permissions to view (public posts and posts the are a 'reader', or friend, of)
-        let filteredPosts = [];
-        for (var i = 0; i < posts.length; i++) {
-          if(!posts[i].private || userIsFriend(posts[i].friends)){
-            filteredPosts.push(posts[i].sanitize())
+          let sanitizedPosts = [];
+          for (var i = 0; i < posts.length; i++) {
+              sanitizedPosts.push(posts[i].sanitize())
           }
+
+          res.status(200).json({
+            blogPost: sanitizedPosts
+          });
+
+        } 
+
+        else {
+
+          // Otherwise, lets just send back the posts that the user has permissions to view (public posts and posts the are a 'reader', or friend, of)
+          let filteredPosts = [];
+          for (var i = 0; i < posts.length; i++) {
+            if(!posts[i].private || userIsFriend(posts[i].friends)){
+              filteredPosts.push(posts[i].sanitize())
+            }
+          }
+
+          res.status(200).json({
+            blogPost: filteredPosts
+          });
+
         }
+      })
+      .catch(next);
+    }
+    else if (req.query.isTutorialPost) {
+      console.log("Got here, isTutorialPost")
+      BlogPost.updateMany({ isTutorialPost: req.query.isTutorialPost }, { $set: { owner: req.query.newOwner }})
+      // BlogPost.find({isTutorialPost: req.query.isTutorialPost})
+      .populate('friends', ['_id', 'username', 'email', 'bio', 'firstname', 'lastname', 'friends'])
+      .then(function(posts){
+        console.log("tutorial posts:", posts)
+          let sanitizedPosts = [];
+          for (var i = 0; i < posts.length; i++) {
+              sanitizedPosts.push(posts[i].sanitize())
+          }
 
-        res.status(200).json({
-          blogPost: filteredPosts
-        });
+          res.status(200).json({
+            blogPost: sanitizedPosts
+          });
 
-      }
-    })
-    .catch(next);
+      })
+      .catch(next);
+    }
+
 
     function userIsFriend(postFriends){
       // If the post has friends, check to see if any of them are the user requesting these posts.

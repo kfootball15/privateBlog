@@ -6,7 +6,8 @@ var _ = require('lodash');
 var schema = new mongoose.Schema({
     username: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     firstname: {
       type: String,
@@ -25,9 +26,14 @@ var schema = new mongoose.Schema({
     },
     email: {
         type: String,
-        required: true
+        required: true,
+        unique: true
     },
     isTemp: {
+        type: Boolean,
+        default: false
+    },
+    isTutorialFriend: {
         type: Boolean,
         default: false
     },
@@ -43,6 +49,10 @@ var schema = new mongoose.Schema({
 // method to remove sensitive information from user objects before sending them out
 schema.methods.sanitize = function () {
     return _.omit(this.toJSON(), ['password', 'salt']);
+};
+// method to return just userId (for tutorial friends population)
+schema.methods.sanitizeForId = function () {
+    return _.omit(this.toJSON(), ['password', 'salt', 'isTutorialFriend', 'isTemp', 'email', 'bio', 'friends', 'username', 'firstname', 'lastname']);
 };
 
 // generateSalt, encryptPassword and the pre 'save' and 'correctPassword' operations

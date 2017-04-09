@@ -26,22 +26,40 @@ router.post('/', function (req, res, next){
 
 // Get user (params)
 router.get('/:user_id', function (req, res, next){
-  User.findOne({_id: req.params.user_id})
-  .populate('friends', ['username', 'firstname', 'lastname', 'friends', 'bio', 'email']).exec()
-  .then(function(fetchedUser){
-    res.status(200).json({user: fetchedUser.sanitize()})
-  })
-  .catch(next)
+  console.log(req.params.user_id)
+  if(req.params.user_id){  
+    User.findOne({_id: req.params.user_id})
+    .populate('friends', ['username', 'firstname', 'lastname', 'friends', 'bio', 'email']).exec()
+    .then(function(fetchedUser){
+      console.log(fetchedUser)
+      res.status(200).json({user: fetchedUser.sanitize()})
+    })
+    .catch(next)
+  }
 });
+
 
 // Get user (query)
 router.get('/', function (req, res, next){
-  if (req.query){
+  if (req.query._id){
     User.findById(req.query._id)
     .populate('friends', ['username', 'firstname', 'lastname', 'friends', 'bio', 'email'])
     .then(function(fetchedUser){
       console.log("Fetched User", fetchedUser.sanitize())
       res.status(200).json({user: fetchedUser.sanitize()})
+    })
+    .catch(next)    
+  }
+  if (req.query.isTutorialFriend){
+    console.log("In req.query.isTutorialFriend")
+    User.find({isTutorialFriend: req.query.isTutorialFriend})
+    .then(function(fetchedUsers){
+      console.log("Fetched Users", fetchedUsers)
+      let arrayOfSuperFriends = []
+      for (var i = 0; i < fetchedUsers.length; i++) {
+        arrayOfSuperFriends.push(fetchedUsers[i].sanitize())
+      }
+      res.status(200).json({user: arrayOfSuperFriends})
     })
     .catch(next)
   }

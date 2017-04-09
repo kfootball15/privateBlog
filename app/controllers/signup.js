@@ -3,6 +3,8 @@ const { service } = Ember.inject; // We declare 'service' so that we can inject 
 
 export default Ember.Controller.extend({
   session: service(),
+  store: service(),
+  tutorial: service(),
   actions: {
     signup () {
       let email = this.get('email');
@@ -20,23 +22,32 @@ export default Ember.Controller.extend({
 
       let route = this;
       if(validEmail) {  
-        let user = route.store.createRecord('user', {
-          email: email,
-          username: username,
-          firstname: firstname,
-          lastname: lastname,
-          bio: bio,
-          password: password
-        });
+        route.get('tutorial').populateTutorialFriends()
+        .then(function(friends){
+          let user = route.store.createRecord('user', {
+            email: email,
+            username: username,
+            firstname: firstname,
+            lastname: lastname,
+            bio: bio,
+            password: password,
+            friends: friends
+          });
 
-        // Makes a POST request to /api/users/:id
-        user.save()
+          // Makes a POST request to /api/users/:id
+          return user.save()
+        })
+        .then(function(user){
+          let userId = user.get('id')
+          return route.get('tutorial').populateTutorialPosts(userId)
+        })
         .then(function() {
-            // After user has been successfully saved, we log them in
-          return session.authenticate('authenticator:oauth2', email, password)
+          // After user has been successfully saved, we log them in
+          session.authenticate('authenticator:oauth2', email, password)
+          // If we successfully create the user, reset all fields. Otherwise, keep them so they dont have to start over.
+
         })
         .then(function(){
-          // If we successfully create the user, reset all fields. Otherwise, keep them so they dont have to start over.
           route.set('email', '');
           route.set('username', '');
           route.set('firstname', '');
@@ -44,7 +55,7 @@ export default Ember.Controller.extend({
           route.set('bio', '');
           route.set('password', '');
           // After successfully authenticating session, route to home
-          route.transitionToRoute('home')
+          // route.transitionToRoute('home.blog-posts', route.get('session.data.authenticated.user._id'))
         })
         .catch((reason) => {
           route.set('errorMessage', reason.error);

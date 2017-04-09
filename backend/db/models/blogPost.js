@@ -46,6 +46,10 @@ var blogSchema = new mongoose.Schema({
     subtitle: {
         type: String,
         default: "No Sub Title"
+    },
+    isTutorialPost: {
+        type: Boolean,
+        default: false
     }
 });
 
