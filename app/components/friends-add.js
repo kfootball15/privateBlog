@@ -11,10 +11,10 @@ export default Ember.Component.extend({
 		let searchTerm = this.get('search')
 		if(searchTerm) {
 			return that.get('friends').filter(function(item, index, enumerable){
-				if (item.username.includes(searchTerm)) return true;
-				if (item.email.includes(searchTerm)) return true;
-				if (item.firstname.includes(searchTerm)) return true;
-				if (item.lastname.includes(searchTerm)) return true;
+				if (item.username.toLowerCase().includes(searchTerm.toLowerCase())) return true;
+				if (item.email.toLowerCase().includes(searchTerm.toLowerCase())) return true;
+				if (item.firstname.toLowerCase().includes(searchTerm.toLowerCase())) return true;
+				if (item.lastname.toLowerCase().includes(searchTerm.toLowerCase())) return true;
 			})
 		}
 		else return this.get('friends')

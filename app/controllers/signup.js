@@ -37,10 +37,10 @@ export default Ember.Controller.extend({
           // Makes a POST request to /api/users/:id
           return user.save()
         })
-        .then(function(user){
-          let userId = user.get('id')
-          return route.get('tutorial').populateTutorialPosts(userId)
-        })
+        // .then(function(user){
+        //   let userId = user.get('id')
+        //   return route.get('tutorial').populateTutorialPosts(userId)
+        // })
         .then(function() {
           // After user has been successfully saved, we log them in
           session.authenticate('authenticator:oauth2', email, password)

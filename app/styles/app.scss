@@ -131,9 +131,11 @@ body {
 
 }
 #form-newpost-standardinputs {
-  
   input {
     width: $width-newpost - 150px;
+  }
+  textarea {
+    margin: 0 auto;
   }
 }
 #newpost-password {
@@ -150,8 +152,52 @@ body {
 .newpost-password-protect {
   display: block;
 }
+.newpost-inputblogpost-textarea {
+  margin: 0 auto;
+}
 
 
+
+// NAVBAR
+.nav {
+  padding: 0px;
+}
+.navbar {
+  display: block;
+  text-align: left; 
+
+  .navbar-button {
+    cursor: pointer;
+    // @include border-radius(15px);
+    background-color: $yellow-orange;
+    &:hover{
+      background-color: darken($yellow-orange,5%);
+    }
+  }
+  .nav-brand {
+    display: inline-block;
+    padding: 10px 10px;
+  }
+  .nav-logout {
+    background-color: $negative-background-color;
+    &:hover{
+      background-color: darken($negative-background-color,5%);
+    }
+  }
+  .nav-login, .nav-signup
+   {
+    background-color: $positive-color;
+    &:hover{
+      background-color: darken($positive-color,5%);
+    }
+  }
+  li {
+    margin: 0px;
+    display: inline-block;
+    padding: 5px 10px;
+    cursor: pointer;
+  }
+}
 
 
 
@@ -169,6 +215,7 @@ body {
   margin-right: 80px;
 }
 .friendslist-container {
+  padding: 20px 0px;
 	display: block;
   margin: 5px 0;
   border-radius: 5px;

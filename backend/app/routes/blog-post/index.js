@@ -72,7 +72,7 @@ router.get('/', function(req,res,next){
       })
       .catch(next);
     }
-    else if (req.query.isTutorialPost) {
+    if (req.query.isTutorialPost) {
       console.log("Got here, isTutorialPost")
       BlogPost.updateMany({ isTutorialPost: req.query.isTutorialPost }, { $set: { owner: req.query.newOwner }}, {new: true})
       // BlogPost.find({isTutorialPost: req.query.isTutorialPost})

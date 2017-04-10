@@ -1,39 +1,46 @@
+ <div id="main-container">
  <!-- Fixed navbar -->
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          {{#link-to "home" class="navbar-brand"}} Private Blog {{/link-to}}
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-          <ul class="nav navbar-nav">
-            <li><div {{ action "routeToHome"}} > Home </div></li>
-            {{#if session.isAuthenticated}}
-              {{#if currentUser.user}}
-                <li> 
-                  {{#link-to "profile" class="buttons profile"}} 
-                    Profile {{!-- {{currentUser.user.username}} --}}
-                  {{/link-to}} 
-                </li>
+          <div id="navbar" class="navbar-collapse collapse">
+            <ul class="nav">
+              <li class="navbar-button nav-brand" {{ action "routeToHome"}}>
+                Private Blog
+              </li>
+              <li class="navbar-button nav-home" {{ action "routeToHome"}}> 
+                Home 
+              </li>
+              {{#if session.isAuthenticated}}
+                {{#if currentUser.user}}
+                    {{#link-to "profile"}} 
+                      <li class="navbar-button nav-profile"> 
+                          Profile {{!-- {{currentUser.user.username}} --}}
+                      </li>
+                    {{/link-to}} 
+                {{/if}}
+                  <li class="navbar-button nav-logout" {{action 'logout'}}> 
+                    Logout 
+                  </li>
+                {{else}}
+                    {{#link-to "signup" }}
+                      <li class="navbar-button nav-signup">
+                          Sign Up
+                      </li>
+                    {{/link-to}}
+                    {{#link-to "login" }}
+                      <li class="navbar-button nav-login">
+                          Log In
+                      </li>
+                    {{/link-to}}
               {{/if}}
-                <li {{action 'logout'}}> <a href=""> Logout </a> </li>
-              {{else}}
-                <li>
-                  {{#link-to "signup" }}
-                    Sign Up
-                  {{/link-to}}
-                </li>
-                <li>
-                  {{#link-to "login" }}
-                    Log In
-                  {{/link-to}}
-                </li>
-            {{/if}}
-          </ul>
-        </div><!--/.nav-collapse -->
+            </ul>
+          </div><!--/.nav-collapse -->
+        </div>
       </div>
     </nav>
 
-{{outlet}}
-
+    {{outlet}}
+</div>
 
 

@@ -4,6 +4,7 @@ module.exports = router;
 var _ = require('lodash');
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
+var BlogPost = mongoose.model('blogPost');
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 
@@ -17,19 +18,49 @@ var ensureAuthenticated = function (req, res, next) {
 
 // POST : Create User
 router.post('/', function (req, res, next){
+  let newUser;
   User.create(req.body.user) // If the user does not exist, we are creating it.
-  .then(function(newUser){
+  .then(function(user){
+      newUser = user;
+      // Create tutorial posts for the new user, explaining private and public posts
+      return BlogPost.create([{
+            date: new Date(),
+            owner: user,
+            friends: [],
+            hasPassword: false,
+            title: "This is a 'Public' blog post",
+            subtitle: 'The contents of this post can be seen by anyone and everyone!',
+            content: "To edit a post and its contents, simply click on the text you would like to edit!",
+            isTutorialPost: true,
+            private: false
+        },    
+        {
+            date: new Date(),
+            owner: user,
+            friends: [],
+            password: '12345',
+            hasPassword: true,
+            title: "This is a 'Private' blog post",
+            subtitle: 'The contents of this post are password protected! (Hint: 12345)',
+            content: "Above, you'll see all of the other users you've invited to come look at you're post. \n Each added user receives an email with an invitation to read. \n To add a new user, click the green '+' button and select a user account or, if you have a friend in mind that does not yet have an account, simply type in an email address. ",
+            isTutorialPost: true,
+            private: true
+    }]).then(function(newPost){
+        return BlogPost.populate(newPost, {path: "owner friends", select: '_id username email bio firstname lastname friends'})
+      })
+  })
+  .then(function(){
     res.status(201).json({user: newUser.sanitize()})
   })
   .catch(function(error){ // If we get a duplicate key error, send back the original user (we use it with temp users)
     if(error.message.indexOf("E11000 duplicate key error") > -1) {
-      return User.findOne({username: req.body.user.username})
+      User.findOne({username: req.body.user.username})
+      .then(function(tempUser){ 
+        res.status(200).json({user: tempUser.sanitize()})
+      })
     } else {
       next(error)
     }
-  })
-  .then(function(tempUser){ 
-    res.status(200).json({user: tempUser.sanitize()})
   })
 })
 

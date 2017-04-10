@@ -1,5 +1,3 @@
-<div id="main-container">
-
 {{#if reverse}}
   <div class="newpost-options">
     
@@ -40,12 +38,15 @@
         reverse=reverse
         friends=session.data.authenticated.user.friends
       }}
-
-
   </div>
-
-
-  <div>Write your first Blog Post by selecting whether it is a privately vieweable post or a publicly viewable above</div>
+  
+  <div id="blogposts-container" class="blogposts-split">
+    <div class="blogpost">
+      <div style="text-align:center;padding:20px 10px;">
+      You haven't written any blog posts yet! To write your first Blog Post, select either a Public (viewable by anyone) or Private (viewable only by including friends) Post.
+      </div>
+    </div>
+  </div>
 
     {{!-- FRIENDS LIST COMPONENT --}}
     <div class="friendslist-container friendslist-split background-blue">
@@ -53,4 +54,3 @@
     </div>
 {{/if}}
 
-</div>
